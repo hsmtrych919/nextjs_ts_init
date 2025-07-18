@@ -1,0 +1,25 @@
+@charset "utf-8";
+@use "sass:color";
+@use "./global/global" as g;
+
+
+.button {
+  display: block;
+  width: 300px;
+  max-width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 15px 0;
+  transition: all .2s ease;
+  border-radius: 10px;
+  background-color: var(--clrg400);
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+  text-align: center;
+  @include g.hover {
+    background-color: var(--clrg500);
+    color: #fff;
+  }
+}
