@@ -9,7 +9,7 @@ interface ToggleState {
 function updateToggleText(index: number, currentHeight: string, nodeTitle: NodeListOf<Element>) {
   const toggleText = nodeTitle[index].parentElement?.querySelector('.js-toggle-message');
   if (toggleText) {
-    toggleText.textContent = currentHeight === '200px' ? '閉じる' : '続きを読む';
+    toggleText.textContent = currentHeight === '100px' ? '閉じる' : '続きを読む';
   }
 }
 
@@ -40,7 +40,7 @@ export function useToggleContent(elemWrap: string, elemTitle: string, elemConten
     const nodeContent = document.querySelectorAll(elemContent);
     let contentHeight: number[] = [];
     const ms = 0.3; // GSAPは秒単位
-    const initialHeight = '200px'; // 開始時の高さ
+    const initialHeight = '100px'; // 開始時の高さ
 
     const updateContentHeight = () => {
       contentHeight = [];

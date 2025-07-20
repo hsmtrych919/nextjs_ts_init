@@ -11,7 +11,7 @@ $z: button,overlay;
 .reactmodal__overlay {
   display: flex;
   position: fixed;
-  z-index: g.get_zindex(modal);
+  z-index: g.get_zindex(micromodal);
   top: 0;
   right: 0;
   bottom: 0;

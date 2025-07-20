@@ -34,14 +34,14 @@ export default function PageDemo() {
             <p>スクロールして下を見てください ↓</p>
           </div>
 
-          <div className="inview__fadein" style={{ padding: '40px', background: '#e0e0e0', opacity: 0, transform: 'translateY(30px)', transition: 'all 0.8s ease' }}>
+          <div className="inview__fadein">
             <h3>InView要素1</h3>
             <p>この要素は画面に入るとフェードインします</p>
           </div>
 
           <div style={{ height: '50vh' }}></div>
 
-          <div className="inview__fadein" style={{ padding: '40px', background: '#d0d0d0', opacity: 0, transform: 'translateY(30px)', transition: 'all 0.8s ease' }}>
+          <div className="inview__fadein">
             <h3>InView要素2</h3>
             <p>この要素も画面に入るとフェードインします</p>
           </div>

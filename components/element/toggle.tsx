@@ -17,8 +17,9 @@ export default function SimpleToggleDemo({ children }: ToggleProps) {
         {children || (
           <section>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br/>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.<br/>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati vel nemo earum eligendi tempore, quis nam harum laudantium consectetur dolores quae quisquam voluptatum rem enim ipsum pariatur rerum explicabo distinctio!</p>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br/>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.<br/>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati vel nemo earum eligendi tempore, quis nam harum laudantium consectetur dolores quae quisquam voluptatum rem enim ipsum pariatur rerum explicabo distinctio!</p>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br/>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.<br/>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati vel nemo earum eligendi tempore, quis nam harum laudantium consectetur dolores quae quisquam voluptatum rem enim ipsum pariatur rerum explicabo distinctio!</p>
           </section>
         )}
       </div>

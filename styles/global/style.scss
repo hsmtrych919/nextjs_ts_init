@@ -25,14 +25,13 @@
 // -----------------------------------------------------------------
 
 //プラグイン優先
-// @use "component/react-modal/react-modal";
+@use "component/react-modal/react-modal";
 // @use "component/swiper/swiper-bundle";
-
 @use "component/_button" as c-button;
 @use "component/_gutter";
 // @use "component/_tab";
 // @use "component/_table";
-// @use "component/_toggle";
+@use "component/_toggle";
 @use "component/_typ" as c-typ;
 
 // -----------------------------------------------------------------
