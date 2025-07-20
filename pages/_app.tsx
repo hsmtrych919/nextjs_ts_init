@@ -4,11 +4,12 @@ import '@styles/global/style.scss';
 // import { useRouter } from 'next/router';
 import Head from 'next/head';
 import getConfig from 'next/config';
+import { AppProps } from 'next/app';
 
 const { publicRuntimeConfig } = getConfig();
 const basePath = (publicRuntimeConfig && publicRuntimeConfig.basePath) || '';
 
-export default function MyApp({ Component, pageProps }) {
+export default function MyApp({ Component, pageProps }: AppProps) {
   // const router = useRouter();
   // レイアウトの出し分け_app.jsでやる場合。layout.jsにprops渡して条件分岐させる方法を採用
   // let getLayout;

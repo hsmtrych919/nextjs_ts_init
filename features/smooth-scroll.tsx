@@ -1,4 +1,4 @@
-import smoothScroll from 'smooth-scroll/dist/smooth-scroll.min';
+const smoothScroll = require('smooth-scroll/dist/smooth-scroll.min') as any;
 
 export function smooth_scroll() {
   // if (typeof window !== 'undefined') {

@@ -1,34 +1,93 @@
+
+# NextJS TypeScript スターターテンプレート
 ssg（静的html）サイト用プリセット
 
-# コマンド
-開発中 npm run dev
-ビルド npm run build
-* バージョンアップにより " next export" は不要
-ローカルサーバー npm run serve
+## 技術構成
+- **Next.js 13.5** (App Router非使用)
+- **TypeScript 5.8** 各ファイルを.ts, .tsxに拡張子変更
+- **SCSS** (GSAP, React Modal対応)
+- **eslint, prettier, stylelint** 設定済み
 
-liveserverディレクトリにあるが、vscodeのliveserverは不使用
+## 主要機能
+- **React Modal**: モーダル機能 (`@features/modal-component`)
+- **GSAP Animation**: トグル機能 (`@features/toggle-content`)
+- **IntersectionObserver**: スクロール検知 (`@features/useInView`)
+- **Smooth Scroll**: スムーススクロール (`@features/smooth-scroll`)
+
+## コマンド
+
+### 開発・ビルド
+
+- 開発サーバー起動
+npm run dev
+
+- 開発用ビルド（prefixPath無し）
+npm run build
+
+- ビルド後の確認用サーバー
+npm run serve
+
+- 本番用ビルド（prefixPath付き）
+npm run build:deploy"
+
+- 画像最適化
+npm run imgmin
+
+- ESLint修正
+npm run eslint
 
 
-# lintあり。ドットファイルにして利用
+## 環境別の動作
+
+### 開発時・ビルドチェック時
+- `npm run build` + `npm run serve`
+- `prefixPath = ''` で動作
+- ローカル環境での動作確認が可能
+
+### 本番デプロイ時
+- `npm run build:prod`
+- サブディレクトリ配置対応 のため `prefixPath = 'https://xxx.com'` で動作
+
+## ディレクトリ構成
+```
+├── components/          # Reactコンポーネント
+│   ├── element/        # 汎用UI要素
+│   ├── layout/         # レイアウト
+│   └── page/           # ページ固有
+├── features/           # 機能別ロジック
+├── pages/              # Next.jsページ
+├── styles/             # SCSS
+└── _dist/              # ビルド出力
+```
+
+## 技術デモページ
+- `/snippet`: Modal, Toggle, InView機能のデモ
+
+
+
+
+
+# セットアップ時
+
+
+## lintあり。ドットファイルにして利用
 .eslintrc.js
 .prettierrc.js
 .stylelintrc.js
 
-# 公開フォルダ : dist
 
-
-# ページファイル作成
+## ページファイル作成
 ファイルはpage/内に"ディレクトリ名.js"で作成。
 ビルド時に"ディレクトリ/"でアクセスできる
 設定は "next.config.js"の
 trailingSlash: true,
 
 
-# es5 トランスパイル
+## es5 トランスパイル
 念のため"browserslist"に "supports es5"
 
 
-# ファイルのパス src / href
+## ファイルのパス src / href
 静的エクスポートで コンポーネント化したパーツ内の'./'もしくは'../'を出し分けるのはできなそう。
 絶対パス指定で対応。
 
@@ -37,7 +96,7 @@ trailingSlash: true,
 css,jsはビルド時にファイル名が変わるのでいったんパス
 
 
-# 背景画像のパス
+## 背景画像のパス
 background-image: url(../../../public/img/bgi_cloth01.png);
 ../はローカルの階層に合わせる
 これでビルド時にbgiが _next/static/media/内に生成されてurlも修正してくれる
@@ -46,31 +105,19 @@ background-image: url(../../../public/img/bgi_cloth01.png);
 
 
 
-# 制作時ブラウザリスト
+## ブラウザリスト
+*制作時*
   "browserslist": [
     "last 2 versions",
   ],
 
-# 本番用ブラウザリスト
+*本番用*
   "browserslist": [
     "supports es5",
     "> 2% in JP",
     "ios >= 15",
     "not dead"
   ],
-
-
-# typescript
-
-npm i typescript @types/react @typescript-eslint/eslint-plugin @typescript-eslint/parser 追加
-
-
-npm install --save-dev @types/node @types/node
-
-tsconfig.json 作成してから npm run dev ファイルに設定が記述される
-
-各ファイルを.ts, .tsxに拡張子変更
-
 
 
 

@@ -1,15 +1,13 @@
 import React, { ReactNode } from 'react';
 import ReactModal from 'react-modal';
 
-
-type functionProps ={
+interface ModalComponentProps {
   isOpen: boolean;
   closeModal: () => void;
   children: ReactNode;
-};
+}
 
-
-const ModalComponent = ({ isOpen, closeModal, children }: functionProps) => {
+const ModalComponent = ({ isOpen, closeModal, children }: ModalComponentProps) => {
   return (
     <ReactModal
       isOpen={isOpen}

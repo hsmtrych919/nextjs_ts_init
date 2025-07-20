@@ -3,7 +3,10 @@ const path = require('path');
 // /_next/static/からの呼び出し対策
 // hrefやsrcは絶対パスで指定
 const isProd = process.env.NODE_ENV === 'production';
-const prefixPath = isProd ? 'https://xxx.com' : '';
+const isRealDeploy = process.env.REAL_DEPLOY === 'true'; // 本番デプロイ判定用
+
+// 開発時チェック用：REAL_DEPLOY=trueの時のみ本番URL適用
+const prefixPath = (isProd && isRealDeploy) ? 'https://xxx.com' : '';
 
 /**
  * @type {import('next').NextConfig}

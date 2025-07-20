@@ -38,6 +38,31 @@
 }
 
 
+// フェードインの変数
+$fadein-duration: 0.4s;
+$fadein-offset: 30px;
+
+// フェードインの基本スタイル
+.inview__fadein {
+  transform: translateY($fadein-offset);
+  backface-visibility: hidden; // GPUアクセラレーション有効化
+  transition: opacity $fadein-duration ease-out, transform $fadein-duration ease-out;
+  opacity: 0;
+  will-change: opacity, transform;
+
+  // @media (prefers-reduced-motion: reduce) {
+  //   transform: none;
+  //   transition: none;
+  // }
+}
+
+// 表示状態
+.is-inview {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+
 // swiper
 
 // .swiper-main {

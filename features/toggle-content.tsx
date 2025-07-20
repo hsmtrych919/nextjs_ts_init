@@ -1,38 +1,65 @@
 import { useEffect } from 'react';
-import anime from 'animejs';
+import { gsap } from 'gsap';
 
-function updateToggleText(index, currentHeight, nodeTitle) {
-  const toggleText = nodeTitle[index].parentElement.querySelector('.js-toggle-message');
+interface ToggleState {
+  isOpen: boolean;
+  isAnimating: boolean;
+}
+
+function updateToggleText(index: number, currentHeight: string, nodeTitle: NodeListOf<Element>) {
+  const toggleText = nodeTitle[index].parentElement?.querySelector('.js-toggle-message');
   if (toggleText) {
     toggleText.textContent = currentHeight === '200px' ? '閉じる' : '続きを読む';
   }
 }
 
-export function useToggleContent(elemWrap, elemTitle, elemContent) {
+/**
+ * カスタムフック: useToggleContent
+ *
+ * 指定した要素群に「続きを読む/閉じる」トグル機能を付与します。
+ * タイトル要素をクリックすると、対応するコンテンツ要素の高さをGSAPアニメーションで切り替えます。
+ *
+ * - 初期状態ではコンテンツの高さは200pxに設定されます。
+ * - トグル時に高さをコンテンツのscrollHeightまで拡張し、「閉じる」ボタンに切り替わります。
+ * - 再度トグルすると高さを200pxに戻し、「続きを読む」ボタンに切り替わります。
+ * - ウィンドウリサイズ時にコンテンツの高さを再計算します。
+ *
+ * @param elemWrap   トグル対象のラップ要素のセレクタ（例: '.js-toggle-wrap'）
+ * @param elemTitle  トグルボタンとなるタイトル要素のセレクタ（例: '.js-toggle-title'）
+ * @param elemContent トグル対象のコンテンツ要素のセレクタ（例: '.js-toggle-content'）
+ *
+ * @remarks
+ * - タイトル要素の親に`.js-toggle-message`クラスの要素が必要です（トグルメッセージ表示用）。
+ * - GSAPライブラリが必要です。
+ * - Next.js/React環境で利用してください。
+ */
+
+export function useToggleContent(elemWrap: string, elemTitle: string, elemContent: string) {
   useEffect(() => {
     const nodeTitle = document.querySelectorAll(elemTitle);
     const nodeContent = document.querySelectorAll(elemContent);
-    let contentHeight = [];
-    const ms = 300;
+    let contentHeight: number[] = [];
+    const ms = 0.3; // GSAPは秒単位
     const initialHeight = '200px'; // 開始時の高さ
 
     const updateContentHeight = () => {
       contentHeight = [];
       nodeContent.forEach((node) => {
-        contentHeight.push(node.scrollHeight);
-        node.style.overflow = 'hidden';
-        node.style.height = initialHeight;
+        contentHeight.push((node as HTMLElement).scrollHeight);
+        const element = node as HTMLElement;
+        element.style.overflow = 'hidden';
+        element.style.height = initialHeight;
       });
     };
 
     updateContentHeight();
 
-    const toggleState = Array.from({ length: nodeTitle.length }).fill({
+    const toggleState: ToggleState[] = Array.from({ length: nodeTitle.length }, () => ({
       isOpen: false,
       isAnimating: false,
-    });
+    }));
 
-    const toggleControl = (index) => {
+    const toggleControl = (index: number) => {
       if (toggleState[index].isAnimating) return;
 
       const currentToggleState = toggleState[index];
@@ -52,35 +79,34 @@ export function useToggleContent(elemWrap, elemTitle, elemContent) {
         isAnimating: true,
       };
 
-      const currentHeight = nodeContent[index].style.height;
+      const element = nodeContent[index] as HTMLElement;
+      const currentHeight = element.style.height;
       const targetHeight = currentHeight === initialHeight ? `${contentHeight[index]}px` : initialHeight;
 
-      const tl = anime.timeline({
-        complete: function () {
+      // GSAPアニメーション
+      gsap.to(element, {
+        height: targetHeight,
+        duration: ms,
+        ease: 'circ.out',
+        onComplete: () => {
           toggleState[index] = {
             ...toggleState[index],
             isAnimating: false,
           };
           updateToggleText(index, currentHeight, nodeTitle);
-        },
-      });
-
-      tl.add({
-        targets: nodeContent[index],
-        height: targetHeight,
-        duration: ms,
-        easing: 'easeOutCirc',
+        }
       });
     };
 
-    const handleToggleControl = (event) => {
-      const index = event.currentTarget.index;
+    const handleToggleControl = (event: Event) => {
+      const target = event.currentTarget as any;
+      const index = target.index;
       toggleControl(index);
     };
 
     // イベントリスナーの追加
     for (let i = 0; i < nodeTitle.length; i++) {
-      nodeTitle[i].index = i;
+      (nodeTitle[i] as any).index = i;
       nodeTitle[i].addEventListener('mousedown', handleToggleControl);
     }
 
