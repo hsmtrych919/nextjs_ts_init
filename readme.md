@@ -8,11 +8,25 @@ ssg（静的html）サイト用プリセット
 - **SCSS** (GSAP, React Modal対応)
 - **eslint, prettier, stylelint** 設定済み
 
-## 主要機能
-- **React Modal**: モーダル機能 (`@features/modal-component`)
-- **GSAP Animation**: トグル機能 (`@features/toggle-content`)
-- **IntersectionObserver**: スクロール検知 (`@features/useInView`)
-- **Smooth Scroll**: スムーススクロール (`@features/smooth-scroll`)
+## 主要機能 - 更新:2025年7月21日
+
+### レイアウトシステム
+- `components/layout/layout.tsx` - メインレイアウト
+- `components/layout/header.tsx` - ヘッダー（ロゴ部分は「logo.png」を参照）
+- `components/layout/footer.tsx` - フッター（「ダミーテキストです。」を含む）
+
+### UI要素コンポーネント
+- `components/element/modal.tsx` - モーダルデモ（React Modal統合）
+- `components/element/toggle.tsx` - トグルデモ（GSAP連携）
+- `components/element/button.tsx` - ボタンコンポーネント
+
+### 機能モジュール
+- `features/modal-component.tsx` - モーダル機能
+- `features/toggle-content.tsx` - GSAP アニメーション
+- `features/useInView.tsx` - IntersectionObserver hook
+- `features/smooth-scroll.tsx` - スムーススクロール
+- `features/rewrite-path.tsx` - パス管理（デュアル環境対応）
+- `features/link_ignore.tsx` - リンク無効化機能
 
 ## コマンド
 

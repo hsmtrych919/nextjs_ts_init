@@ -7,7 +7,7 @@
     "start": "next start",
     "serve": "npx serve _dist",
     "imgmin": "node imagemin.config.js",
-    "eslint": "npx eslint --fix \"pages/**/*.jsx\" \"components/**/*.jsx\""
+    "eslint": "npx eslint --fix \"pages/**/*.{ts,tsx}\" \"components/**/*.{ts,tsx}\" \"features/**/*.{ts,tsx}\""
   },
   "browserslist": [
     "last 2 versions"
