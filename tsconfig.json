@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -15,25 +19,50 @@
     // エイリアス
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["components/*"],
-      "@features/*": ["features/*"],
-      "@styles/*": ["styles/*"]
-    }
+      "@/*": [
+        "src/*"
+      ],
+      "@/components/*": [
+        "src/components/*"
+      ],
+      "@/lib/*": [
+        "src/lib/*"
+      ],
+      "@/styles/*": [
+        "src/styles/*"
+      ],
+      // 互換性のため既存パスも一時保持
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@features/*": [
+        "src/lib/*"
+      ],
+      "@styles/*": [
+        "src/styles/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
-  ],
-//   "overrides": [
-//     {
-//         "files": ["*.ts", "*.tsx"],
-//         "rules": {
-//             "no-undef": "off"
-//         }
-//     }
-// ]
+  ]
+  //   "overrides": [
+  //     {
+  //         "files": ["*.ts", "*.tsx"],
+  //         "rules": {
+  //             "no-undef": "off"
+  //         }
+  //     }
+  // ]
 }

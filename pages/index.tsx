@@ -1,5 +1,5 @@
-import Layout from '@components/layout/layout';
-import styles from '@styles/top.module.scss';
+import Layout from '@/components/layout/layout';
+import styles from '@/styles/modules/top.module.scss';
 
 // ファイル下に meta情報用の getStaticProps記載
 

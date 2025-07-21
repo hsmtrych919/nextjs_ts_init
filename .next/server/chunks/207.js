@@ -1,3 +1,0 @@
-"use strict";exports.id=207,exports.ids=[207],exports.modules={1207:(s,e,t)=>{t.r(e),t.d(e,{default:()=>MyDocument});var r=t(997),n=t(6859),a=t.n(n);let MyDocument=class MyDocument extends a(){static async getInitialProps(s){let e=await a().getInitialProps(s);return{...e}}render(){return(0,r.jsxs)(n.Html,{children:[(0,r.jsxs)(n.Head,{children:[r.jsx("link",{rel:"stylesheet",href:"https://fonts.googleapis.com/earlyaccess/notosansjp.css",type:"text/css",media:"all"},"css-notosansjp"),r.jsx("script",{dangerouslySetInnerHTML:{__html:`
-                gtmコードペースト
-              `}})]}),(0,r.jsxs)("body",{className:"",children:[r.jsx(n.Main,{}),r.jsx(n.NextScript,{})]})]})}}}};

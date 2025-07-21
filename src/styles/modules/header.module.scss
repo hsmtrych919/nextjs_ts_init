@@ -1,0 +1,50 @@
+@charset "utf-8";
+@use "sass:color";
+@use "../global/global" as g;
+
+
+.outer {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--clrg300);
+}
+
+.logo {
+  width: 120px;
+  @media #{g.$md} {
+    width: 96px;
+  }
+}
+
+.crumbs {
+  &_outer {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    @media #{g.$md} {
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+  }
+  &_list {
+    display: flex;
+    li {
+      flex: 0 1 auto;
+      margin-right: 8px;
+      font-size: 14px;
+      &::after {
+        content: "＞";
+        display: inline-flex;
+      }
+    }
+    li:last-child {
+      &::after {
+        content: "";
+      }
+    }
+  }
+  &_item {
+    padding-right: 8px;
+  }
+  &_link {
+    text-decoration: underline;
+  }
+}

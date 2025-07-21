@@ -1,7 +1,7 @@
-import Layout from '@components/layout/layout';
-import SimpleModalDemo from '@components/element/modal';
-import SimpleToggleDemo from '@components/element/toggle';
-import { useInView } from '@features/useInView';
+import Layout from '@/components/layout/layout';
+import SimpleModalDemo from '@/components/ui/modal';
+import SimpleToggleDemo from '@/components/ui/toggle';
+import { useInView } from '@/lib/hooks/useInView';
 
 // ファイル下に meta情報用の getStaticProps記載
 

@@ -1,6 +1,7 @@
-node_modules
+node_modules/
 .claude/tmp/
 package-lock.json
 tsconfig.tsbuildinfo
 _dist/
 _dist
+.next/
