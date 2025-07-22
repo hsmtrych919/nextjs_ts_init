@@ -1,5 +1,5 @@
 import React, { useState, ReactNode } from 'react';
-import ModalComponent from '@/components/ui/modal-component';
+import ModalComponent from '@/components/ui/modal/component';
 import styles from '@/styles/modules/button.module.scss';
 
 interface ModalProps {

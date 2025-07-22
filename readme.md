@@ -1,4 +1,3 @@
-
 # NextJS TypeScript スターターテンプレート
 ssg（静的html）サイト用プリセット
 
@@ -8,25 +7,25 @@ ssg（静的html）サイト用プリセット
 - **SCSS** (GSAP, React Modal対応)
 - **eslint, prettier, stylelint** 設定済み
 
-## 主要機能 - 更新:2025年7月21日
+## 主要機能 - 更新:2025年7月23日
 
 ### レイアウトシステム
-- `components/layout/layout.tsx` - メインレイアウト
-- `components/layout/header.tsx` - ヘッダー（ロゴ部分は「logo.png」を参照）
-- `components/layout/footer.tsx` - フッター（「ダミーテキストです。」を含む）
+- `src/components/layout/layout.tsx` - メインレイアウト（機能初期化を含む）
+- `src/components/layout/header.tsx` - ヘッダー（ロゴ部分は「logo.png」を参照）
+- `src/components/layout/footer.tsx` - フッター（「ダミーテキストです。」を含む）
 
 ### UI要素コンポーネント
-- `components/element/modal.tsx` - モーダルデモ（React Modal統合）
-- `components/element/toggle.tsx` - トグルデモ（GSAP連携）
-- `components/element/button.tsx` - ボタンコンポーネント
+- `src/components/ui/modal.tsx` - モーダルデモ（React Modal統合）
+- `src/components/ui/toggle.tsx` - トグルデモ（GSAP連携）
+- `src/components/ui/button.tsx` - ボタンコンポーネント
+- `src/components/ui/modal/component.tsx` - React Modalコンポーネント
 
 ### 機能モジュール
-- `features/modal-component.tsx` - モーダル機能
-- `features/toggle-content.tsx` - GSAP アニメーション
-- `features/useInView.tsx` - IntersectionObserver hook
-- `features/smooth-scroll.tsx` - スムーススクロール
-- `features/rewrite-path.tsx` - パス管理（デュアル環境対応）
-- `features/link_ignore.tsx` - リンク無効化機能
+- `src/lib/hooks/toggle-content.tsx` - GSAPを使用したトグルアニメーション（カスタムフック）
+- `src/lib/hooks/useInView.tsx` - IntersectionObserver hook
+- `src/lib/utils/smooth-scroll.tsx` - スムーズスクロール機能
+- `src/lib/utils/rewrite-path.tsx` - 環境間でのパス管理ユーティリティ
+- `src/lib/utils/link_ignore.tsx` - リンク無効化機能
 
 ## コマンド
 
