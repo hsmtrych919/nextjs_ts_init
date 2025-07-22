@@ -59,7 +59,7 @@ npm run eslint
 - ローカル環境での動作確認が可能
 
 ### 本番デプロイ時
-- `npm run build:prod`
+- `npm run build:deploy`
 - サブディレクトリ配置対応 のため `prefixPath = 'https://xxx.com'` で動作
 
 ## ディレクトリ構成
