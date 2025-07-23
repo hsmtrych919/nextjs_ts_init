@@ -5,6 +5,46 @@ const thresholds = {
   sp: 0.4 // SP用の閾値（必要に応じて変更可能）
 };
 
+/**
+ * useInView: 要素表示監視フック
+ *
+ * 指定されたクラス名の要素がビューポートに入った際に「is-inview」クラスを付与するフックです。
+ * IntersectionObserverを使用してパフォーマンス効率的な監視を行い、フェードインアニメーション等に使用できます。
+ *
+ * - IntersectionObserverによる効率的な監視
+ * - デバイス別閾値設定（PC/SP）
+ * - 一度表示されたら監視解除
+ *
+ * @example
+ * // 基本的な使用例
+ * function MyComponent() {
+ *   useInView();
+ *   return (
+ *     <div className="inview__fadein">
+ *       <p>この要素は表示時にフェードインします</p>
+ *     </div>
+ *   );
+ * }
+ *
+ * @example
+ * // 複数要素での使用
+ * function ScrollPage() {
+ *   useInView();
+ *   return (
+ *     <div>
+ *       <div className="inview__fadein">要素1</div>
+ *       <div className="inview__fadein">要素2</div>
+ *       <div className="inview__fadein">要素3</div>
+ *     </div>
+ *   );
+ * }
+ *
+ * @remarks
+ * - 監視対象は「.inview__fadein」クラスを持つ要素
+ * - PC閾値: 0.3、SP閾値: 0.4（調整可能）
+ * - SSR対応済み（typeof window チェック）
+ * - 768px以下をモバイルとして判定
+ */
 export function useInView() {
   useEffect(() => {
     // SSR対策
