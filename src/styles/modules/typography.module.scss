@@ -1,0 +1,367 @@
+@charset "utf-8";
+@use "sass:color";
+@use "../global/global" as g;
+@use "../global/mixins" as m;
+
+// -----------------------------------------------------------------
+// mixin
+// -----------------------------------------------------------------
+
+
+%font-min {
+  font-family: "Times New Roman",
+    "Noto Serif JP",
+    "游明朝体",
+    YuMincho,
+    "游明朝",
+    "Yu Mincho",
+    "ヒラギノ明朝 ProN W3",
+    "Hiragino Mincho ProN",
+    "HGS明朝E",
+    "ＭＳ Ｐ明朝",
+    "MS PMincho",
+    serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+%ttl__xsmall {
+  font-size: g.rem(21);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 600;
+  @media #{g.$sm} {
+    font-size: min(calc(var(--unit) * 21), g.rem(22));
+  }
+
+  @media #{g.$lg} {
+    font-size: min(calc(var(--unit) * 22), g.rem(23));
+  }
+
+  @media #{g.$xl} {
+    font-size: min(calc(var(--unit) * 24), g.rem(25));
+  }
+}
+
+%ttl__small {
+  font-size: g.rem(21);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 600;
+  @media #{g.$sm} {
+    font-size: min(calc(var(--unit) * 22), g.rem(23));
+  }
+  @media #{g.$md} {
+    font-size: min(calc(var(--unit) * 24), g.rem(25));
+  }
+  @media #{g.$lg} {
+    font-size: min(calc(var(--unit) * 24), g.rem(25));
+  }
+  @media #{g.$xl} {
+    font-size: min(calc(var(--unit) * 25), g.rem(26));
+  }
+}
+
+%ttl__mid {
+  font-size: g.rem(22);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 600;
+  @media #{g.$sm} {
+    font-size: min(calc(var(--unit) * 24), g.rem(25));
+  }
+  @media #{g.$md} {
+    font-size: min(calc(var(--unit) * 26), g.rem(27));
+  }
+  @media #{g.$lg} {
+    font-size: min(calc(var(--unit) * 28), g.rem(29));
+  }
+  @media #{g.$xl} {
+    font-size: min(calc(var(--unit) * 30), g.rem(31));
+  }
+  @media #{g.$xxl} {
+    font-size: min(calc(var(--unit) * 32), g.rem(33));
+  }
+}
+
+%ttl__big {
+  font-size: g.rem(24);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 600;
+  @media #{g.$sm} {
+    font-size: min(calc(var(--unit) * 26), g.rem(27));
+  }
+  @media #{g.$md} {
+    font-size: min(calc(var(--unit) * 28), g.rem(29));
+  }
+  @media #{g.$lg} {
+    font-size: min(calc(var(--unit) * 30), g.rem(31));
+  }
+  @media #{g.$xl} {
+    font-size: min(calc(var(--unit) * 32), g.rem(33));
+  }
+  @media #{g.$xxl} {
+    font-size: min(calc(var(--unit) * 34), g.rem(35));
+  }
+}
+
+%ttl__super {
+  font-size: g.rem(26);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 600;
+  @media #{g.$sm} {
+    font-size: min(calc(var(--unit) * 28), g.rem(29));
+  }
+  @media #{g.$md} {
+    font-size: min(calc(var(--unit) * 30), g.rem(31));
+  }
+  @media #{g.$lg} {
+    font-size: min(calc(var(--unit) * 32), g.rem(33));
+  }
+  @media #{g.$xl} {
+    font-size: min(calc(var(--unit) * 34), g.rem(35));
+  }
+  @media #{g.$xxl} {
+    font-size: min(calc(var(--unit) * 36), g.rem(37));
+  }
+}
+
+%ttl__extra {
+  font-size: g.rem(28);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 600;
+  @media #{g.$sm} {
+    font-size: min(calc(var(--unit) * 30), g.rem(31));
+  }
+  @media #{g.$md} {
+    font-size: min(calc(var(--unit) * 32), g.rem(33));
+  }
+  @media #{g.$lg} {
+    font-size: min(calc(var(--unit) * 34), g.rem(35));
+  }
+  @media #{g.$xl} {
+    font-size: min(calc(var(--unit) * 36), g.rem(37));
+  }
+  @media #{g.$xxl} {
+    font-size: min(calc(var(--unit) * 38), g.rem(39));
+  }
+}
+
+
+// -----------------------------------------------------------------
+// style
+// -----------------------------------------------------------------
+
+// font-weight
+.bold {
+  font-weight: 600;
+}
+.normal {
+  font-weight: 400;
+}
+.thin {
+  font-weight: 300;
+}
+
+// link
+.link {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  @include m.hover {
+    opacity: 0.5;
+  }
+  &.ignore:hover, &.ignore:focus {
+    opacity: 1;
+  }
+}
+
+.linkclr {
+  color: g.$color-primary;
+  @include m.hover {
+    color: color.scale(g.$color-primary, $lightness: 5%);
+    opacity: 1;
+  }
+  &.ignore:hover, &.ignore:focus {
+    color: g.$color-primary;
+  }
+}
+
+// size
+.lead {
+  font-size: g.rem(18);
+  @media #{g.$lg} {
+    font-size: g.rem(19);
+  }
+  @media #{g.$xl} {
+    font-size: g.rem(20);
+  }
+}
+
+.caption {
+  font-size: g.rem(13);
+  color: var(--clrg600);
+  @media #{g.$sm} {
+    font-size: g.rem(14);
+  }
+  @media #{g.$lg} {
+    font-size: g.rem(15);
+  }
+}
+
+.note {
+  font-size: g.rem(13);
+  color: var(--clrg600);
+  @media #{g.$lg} {
+    font-size: g.rem(14);
+  }
+}
+
+.fs12 {
+  font-size: g.rem(12);
+}
+
+.fs13 {
+  font-size: g.rem(13);
+}
+
+.fs14 {
+  font-size: g.rem(14);
+}
+
+.fs15 {
+  font-size: g.rem(15);
+}
+
+.fs16 {
+  font-size: g.rem(16);
+}
+
+.fs17 {
+  font-size: g.rem(17);
+}
+
+.fs18 {
+  font-size: g.rem(18);
+}
+
+.fs19 {
+  font-size: g.rem(19);
+}
+
+.fs20 {
+  font-size: g.rem(20);
+}
+
+.fs21 {
+  font-size: g.rem(21);
+}
+
+.fs22 {
+  font-size: g.rem(22);
+}
+
+.fs23 {
+  font-size: g.rem(23);
+}
+
+.fs24 {
+  font-size: g.rem(24);
+}
+
+// line-height
+.lh__md {
+  line-height: 1.4;
+}
+.lh__lg {
+  line-height: 1.6;
+}
+.lh__xl {
+  line-height: 1.8;
+}
+
+
+// text-decoration
+.underline {
+  text-decoration: underline;
+}
+.no-underline {
+  text-decoration: none;
+}
+
+// font-family
+.min {
+  @extend %font-min;
+}
+
+// header
+.h1 {
+  @extend %ttl__extra;
+}
+.h2 {
+  @extend %ttl__super;
+}
+.h3 {
+  @extend %ttl__big;
+}
+.h4 {
+  @extend %ttl__mid;
+}
+.h5 {
+  @extend %ttl__small;
+}
+.h6 {
+  @extend %ttl__xsmall;
+}
+
+// text-color
+.c__red {
+  color: #e6001a;
+}
+.c__warning {
+  color: var(--danger);
+}
+.c__gray {
+  color: var(--clrg600);
+}
+.c__white {
+  color: #fff;
+}
+
+// text-align
+.txt--center {
+  text-align: center;
+}
+.txt--left {
+  text-align: left;
+}
+.txt--right {
+  text-align: right;
+}
+
+// text-decoration
+.txt--del {
+  text-decoration: line-through;
+}
+
+// other
+.txt--nowrap {
+  white-space: nowrap;
+}
+.txt--break {
+  word-break: break-all;
+}
+
+// vertical-align
+.valign__top {
+  vertical-align: top;
+}
+.valign__middle {
+  vertical-align: middle;
+}
+.valign__bottom {
+  vertical-align: bottom;
+}
