@@ -1,5 +1,6 @@
 @charset "utf-8";
 @use "../global" as g;
+@use "../mixins" as m;
 
 // -----------------------------------------------------------------
 // mixin
@@ -12,11 +13,11 @@
 
 .c-gutter {
 
-  @include g.gutter;
+  @include m.gutter;
 
   &__row {
 
-    @include g.gutter_row;
+    @include m.gutter_row;
   }
 
   &__sm--left {

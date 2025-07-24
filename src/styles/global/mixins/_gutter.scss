@@ -1,5 +1,4 @@
-@use "../foundation/_variables" as v;
-@use "_media-queries" as g;
+@use "../global/_media-queries" as g;
 
 @mixin gutter {
   padding: 0 var(--gutter-row);

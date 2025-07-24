@@ -1,4 +1,5 @@
 @use "../global" as g;
+@use "../mixins" as m;
 
 //
 // Basic Bootstrap table
@@ -135,7 +136,7 @@ th {
 
   tbody tr {
 
-    @include g.hover {
+    @include m.hover {
       background-color: $table-bg-hover;
     }
   }

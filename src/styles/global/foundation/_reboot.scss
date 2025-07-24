@@ -1,5 +1,6 @@
 @use "sass:color";
 @use "../global" as g;
+@use "../mixins" as m;
 @use "_variables-form" as f;
 
 // scss-lint:disable QualifyingElement, DuplicateProperty
@@ -192,11 +193,11 @@ dd {
 //
 
 a {
-  transition: g.$transition;
+  transition: m.$transition;
   color: g.$link-color;
   // -webkit-tap-highlight-color: transparent;
 
-  @include g.hover {
+  @include m.hover {
     color: g.$link-hover-color;
   }
 
@@ -271,7 +272,7 @@ img {
 
 a img {
   backface-visibility: hidden;
-  transition: g.$transition;
+  transition: m.$transition;
   box-shadow: #fff 0 0 0;
 }
 

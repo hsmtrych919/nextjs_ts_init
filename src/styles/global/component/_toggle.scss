@@ -1,5 +1,6 @@
 @charset "utf-8";
 @use "../global" as g;
+@use "../mixins" as m;
 
 // -----------------------------------------------------------------
 // style
@@ -96,7 +97,7 @@
   @media #{g.$xl} {
     font-size: 18px;
   }
-  @include g.hover {
+  @include m.hover {
     // background-color: #f0f0f0;
     color: var(--clrg600);
   }

@@ -1,6 +1,7 @@
 @charset "utf-8";
 @use "sass:color";
 @use "../global" as g;
+@use "../mixins" as m;
 
 // -----------------------------------------------------------------
 // mixin
@@ -26,7 +27,7 @@
   background-color: $bgc;
   color: $clr;
 
-  @include g.hover {
+  @include m.hover {
     background-color: $bgc-hover;
     color: $clr-hover;
   }
@@ -51,7 +52,7 @@
   background-color: $bgc;
   color: $clr;
 
-  @include g.hover {
+  @include m.hover {
     border-color: $bdc-hover;
     background-color: $bgc-hover;
     color: $clr-hover;
@@ -124,7 +125,7 @@
     $bgc-hover: color.scale(g.$clr1, $lightness: 10%)
   );
   background: var(--grd1);
-  @include g.hover {
+  @include m.hover {
     opacity: 0.8;
     .c-button__icon--arrow {
       transform: translate3d(g.rem(4), -50%, 0);
@@ -153,7 +154,7 @@
     $bgc-hover: color.scale(g.$clr1, $lightness: 0%)
   );
   padding-left: g.rem(48) !important;
-  @include g.hover {
+  @include m.hover {
     .c-button__icon--tel {
       color: #fff;
     }
@@ -172,7 +173,7 @@
     $bgc-hover: g.$clr1,
     $bdc-hover: g.$clr1
   );
-  @include g.hover {
+  @include m.hover {
     .c-button__icon--arrow {
       transform: translate3d(g.rem(4), -50%, 0);
     }

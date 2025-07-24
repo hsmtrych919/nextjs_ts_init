@@ -1,6 +1,7 @@
 @charset "utf-8";
 @use "sass:color";
 @use "../global/global" as g;
+@use "../global/mixins" as m;
 
 
 .button {
@@ -18,7 +19,7 @@
   font-weight: bold;
   line-height: 1.4;
   text-align: center;
-  @include g.hover {
+  @include m.hover {
     background-color: var(--clrg500);
     color: #fff;
   }
