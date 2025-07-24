@@ -131,9 +131,7 @@
       transform: translate3d(g.rem(4), -50%, 0);
     }
   }
-  // .c-button__arrow {
-  //   color: #fff;
-  // }
+
 }
 
 
@@ -180,14 +178,7 @@
   }
 }
 
-// .c-button__green {
-//   @include button__color(
-//     $clr: #fff,
-//     $bgc: g.$clr-prim-green,
-//     $clr-hover: #fff,
-//     $bgc-hover: color.scale(g.$clr-prim-green, $lightness: 5%)
-//   );
-// }
+
 
 
 .ignore {

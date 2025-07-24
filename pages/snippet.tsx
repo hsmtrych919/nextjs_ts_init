@@ -1,6 +1,7 @@
 import Layout from '@/components/layout/layout';
 import SimpleModalDemo from '@/components/ui/modal';
 import SimpleToggleDemo from '@/components/ui/toggle';
+import { ButtonType01, ButtonType02 } from '@/components/ui/button';
 import { useInView } from '@/lib/hooks/useInView';
 
 // ファイル下に meta情報用の getStaticProps記載
@@ -12,6 +13,16 @@ export default function PageDemo() {
   return (
     <Layout>
       <article className="mt__12">
+
+        {/* ボタンデモ */}
+        <section style={{ marginBottom: '40px' }}>
+          <h2>ボタンデモ</h2>
+          <p>グローバルSCSSクラス（c-button, c-button__grd, c-button__clr1--border）を使用したボタンサンプル</p>
+          <div style={{ width: '360px', margin: '20px auto', display: 'flex', flexDirection: 'column', gap: '32px' }}>
+            <ButtonType01 type="primary" />
+            <ButtonType02 type="primary" />
+          </div>
+        </section>
 
         {/* モーダルデモ */}
         <section style={{ marginBottom: '40px' }}>

@@ -8,36 +8,46 @@ interface ButtonProps {
 }
 
 /**
- * ButtonMovetoType: タイプ別リンクボタンコンポーネント
+ * ButtonType01: グラデーションボタンコンポーネント
  *
- * primary/secondaryタイプに応じて表示内容とリンク先を自動切り替えするボタンコンポーネントです。
- * LinkPathとImgPathを組み合わせて、画像付きのナビゲーションボタンを提供します。
- *
- * - タイプ別の自動切り替え（テキスト、画像、リンク先）
- * - LinkPathによる適切なルーティング
- * - ChevronRightIconによる視覚的誘導
+ * c-button__grdクラスを使用したグラデーションボタンです。
  *
  * @param type ボタンのタイプ（'primary' または 'secondary'）
  *
  * @example
- * <ButtonMovetoType type="primary" />
- *
- * @remarks
- * - @heroicons/react/24/outlineが必要です
- * - button.module.scssスタイルを使用
- * - LinkPath、ImgPathコンポーネントと連携
- * - 画像ファイル（entry_primary.png, entry_secondary.png）が必要
+ * <ButtonType01 type="primary" />
  */
-export default function ButtonMovetoType({ type }: ButtonProps) {
-  // const categoryText = type === 'primary' ? 'プライマリカテゴリ' : 'セカンダリカテゴリ';
+export function ButtonType01({ type }: ButtonProps) {
   const linkPath = type === 'primary' ? '/primary' : '/secondary';
 
-
   return (
-    <LinkPath link={linkPath} as={linkPath} className="">
-      <div className={styles.moveto_type_frame}>
-        <p>こちらへ</p><ChevronRightIcon className={styles.moveto_type_icon} />
-      </div>
+    <LinkPath link={linkPath} as={linkPath} className="c-button c-button__grd">
+      ボタンテキスト こちらへ
+      <ChevronRightIcon className="c-button__icon--arrow" />
     </LinkPath>
   );
 }
+
+/**
+ * ButtonType02: ボーダーボタンコンポーネント
+ *
+ * c-button__clr1--borderクラスを使用したボーダーボタンです。
+ *
+ * @param type ボタンのタイプ（'primary' または 'secondary'）
+ *
+ * @example
+ * <ButtonType02 type="primary" />
+ */
+export function ButtonType02({ type }: ButtonProps) {
+  const linkPath = type === 'primary' ? '/primary' : '/secondary';
+
+  return (
+    <LinkPath link={linkPath} as={linkPath} className="c-button c-button__clr1--border">
+      ボタンテキスト こちらへ
+      <ChevronRightIcon className="c-button__icon--arrow" />
+    </LinkPath>
+  );
+}
+
+// デフォルトエクスポートは ButtonType01 に変更
+export default ButtonType01;
