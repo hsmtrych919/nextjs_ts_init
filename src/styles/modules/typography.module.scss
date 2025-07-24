@@ -160,9 +160,11 @@
 .bold {
   font-weight: 600;
 }
+
 .normal {
   font-weight: 400;
 }
+
 .thin {
   font-weight: 300;
 }
@@ -182,8 +184,8 @@
 .linkclr {
   color: g.$color-primary;
   @include m.hover {
-    color: color.scale(g.$color-primary, $lightness: 5%);
     opacity: 1;
+    color: color.scale(g.$color-primary, $lightness: 5%);
   }
   &.ignore:hover, &.ignore:focus {
     color: g.$color-primary;
@@ -202,8 +204,8 @@
 }
 
 .caption {
-  font-size: g.rem(13);
   color: var(--clrg600);
+  font-size: g.rem(13);
   @media #{g.$sm} {
     font-size: g.rem(14);
   }
@@ -213,8 +215,8 @@
 }
 
 .note {
-  font-size: g.rem(13);
   color: var(--clrg600);
+  font-size: g.rem(13);
   @media #{g.$lg} {
     font-size: g.rem(14);
   }
@@ -276,9 +278,11 @@
 .lh__md {
   line-height: 1.4;
 }
+
 .lh__lg {
   line-height: 1.6;
 }
+
 .lh__xl {
   line-height: 1.8;
 }
@@ -288,6 +292,7 @@
 .underline {
   text-decoration: underline;
 }
+
 .no-underline {
   text-decoration: none;
 }
@@ -301,18 +306,23 @@
 .h1 {
   @extend %ttl__extra;
 }
+
 .h2 {
   @extend %ttl__super;
 }
+
 .h3 {
   @extend %ttl__big;
 }
+
 .h4 {
   @extend %ttl__mid;
 }
+
 .h5 {
   @extend %ttl__small;
 }
+
 .h6 {
   @extend %ttl__xsmall;
 }
@@ -321,12 +331,15 @@
 .c__red {
   color: #e6001a;
 }
+
 .c__warning {
   color: var(--danger);
 }
+
 .c__gray {
   color: var(--clrg600);
 }
+
 .c__white {
   color: #fff;
 }
@@ -335,9 +348,11 @@
 .txt--center {
   text-align: center;
 }
+
 .txt--left {
   text-align: left;
 }
+
 .txt--right {
   text-align: right;
 }
@@ -351,6 +366,7 @@
 .txt--nowrap {
   white-space: nowrap;
 }
+
 .txt--break {
   word-break: break-all;
 }
@@ -359,9 +375,11 @@
 .valign__top {
   vertical-align: top;
 }
+
 .valign__middle {
   vertical-align: middle;
 }
+
 .valign__bottom {
   vertical-align: bottom;
 }
