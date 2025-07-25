@@ -1,7 +1,8 @@
 import Layout from '@/components/layout/layout';
-import SimpleModalDemo from '@/components/ui/modal';
-import SimpleToggleDemo from '@/components/ui/toggle';
-import { ButtonType01, ButtonType02 } from '@/components/ui/button';
+import SimpleModalDemo from '@/components/ui/modalDemo';
+import SimpleToggleDemo from '@/components/ui/toggleDemo';
+import SimpleTabDemo from '@/components/ui/tabDemo';
+import { ButtonType01, ButtonType02 } from '@/components/ui/buttonDemo';
 import { useInView } from '@/lib/hooks/useInView';
 
 // ファイル下に meta情報用の getStaticProps記載
@@ -34,6 +35,12 @@ export default function PageDemo() {
         <section style={{ marginBottom: '40px' }}>
           <h2>トグルデモ</h2>
           <SimpleToggleDemo />
+        </section>
+
+        {/* タブデモ */}
+        <section style={{ marginBottom: '40px' }}>
+          <h2>タブデモ</h2>
+          <SimpleTabDemo />
         </section>
 
         {/* InViewデモ */}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { LinkPath } from '@/lib/utils/rewrite-path';
+import { LinkPath } from '@/lib/utils/rewritePath';
 import styles from '@/styles/modules/button.module.scss';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 

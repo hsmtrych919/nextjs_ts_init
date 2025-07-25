@@ -1,5 +1,5 @@
 import styles from '@/styles/modules/header.module.scss';
-import {ImgPath} from '@/lib/utils/rewrite-path';
+import {ImgPath} from '@/lib/utils/rewritePath';
 
 export default function Header() {
   return (

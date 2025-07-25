@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { useToggleContent } from '@/lib/hooks/toggle-content';
+import { useToggleContent } from '@/lib/hooks/toggleContent';
 
 interface ToggleProps {
   children?: ReactNode;
