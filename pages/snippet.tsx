@@ -2,6 +2,7 @@ import Layout from '@/components/layout/layout';
 import SimpleModalDemo from '@/components/ui/modalDemo';
 import SimpleToggleDemo from '@/components/ui/toggleDemo';
 import SimpleTabDemo from '@/components/ui/tabDemo';
+import SimpleTableDemo from '@/components/ui/tableDemo';
 import { ButtonType01, ButtonType02 } from '@/components/ui/buttonDemo';
 import { useInView } from '@/lib/hooks/useInView';
 
@@ -41,6 +42,18 @@ export default function PageDemo() {
         <section style={{ marginBottom: '40px' }}>
           <h2>タブデモ</h2>
           <SimpleTabDemo />
+        </section>
+
+        {/* テーブルデモ */}
+        <section style={{ marginBottom: '40px' }}>
+          <div className="l-row--container c-gutter__row">
+            <div className="c-col--12 c-col__md--10 c-col__xl--10">
+
+          <h2>テーブルデモ</h2>
+          <p>横スクロール対応テーブル（scroll-hint + シャドウ機能付き）</p>
+          <SimpleTableDemo />
+          </div>
+          </div>
         </section>
 
         {/* InViewデモ */}
