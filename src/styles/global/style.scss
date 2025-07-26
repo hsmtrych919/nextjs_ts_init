@@ -27,7 +27,6 @@
 //プラグイン優先
 @use "component/react-modal/react-modal";
 // @use "component/swiper/swiper-bundle";
-@use "component/scroll-hint";
 @use "component/_button" as c-button;
 @use "component/_gutter";
 @use "component/_tab";
@@ -52,5 +51,6 @@
 @use "utility/_padding";
 @use "utility/_responsive-embed";
 // @use "utility/_tables";
+@use "utility/_scroll-hint";
 @use "utility/_visibility";
 
