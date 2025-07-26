@@ -93,7 +93,7 @@
 // Button styles from _button.scss
 // -----------------------------------------------------------------
 
-.cButton {
+.c-button {
   @include c-button;
   padding: g.rem(20) g.rem(18) g.rem(16);
   font-size: g.rem(17);
@@ -105,7 +105,7 @@
     font-size: g.rem(19);
   }
 
-  &Thin {
+  &--thin {
     @include c-button;
     padding: g.rem(16) g.rem(14) g.rem(14);
     font-size: g.rem(17);
@@ -115,7 +115,7 @@
   }
 }
 
-.cButtonIconArrow {
+.c-button__icon--arrow {
   position: absolute;
   top: 50%;
   right: g.rem(6);
@@ -124,7 +124,7 @@
   transition: transform .2s ease-in-out;
 }
 
-.cButtonIconExternal {
+.c-button__icon--external {
   position: absolute;
   top: 50%;
   right: g.rem(8);
@@ -132,7 +132,7 @@
   transform: translate3d(0, -50%, 0);
 }
 
-.cButtonIconTel {
+.c-button__icon--tel {
   position: absolute;
   top: 52.5%;
   left: g.rem(12);
@@ -140,7 +140,7 @@
   transform: translate3d(0, -50%, 0);
 }
 
-.cButtonGrd {
+.c-button__grd {
   @include button__color(
     $clr: #fff,
     $bgc: g.$clr1,
@@ -150,13 +150,22 @@
   background: var(--grd1);
   @include m.hover {
     opacity: 0.8;
-    .cButtonIconArrow {
+    .c-button__icon--arrow {
       transform: translate3d(g.rem(4), -50%, 0);
     }
   }
 }
 
-.cButtonTel {
+// .c-button__clr1 {
+//   @include button__color(
+//     $clr: #fff,
+//     $bgc: color.scale(g.$clr1, $lightness: -5%),
+//     $clr-hover: #fff,
+//     $bgc-hover: color.scale(g.$clr1, $lightness: 0%)
+//   );
+// }
+
+.c-button__tel {
   @include button__color(
     $clr: #fff,
     $bgc: color.scale(g.$clr1, $lightness: -5%),
@@ -165,16 +174,16 @@
   );
   padding-left: g.rem(48) !important;
   @include m.hover {
-    .cButtonIconTel {
+    .c-button__icon--tel {
       color: #fff;
     }
   }
-  .cButtonIconTel {
+  .c-button__icon--tel {
     color: #fff;
   }
 }
 
-.cButtonClr1Border {
+.c-button__clr1--border {
   @include button__color--border(
     $clr: g.$clr1,
     $bgc: #fff,
@@ -184,7 +193,7 @@
     $bdc-hover: g.$clr1
   );
   @include m.hover {
-    .cButtonIconArrow {
+    .c-button__icon--arrow {
       transform: translate3d(g.rem(4), -50%, 0);
     }
   }
