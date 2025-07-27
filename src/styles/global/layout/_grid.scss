@@ -80,10 +80,10 @@
       .c-col#{$infix} {
         flex: 1 0 0%;
       }
-      .c-col#{$infix}--auto {
-        flex: 0 0 auto;
-        width: auto;
-      }
+      // .c-col#{$infix}--auto {
+      //   flex: 0 0 auto;
+      //   width: auto;
+      // }
 
       @for $i from 1 through $columns {
 

@@ -4,6 +4,7 @@ import SimpleToggleDemo from '@/components/ui/toggleDemo';
 import SimpleTabDemo from '@/components/ui/tabDemo';
 import SimpleTableDemo from '@/components/ui/tableDemo';
 import { ButtonType01, ButtonType02 } from '@/components/ui/buttonDemo';
+import GridDemo from '@/components/ui/gridDemo';
 import { useInView } from '@/lib/hooks/useInView';
 
 // ファイル下に meta情報用の getStaticProps記載
@@ -15,6 +16,13 @@ export default function PageDemo() {
   return (
     <Layout>
       <article className="mt__12">
+
+        {/* グリッドデモ */}
+        <section style={{ marginBottom: '40px' }}>
+          <h2>グリッドデモ</h2>
+          <p>_grid.scss のグローバルクラスを使用したレイアウトシステムのデモ</p>
+          <GridDemo />
+        </section>
 
         {/* ボタンデモ */}
         <section style={{ marginBottom: '40px' }}>
