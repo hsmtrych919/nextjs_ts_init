@@ -88,14 +88,14 @@
     }
   }
 
-  &__post {
+  // &__post {
 
-    @media #{g.$md} {
-      padding: 0 var(--gutter-row);
-    }
+  //   @media #{g.$md} {
+  //     padding: 0 var(--gutter-row);
+  //   }
 
-    @media #{g.$xl} {
-      padding: 0;
-    }
-  }
+  //   @media #{g.$xl} {
+  //     padding: 0;
+  //   }
+  // }
 }
