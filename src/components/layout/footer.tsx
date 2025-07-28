@@ -1,4 +1,6 @@
 import styles from '@/styles/modules/footer.module.scss';
+import gridStyles from '@/styles/modules/grid.module.scss';
+import gutterStyles from '@/styles/modules/gutter.module.scss';
 
 
 export default function Footer() {
@@ -9,7 +11,7 @@ export default function Footer() {
   return (
     <>
       <footer className={`${styles.outer}`}>
-        <ul className={`l-row--container c-gutter__row ${styles.navi_list}`}>
+        <ul className={`${gridStyles['l-row--container']} ${gutterStyles['c-gutter__row']} ${styles.navi_list}`}>
           <li><a className={styles.navi_button} href="#">ダミーテキストです。</a></li>
         </ul>
         <p className={styles.copy}>&copy; {year} ダミーテキストです。</p>
