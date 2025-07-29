@@ -7,7 +7,7 @@
 // mixin (from _button.scss)
 // -----------------------------------------------------------------
 
-@mixin c-button {
+@mixin button {
   display: block;
   position: relative;
   max-width: 100%;
@@ -68,7 +68,7 @@
 // Original button styles
 // -----------------------------------------------------------------
 
-.button {
+.sample {
   display: block;
   width: 300px;
   max-width: 100%;
@@ -93,8 +93,8 @@
 // Button styles from _button.scss
 // -----------------------------------------------------------------
 
-.c-button {
-  @include c-button;
+.base {
+  @include button;
   padding: g.rem(20) g.rem(18) g.rem(16);
   font-size: g.rem(17);
   @media #{g.$lg} {
@@ -106,7 +106,7 @@
   }
 
   &--thin {
-    @include c-button;
+    @include button;
     padding: g.rem(16) g.rem(14) g.rem(14);
     font-size: g.rem(17);
     @media #{g.$xxl} {
@@ -115,7 +115,7 @@
   }
 }
 
-.c-button__icon--arrow {
+.icon__arrow {
   position: absolute;
   top: 50%;
   right: g.rem(6);
@@ -124,7 +124,7 @@
   transition: transform .2s ease-in-out;
 }
 
-.c-button__icon--external {
+.icon__external {
   position: absolute;
   top: 50%;
   right: g.rem(8);
@@ -132,7 +132,7 @@
   transform: translate3d(0, -50%, 0);
 }
 
-.c-button__icon--tel {
+.icon__telephone {
   position: absolute;
   top: 52.5%;
   left: g.rem(12);
@@ -140,7 +140,7 @@
   transform: translate3d(0, -50%, 0);
 }
 
-.c-button__grd {
+.gradient {
   @include button__color(
     $clr: #fff,
     $bgc: g.$clr1,
@@ -150,7 +150,7 @@
   background: var(--grd1);
   @include m.hover {
     opacity: 0.8;
-    .c-button__icon--arrow {
+    .icon__arrow {
       transform: translate3d(g.rem(4), -50%, 0);
     }
   }
@@ -165,7 +165,7 @@
 //   );
 // }
 
-.c-button__tel {
+.telephone {
   @include button__color(
     $clr: #fff,
     $bgc: color.scale(g.$clr1, $lightness: -5%),
@@ -174,16 +174,16 @@
   );
   padding-left: g.rem(48) !important;
   @include m.hover {
-    .c-button__icon--tel {
+    .icon__telephone {
       color: #fff;
     }
   }
-  .c-button__icon--tel {
+  .icon__telephone {
     color: #fff;
   }
 }
 
-.c-button__clr1--border {
+.border__clr1 {
   @include button__color--border(
     $clr: g.$clr1,
     $bgc: #fff,
@@ -193,7 +193,7 @@
     $bdc-hover: g.$clr1
   );
   @include m.hover {
-    .c-button__icon--arrow {
+    .icon__arrow {
       transform: translate3d(g.rem(4), -50%, 0);
     }
   }

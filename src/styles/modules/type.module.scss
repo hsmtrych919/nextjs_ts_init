@@ -114,9 +114,6 @@
 //
 
 
-h1, h2 {
-  font-weight: normal;
-}
 
 .title__xsmall {
   @extend %ttl__xsmall;
@@ -213,7 +210,7 @@ h1, h2 {
 .title__pattern--diagonal {
   position: relative;
   padding-bottom: g.rem(16);
-  background-image: url(../../../../public/img/ptn_dgnl.svg);
+  background-image: url(/img/ptn_dgnl.svg);
   background-repeat: repeat-x;
   background-position: left bottom;
   background-size: g.rem(6);

@@ -37,6 +37,10 @@
   --img-hover-opacity: 0.9;
 }
 
+// Typography global styles
+h1, h2 {
+  font-weight: normal;
+}
 
 // フェードインの変数
 $fadein-duration: 0.4s;

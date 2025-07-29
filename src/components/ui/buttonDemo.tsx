@@ -21,9 +21,9 @@ export function ButtonType01({ type }: ButtonProps) {
   const linkPath = type === 'primary' ? '/primary' : '/secondary';
 
   return (
-    <LinkPath link={linkPath} as={linkPath} className={`${styles['c-button']} ${styles['c-button__grd']}`}>
+    <LinkPath link={linkPath} as={linkPath} className={`${styles.base} ${styles.gradient}`}>
       ボタンテキスト こちらへ
-      <ChevronRightIcon className={styles['c-button__icon--arrow']} />
+      <ChevronRightIcon className={styles['icon__arrow']} />
     </LinkPath>
   );
 }
@@ -42,9 +42,9 @@ export function ButtonType02({ type }: ButtonProps) {
   const linkPath = type === 'primary' ? '/primary' : '/secondary';
 
   return (
-    <LinkPath link={linkPath} as={linkPath} className={`${styles['c-button']} ${styles['c-button__clr1--border']}`}>
+    <LinkPath link={linkPath} as={linkPath} className={`${styles.base} ${styles['border__clr1']}`}>
       ボタンテキスト こちらへ
-      <ChevronRightIcon className={styles['c-button__icon--arrow']} />
+      <ChevronRightIcon className={styles['icon__arrow']} />
     </LinkPath>
   );
 }

@@ -47,7 +47,7 @@ export default function SimpleModalDemo({ children }: ModalProps) {
 
   return (
     <div>
-      <button onClick={openModal} className={styles.button}>
+      <button onClick={openModal} className={styles.sample}>
         モーダル展開
       </button>
 
