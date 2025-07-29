@@ -118,25 +118,25 @@ h1, h2 {
   font-weight: normal;
 }
 
-.c-ttl__xsmall {
+.title__xsmall {
   @extend %ttl__xsmall;
 }
 
-.c-ttl__small {
+.title__small {
   @extend %ttl__small;
 }
 
 
-.c-ttl__medium {
+.title__medium {
   @extend %ttl__medium;
 }
 
 
-.c-ttl__large {
+.title__large {
   @extend %ttl__large;
 }
 
-.c-ttl__underline--ta {
+.title__underline--aligned {
   padding-bottom: g.rem(2);
   border-bottom: 1px solid var(--clr1);
 }
@@ -146,7 +146,7 @@ h1, h2 {
 // プリセット
 //
 
-.c-ttl__rhombus {
+.title__rhombus {
   display: inline-block;
   position: relative;
   padding: 0 g.rem(36);
@@ -199,18 +199,18 @@ h1, h2 {
 }
 
 
-.c-ttl__horizontal {
+.title__horizontal {
   display: inline-block;
   padding: 0 g.rem(16);
   background-color: #fff;
   color: var(--clrg700);
 
-  &--bgc-y {
+  &--yellow-bg {
     background-color: #fff6ea;
   }
 }
 
-.c-ttl__ptn-dgnl {
+.title__pattern--diagonal {
   position: relative;
   padding-bottom: g.rem(16);
   background-image: url(../../../../public/img/ptn_dgnl.svg);
@@ -240,7 +240,7 @@ h1, h2 {
   }
 }
 
-.c-typ {
+.text {
 
   @include typ__line-height;
   font-size: min(g.get_vw(16), g.rem(17));
@@ -254,7 +254,7 @@ h1, h2 {
   }
 }
 
-.c-typ__xs {
+.text__xs {
 
   // @include typ__line-height;
   font-size: g.get_vw(13);
@@ -269,7 +269,7 @@ h1, h2 {
 }
 
 
-.c-typ__s {
+.text__small {
 
   @include typ__line-height;
   font-size: min(g.get_vw(17), g.rem(18));
@@ -283,7 +283,7 @@ h1, h2 {
   }
 }
 
-.c-typ__m {
+.text__medium {
 
   @include typ__line-height;
   font-size: g.get_vw(20);
@@ -297,7 +297,7 @@ h1, h2 {
   }
 }
 
-.c-typ__l {
+.text__large {
 
   @include typ__line-height;
   font-size: g.get_vw(22);
@@ -312,7 +312,7 @@ h1, h2 {
 }
 
 
-.c-typ__marker {
+.text__marker {
   padding: 0 g.rem(2);
   background: linear-gradient(transparent 60%, rgba(255, 169, 177, 0.5) 40%);
 }
@@ -331,10 +331,10 @@ h1, h2 {
 //   font-weight: 600 !important;
 // }
 
-// .c-typ__inter--300 {
+// .webfont__inter--300 {
 //   @extend %inter300;
 // }
 
-// .c-typ__inter--600 {
+// .webfont__inter--600 {
 //   @extend %inter600;
 // }
