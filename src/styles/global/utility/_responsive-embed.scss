@@ -2,7 +2,7 @@
 @use "sass:math";
 
 
-.embed__responsive {
+.embed-responsive {
   position: relative;
   display: block;
   width: 100%;
@@ -14,7 +14,7 @@
     content: "";
   }
 
-  .embed__responsive-item,
+  .embed-responsive-item,
   iframe,
   embed,
   object,
@@ -29,25 +29,25 @@
   }
 }
 
-.embed__responsive-21by9 {
+.embed-responsive-21by9 {
   &::before {
     padding-top: percentage(math.div(9, 21));
   }
 }
 
-.embed__responsive-16by9 {
+.embed-responsive-16by9 {
   &::before {
     padding-top: percentage(math.div(9, 16));
   }
 }
 
-.embed__responsive-4by3 {
+.embed-responsive-4by3 {
   &::before {
     padding-top: percentage(math.div(3, 4));
   }
 }
 
-.embed__responsive-1by1 {
+.embed-responsive-1by1 {
   &::before {
     padding-top: percentage(math.div(1, 1));
   }

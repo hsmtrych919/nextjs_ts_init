@@ -4,7 +4,7 @@
 @each $breakpoint in map.keys(g.$grid-breakpoints) {
 
   @include g.media-breakpoint-up($breakpoint) {
-    $infix: g.breakpoint-infix-modifier($breakpoint, g.$grid-breakpoints);
+    $infix: g.breakpoint-infix($breakpoint, g.$grid-breakpoints);
     // $infix-before: g.breakpoint-infix-before($breakpoint, g.$grid-breakpoints);
 
     // .flex__row#{$infix} {
@@ -30,35 +30,35 @@
     // flex-wrap: wrap-reverse !important;
     // }
 
-    .jc__start#{$infix} {
+    .jc-start#{$infix} {
       justify-content: flex-start !important;
     }
-    .jc__end#{$infix} {
+    .jc-end#{$infix} {
       justify-content: flex-end !important;
     }
-    .jc__center#{$infix} {
+    .jc-center#{$infix} {
       justify-content: center !important;
     }
-    .jc__between#{$infix} {
+    .jc-between#{$infix} {
       justify-content: space-between !important;
     }
-    .jc__around#{$infix} {
+    .jc-around#{$infix} {
       justify-content: space-around !important;
     }
 
-    .ai__start#{$infix} {
+    .ai-start#{$infix} {
       align-items: flex-start !important;
     }
-    .ai__end#{$infix} {
+    .ai-end#{$infix} {
       align-items: flex-end !important;
     }
-    .ai__center#{$infix} {
+    .ai-center#{$infix} {
       align-items: center !important;
     }
-    .ai__baseline#{$infix} {
+    .ai-baseline#{$infix} {
       align-items: baseline !important;
     }
-    .ai__stretch#{$infix} {
+    .ai-stretch#{$infix} {
       align-items: stretch !important;
     }
 
@@ -81,28 +81,28 @@
     // align-content: stretch !important;
     // }
 
-    .as__auto#{$infix} {
+    .as-auto#{$infix} {
       align-self: auto !important;
     }
-    .as__start#{$infix} {
+    .as-start#{$infix} {
       align-self: flex-start !important;
     }
-    .as__end#{$infix} {
+    .as-end#{$infix} {
       align-self: flex-end !important;
     }
-    .as__center#{$infix} {
+    .as-center#{$infix} {
       align-self: center !important;
     }
-    .as__baseline#{$infix} {
+    .as-baseline#{$infix} {
       align-self: baseline !important;
     }
-    .as__stretch#{$infix} {
+    .as-stretch#{$infix} {
       align-self: stretch !important;
     }
 
     //order
     @for $i from 1 through 6 {
-      .order__#{$i}#{$infix} {
+      .order-#{$i}#{$infix} {
         order: $i !important;
       }
     }

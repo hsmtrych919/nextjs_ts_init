@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <>
       <header className={styles.outer}>
-        <div className={`${gridStyles['l-row--container']} ${gutterStyles['c-gutter__row']} jc__start ai__center`}>
+        <div className={`${gridStyles['l-row--container']} ${gutterStyles['c-gutter__row']} jc-start ai-center`}>
           <h1 className={styles.logo}>
             <ImgPath src="logo.png" alt=""/>
           </h1>

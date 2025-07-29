@@ -15,7 +15,7 @@ export default function PageDemo() {
 
   return (
     <Layout>
-      <article className="mt__12">
+      <article className="mt-12">
 
         {/* グリッドデモ */}
         <section style={{ marginBottom: '40px' }}>
