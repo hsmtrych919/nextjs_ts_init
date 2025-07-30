@@ -18,10 +18,17 @@ footer.module.scss
 #### 内部クラスのBEM準拠
 モジュール化したことで、ファイル内のクラスはグッターであること確定していること、出力には内部クラスは モジュール名からの 'gutter' が付属されることなどから、クラス名はもっｔシンプルにする方向で検討。
 
-__row → row
-__sm--left → sm--left
-__md--right → md--right
-などでどうか？
+ボタンのときの
+.gradient や .icon__arrow 、.border__clr1 のようにシンプルを土台にするが、必要あれば用途がわかるようにbem準拠にする
+
+
+.c-gutter > initial
+.c-gutter__row → row
+.c-gutter__sm--left → sm-left
+.c-gutter__md--right → md-right
+
+下2つはbem準拠ではないが運用上どうか？、button.module.scss、type.module.scss 、.claude/tmp/_done/typography-bem-analysis.md を踏まえて考慮してほしい。
+
 
 
 内部クラスのBEM準拠にて、修正対象のコンポーネント、ページがあれば合わせて修正。
