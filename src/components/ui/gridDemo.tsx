@@ -12,8 +12,8 @@ import gutterStyles from '@/styles/modules/gutter.module.scss';
  *
  * ### パターン1: 標準カラムレイアウト
  * ```jsx
- * <div className={`${gridStyles['l-row--container']} ${gutterStyles.container}`}>
- *   <div className={`${gridStyles['c-col--12']} ${gridStyles['c-col__lg--8']}`}>
+ * <div className={`${gridStyles['row--container']} ${gutterStyles.container}`}>
+ *   <div className={`${gridStyles['col--12']} ${gridStyles['col--lg-8']}`}>
  *     <div style={{...}}>コンテンツ</div>  // 3層目: コンテンツ
  *   </div>                                 // 2層目: カラム幅定義
  * </div>                                   // 1層目: コンテナ・余白
@@ -21,7 +21,7 @@ import gutterStyles from '@/styles/modules/gutter.module.scss';
  *
  * ### パターン2: ブロックグリッドレイアウト
  * ```jsx
- * <ul className={`${gridStyles['l-grid']} ${gridStyles['c-grid--2']} ${gridStyles['c-grid__md--4']}`}>
+ * <ul className={`${gridStyles['grid']} ${gridStyles['grid--2']} ${gridStyles['grid--md-4']}`}>
  *   <li>
  *     <div style={{...}}>コンテンツ</div>  // 3層目: コンテンツ
  *   </li>                                // 2層目: グリッドアイテム
@@ -29,8 +29,8 @@ import gutterStyles from '@/styles/modules/gutter.module.scss';
  * ```
  *
  * ## 設計思想
- * - **1層目**: フレーミング（.l-row--container, .l-grid）と余白システム（.container, .small--left等）
- * - **2層目**: カラム幅定義（.c-col--*, .c-col__*--*）またはグリッドアイテム（li, .c-col）
+ * - **1層目**: フレーミング（.row--container, .grid）と余白システム（.container, .small--left等）
+ * - **2層目**: カラム幅定義（.col--*, .col--*-*）またはグリッドアイテム（li, .col）
  * - **3層目**: 実際のコンテンツ（背景色、パディング、テキストなど）
  *
  * ## 重要なポイント
@@ -40,26 +40,26 @@ import gutterStyles from '@/styles/modules/gutter.module.scss';
  * - レスポンシブ対応は2層目のクラスで制御
  *
  * ## 主要クラス
- * - `.l-row--container`: レスポンシブコンテナ
- * - `.c-col--{n}`: nカラム幅指定
- * - `.c-col__{breakpoint}--{n}`: ブレークポイント別幅指定
- * - `.l-grid .c-grid--{n}`: nカラムのブロックグリッド
+ * - `.row--container`: レスポンシブコンテナ
+ * - `.col--{n}`: nカラム幅指定
+ * - `.col--{breakpoint}-{n}`: ブレークポイント別幅指定
+ * - `.grid .grid--{n}`: nカラムのブロックグリッド
  * - `.container`: 基本行レイアウト、`.small--left`等: 余白制御クラス
  *
  * @example
  * // 基本的な2カラムレイアウト
- * <div className="l-row--container container">
- *   <div className="c-col--12 c-col__lg--8">
+ * <div className="row--container container">
+ *   <div className="col--12 col--lg-8">
  *     <article>メインコンテンツ</article>
  *   </div>
- *   <div className="c-col--12 c-col__lg--4">
+ *   <div className="col--12 col--lg-4">
  *     <aside>サイドバー</aside>
  *   </div>
  * </div>
  *
  * @example
  * // カードグリッドレイアウト
- * <ul className="l-grid c-grid--1 c-grid__sm--2 c-grid__lg--3">
+ * <ul className="grid grid--1 grid--sm-2 grid--lg-3">
  *   <li><div className="card">カード1</div></li>
  *   <li><div className="card">カード2</div></li>
  *   <li><div className="card">カード3</div></li>
@@ -78,9 +78,9 @@ const GridDemo: React.FC = () => {
       {/* Container デモ */}
       <section style={{ marginBottom: '2rem' }}>
         <h3>Container System</h3>
-        <div className={`${gridStyles['l-row--container']} ${gutterStyles.container}`} >
-          <div className={gridStyles['c-col--12']} style={{ background: '#ddd', padding: '0.5rem' }}>
-            .l-row--container - レスポンシブコンテナ（CSS Modules版）
+        <div className={`${gridStyles['row--container']} ${gutterStyles.container}`} >
+          <div className={gridStyles['col--12']} style={{ background: '#ddd', padding: '0.5rem' }}>
+            .row--container - レスポンシブコンテナ（CSS Modules版）
           </div>
         </div>
       </section>
@@ -89,24 +89,24 @@ const GridDemo: React.FC = () => {
       {/* Responsive Columns デモ */}
       <section style={{ marginBottom: '2rem' }}>
         <h3>Responsive Columns</h3>
-        <div className={`${gridStyles['l-row--container']} ${gutterStyles.container}`}>
-          <div className={`${gridStyles['c-col--12']} ${gridStyles['c-col__sm--6']} ${gridStyles['c-col__lg--4']}`} >
+        <div className={`${gridStyles['row--container']} ${gutterStyles.container}`}>
+          <div className={`${gridStyles['col--12']} ${gridStyles['col--sm-6']} ${gridStyles['col--lg-4']}`} >
             <div style={{ background: '#ffe6f3', padding: '0.5rem' }}>
-              .c-col--12 .c-col__sm--6 .c-col__lg--4（CSS Modules版）
+              .col--12 .col--sm-6 .col--lg-4（CSS Modules版）
               <br />
               <small>Mobile: 12/12, Tablet: 6/12, Desktop: 4/12</small>
             </div>
           </div>
-          <div className={`${gridStyles['c-col--12']} ${gridStyles['c-col__sm--6']} ${gridStyles['c-col__lg--4']}`} >
+          <div className={`${gridStyles['col--12']} ${gridStyles['col--sm-6']} ${gridStyles['col--lg-4']}`} >
             <div style={{ background: '#f3e6ff', padding: '0.5rem' }}>
-              .c-col--12 .c-col__sm--6 .c-col__lg--4（CSS Modules版）
+              .col--12 .col--sm-6 .col--lg-4（CSS Modules版）
               <br />
               <small>Mobile: 12/12, Tablet: 6/12, Desktop: 4/12</small>
             </div>
           </div>
-          <div className={`${gridStyles['c-col--12']} ${gridStyles['c-col__sm--12']} ${gridStyles['c-col__lg--4']}`} >
+          <div className={`${gridStyles['col--12']} ${gridStyles['col--sm-12']} ${gridStyles['col--lg-4']}`} >
             <div style={{ background: '#e6f3ff', padding: '0.5rem' }}>
-              .c-col--12 .c-col__sm--12 .c-col__lg--4（CSS Modules版）
+              .col--12 .col--sm-12 .col--lg-4（CSS Modules版）
               <br />
               <small>Mobile: 12/12, Tablet: 12/12, Desktop: 4/12</small>
             </div>
@@ -117,14 +117,14 @@ const GridDemo: React.FC = () => {
       {/* Mixed Layout デモ */}
       <section style={{ marginBottom: '2rem' }}>
         <h3>Mixed Layout Example</h3>
-        <div className={`${gridStyles['l-row--container']} ${gutterStyles.container}`}>
-          <div className={`${gridStyles['c-col--12']} ${gridStyles['c-col__lg--8']} ${gutterStyles['medium--right']}`} >
+        <div className={`${gridStyles['row--container']} ${gutterStyles.container}`}>
+          <div className={`${gridStyles['col--12']} ${gridStyles['col--lg-8']} ${gutterStyles['medium--right']}`} >
             <div style={{ background: '#e8f5e8', height: '100%' }}>
               <h4>Main Content Area（CSS Modules版）</h4>
               <p>メインコンテンツエリア。デスクトップでは8/12の幅、モバイルでは全幅で表示されます。</p>
             </div>
           </div>
-          <div className={`${gridStyles['c-col--12']} ${gridStyles['c-col__lg--4']}`} >
+          <div className={`${gridStyles['col--12']} ${gridStyles['col--lg-4']}`} >
             <div style={{ background: '#e3f2fd' }}>
               <h4>Sidebar（CSS Modules版）</h4>
               <p>サイドバーエリア。デスクトップでは4/12の幅、モバイルでは全幅で表示されます。</p>
@@ -136,15 +136,15 @@ const GridDemo: React.FC = () => {
       {/* Auto Columns デモ */}
       <section style={{ marginBottom: '2rem' }}>
         <h3>Auto Columns</h3>
-        <div className={`${gridStyles['l-row--container']} ${gutterStyles.container}`}>
-          <div className={gridStyles['c-col']} >
-            <div style={{ background: '#ffe6e6', height: '100%' }}>.c-col 自動幅（CSS Modules版）</div>
+        <div className={`${gridStyles['row--container']} ${gutterStyles.container}`}>
+          <div className={gridStyles.col} >
+            <div style={{ background: '#ffe6e6', height: '100%' }}>.col 自動幅（CSS Modules版）</div>
           </div>
-          <div className={`${gridStyles['c-col--5']} ${gutterStyles['small--left']}`} >
-            <div style={{ background: '#e6ffe6', height: '100%' }}>.c-col--5 Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum excepturi corporis nostrum assumenda suscipit accusamus velit cumque atque facilis nesciunt quis aspernatur, quam id quos. Eos eaque saepe dolor repellendus.</div>
+          <div className={`${gridStyles['col--5']} ${gutterStyles['small--left']}`} >
+            <div style={{ background: '#e6ffe6', height: '100%' }}>.col--5 Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum excepturi corporis nostrum assumenda suscipit accusamus velit cumque atque facilis nesciunt quis aspernatur, quam id quos. Eos eaque saepe dolor repellendus.</div>
           </div>
-          <div className={gridStyles['c-col']} >
-            <div style={{ background: '#e6e6ff', height: '100%' }}>.c-col 自動幅 Lorem ipsum dolor sit amet（CSS Modules版）</div>
+          <div className={gridStyles.col} >
+            <div style={{ background: '#e6e6ff', height: '100%' }}>.col 自動幅 Lorem ipsum dolor sit amet（CSS Modules版）</div>
           </div>
         </div>
       </section>
@@ -153,9 +153,9 @@ const GridDemo: React.FC = () => {
       {/* Responsive Block Grid デモ */}
       <section style={{ marginBottom: '2rem' }}>
         <h3>Responsive Block Grid</h3>
-        <div className={`${gridStyles['l-row--container']} ${gutterStyles.container}`}>
-  <div className={gridStyles['c-col--12']} >
-        <ul className={`${gridStyles['l-grid']} ${gridStyles['c-grid--2']} ${gridStyles['c-grid__md--4']}`} style={{ rowGap: 'var(--gutter)' }}>
+        <div className={`${gridStyles['row--container']} ${gutterStyles.container}`}>
+  <div className={gridStyles['col--12']} >
+        <ul className={`${gridStyles.grid} ${gridStyles['grid--2']} ${gridStyles['grid--md-4']}`} style={{ rowGap: 'var(--gutter)' }}>
           <li >
             <p style={{ background: '#fff3e0', padding: '0.5rem' }}>Item A</p>
           </li>
@@ -175,7 +175,7 @@ const GridDemo: React.FC = () => {
             <p style={{ background: '#e3f2fd', padding: '0.5rem' }}>Item F</p>
           </li>
         </ul>
-        <p><small>.c-grid--2 .c-grid__md--4 - Mobile: 2列, Desktop: 4列</small></p>
+        <p><small>.grid--2 .grid--md-4 - Mobile: 2列, Desktop: 4列</small></p>
         </div>
         </div>
       </section>

@@ -65,38 +65,51 @@
     min-height: 1px; // Prevent columns from collapsing when empty
   }
 
+  // 基本クラス（ブレークポイントなし）をBEM準拠に
+  .col {
+    flex: 1 0 0%;
+  }
+  
+  @for $i from 1 through $columns {
+    .col--#{$i} {
+      @extend %grid-column;
+      @include make-col($i, $columns);
+    }
+  }
+
   @each $breakpoint in map.keys($breakpoints) {
-    $infix: g.breakpoint-infix-element($breakpoint, $breakpoints);
+    $infix: g.breakpoint-infix-modifier($breakpoint, $breakpoints);
 
-    @for $i from 1 through $columns {
-
-      .c-col#{$infix}--#{$i} {
-
-        @extend %grid-column;
+    // ブレークポイント付きクラスのみ
+    @if $infix != "" {
+      @for $i from 1 through $columns {
+        .col#{$infix}-#{$i} {
+          @extend %grid-column;
+        }
       }
     }
 
     @include g.media-breakpoint-up($breakpoint, $breakpoints) {
-      .c-col#{$infix} {
-        flex: 1 0 0%;
-      }
-      // .c-col#{$infix}--auto {
-      //   flex: 0 0 auto;
-      //   width: auto;
-      // }
+      @if $infix != "" {
+        .col#{$infix} {
+          flex: 1 0 0%;
+        }
+        // .col#{$infix}--auto {
+        //   flex: 0 0 auto;
+        //   width: auto;
+        // }
 
-      @for $i from 1 through $columns {
-
-        .c-col#{$infix}--#{$i} {
-
-          @include make-col($i, $columns);
+        @for $i from 1 through $columns {
+          .col#{$infix}-#{$i} {
+            @include make-col($i, $columns);
+          }
         }
       }
     }
   }
 }
 
-@mixin flex-grid-layout($n, $selector: ".c-col") {
+@mixin flex-grid-layout($n, $selector: ".col") {
 
   > li,
   > #{$selector} {
@@ -115,17 +128,16 @@
 //
 // columns
 //
-.l-row {
+.row {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
 
-  &--container {
-
-    @extend .l-row;
-    @include make-container();
-    @include make-container-max-widths();
-  }
+.row--container {
+  @extend .row;
+  @include make-container();
+  @include make-container-max-widths();
 }
 
 @include make-grid-columns();
@@ -134,7 +146,7 @@
 //
 // block grid
 //
-.l-grid {
+.grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -144,7 +156,7 @@
   margin-left: calc(var(--gutter) * -1);
 }
 
-%l-grid__col {
+%grid-col {
   // position: relative;
   flex: 0 0 auto;
   min-height: 1px;
@@ -155,16 +167,16 @@
 }
 
 @each $breakpoint in map.keys(g.$grid-breakpoints) {
-  $infix: g.breakpoint-infix-element($breakpoint, g.$grid-breakpoints);
+  $infix: g.breakpoint-infix-modifier($breakpoint, g.$grid-breakpoints);
   $block-grid-max: 12;
 
   @for $i from 1 through $block-grid-max {
 
-    .c-grid--#{$i} {
+    .grid--#{$i} {
 
-      & > li, & > .c-col {
+      & > li, & > .col {
 
-        @extend %l-grid__col;
+        @extend %grid-col;
       }
     }
   }
@@ -173,7 +185,7 @@
 
     @for $i from 1 through $block-grid-max {
 
-      .c-grid#{$infix}--#{$i} {
+      .grid#{$infix}-#{$i} {
 
         @include flex-grid-layout($i);
       }
