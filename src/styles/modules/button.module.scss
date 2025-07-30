@@ -115,7 +115,7 @@
   }
 }
 
-.icon__arrow {
+.icon--arrow {
   position: absolute;
   top: 50%;
   right: g.rem(6);
@@ -124,7 +124,7 @@
   transition: transform .2s ease-in-out;
 }
 
-.icon__external {
+.icon--external {
   position: absolute;
   top: 50%;
   right: g.rem(8);
@@ -132,7 +132,7 @@
   transform: translate3d(0, -50%, 0);
 }
 
-.icon__telephone {
+.icon--telephone {
   position: absolute;
   top: 52.5%;
   left: g.rem(12);
@@ -150,7 +150,7 @@
   background: var(--grd1);
   @include m.hover {
     opacity: 0.8;
-    .icon__arrow {
+    .icon--arrow {
       transform: translate3d(g.rem(4), -50%, 0);
     }
   }
@@ -174,16 +174,16 @@
   );
   padding-left: g.rem(48) !important;
   @include m.hover {
-    .icon__telephone {
+    .icon--telephone {
       color: #fff;
     }
   }
-  .icon__telephone {
+  .icon--telephone {
     color: #fff;
   }
 }
 
-.border__clr1 {
+.border--clr1 {
   @include button__color--border(
     $clr: g.$clr1,
     $bgc: #fff,
@@ -193,7 +193,7 @@
     $bdc-hover: g.$clr1
   );
   @include m.hover {
-    .icon__arrow {
+    .icon--arrow {
       transform: translate3d(g.rem(4), -50%, 0);
     }
   }
