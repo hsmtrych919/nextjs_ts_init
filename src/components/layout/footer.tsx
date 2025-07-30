@@ -11,7 +11,7 @@ export default function Footer() {
   return (
     <>
       <footer className={`${styles.outer}`}>
-        <ul className={`${gridStyles['l-row--container']} ${gutterStyles['c-gutter__row']} ${styles.navi_list}`}>
+        <ul className={`${gridStyles['l-row--container']} ${gutterStyles.container} ${styles.navi_list}`}>
           <li><a className={styles.navi_button} href="#">ダミーテキストです。</a></li>
         </ul>
         <p className={styles.copy}>&copy; {year} ダミーテキストです。</p>
