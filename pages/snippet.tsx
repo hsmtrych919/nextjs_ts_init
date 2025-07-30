@@ -6,6 +6,8 @@ import SimpleTableDemo from '@/components/ui/tableDemo';
 import { ButtonType01, ButtonType02 } from '@/components/ui/buttonDemo';
 import GridDemo from '@/components/ui/gridDemo';
 import { useInView } from '@/lib/hooks/useInView';
+import gridStyles from '@/styles/modules/grid.module.scss';
+import gutterStyles from '@/styles/modules/gutter.module.scss';
 
 // ファイル下に meta情報用の getStaticProps記載
 
@@ -54,8 +56,8 @@ export default function PageDemo() {
 
         {/* テーブルデモ */}
         <section style={{ marginBottom: '40px' }}>
-          <div className="l-row--container c-gutter__row">
-            <div className="c-col--12 c-col__md--10 c-col__xl--10">
+          <div className={`${gridStyles['row--container']} ${gutterStyles.container}`}>
+            <div className={`${gridStyles['col--12']} ${gridStyles['col--md-10']} ${gridStyles['col--xl-10']}`}>
 
           <h2>テーブルデモ</h2>
           <p>横スクロール対応テーブル（scroll-hint + シャドウ機能付き）</p>
