@@ -1,6 +1,5 @@
-ファイル命名規則ガイド（file-naming-standards-ts.md）
+# .ts/.tsx ファイル命名規則ガイド（file-naming-standards-ts.md）
 
-# ts および tsx ファイル
 このドキュメントは、本プロジェクトにおける ts および tsx ファイルの命名規則を定めたものです。
 
 ## 基本方針
