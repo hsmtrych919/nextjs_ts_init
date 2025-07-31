@@ -61,3 +61,4 @@ aiは grid.module.scss の内容を正しく理解出来ないケースが多い
 現状のsrc/styles/ 以下のファイルを記載内容確認したか？
 
 表面的すぎる。
+現状を正しく理解して .claude/tmp/02_plan-make-guide.md を更新しろ

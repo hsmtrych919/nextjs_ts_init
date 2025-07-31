@@ -1,5 +1,5 @@
 
-export function link_ignore() {
+export function linkIgnore() {
   const ignoreLinks = document.querySelectorAll('a.ignore');
 
   ignoreLinks.forEach(link => {

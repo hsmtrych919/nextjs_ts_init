@@ -1,6 +1,6 @@
-const smoothScroll = require('smooth-scroll/dist/smooth-scroll.min') as any;
+const SmoothScroll = require('smooth-scroll/dist/smooth-scroll.min') as any;
 
-export function smooth_scroll() {
+export function smoothScroll() {
   // if (typeof window !== 'undefined') {
   let options = {
     speed: 150,
@@ -9,6 +9,6 @@ export function smooth_scroll() {
     // offset: 50
     // offset: function () { return (window.innerWidth > 896) ? 0 : 50; },
   };
-  new smoothScroll('a[href*="#"]', options);
+  new SmoothScroll('a[href*="#"]', options);
 // }
 }
