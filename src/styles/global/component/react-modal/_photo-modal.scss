@@ -30,8 +30,8 @@
   border-radius: 8px;
   outline: none;
   padding: 0;
-  max-width: 95vw;
-  max-height: 95vh;
+  max-width: 94vw;
+  max-height: 85vh;
   overflow: auto;
   transform: scale(0.9);
   transition: transform 0.2s ease-in-out;
@@ -54,5 +54,12 @@
   .photo-modal-content {
     max-width: 98vw;
     max-height: 98vh;
+  }
+}
+
+// ランドスケープモード対応
+@media (orientation: landscape) {
+  .photo-modal-content {
+    max-width: 90vw;
   }
 }

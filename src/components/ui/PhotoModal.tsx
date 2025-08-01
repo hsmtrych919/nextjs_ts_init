@@ -70,9 +70,6 @@ const PhotoModal: React.FC<PhotoModalProps> = ({ isOpen, onClose, imageSrc, imag
           </button>
         </div>
         
-        <div className={styles.caption}>
-          <p>{imageAlt}</p>
-        </div>
       </div>
     </ReactModal>
   );
