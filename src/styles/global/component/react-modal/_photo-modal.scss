@@ -1,0 +1,65 @@
+// PhotoModal グローバルスタイル
+// ReactModalのグローバルクラス用スタイル定義
+
+.photo-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.photo-modal-overlay--after-open {
+  opacity: 1;
+}
+
+.photo-modal-overlay--before-close {
+  opacity: 0;
+}
+
+.photo-modal-content {
+  position: relative;
+  background: white;
+  border-radius: 8px;
+  outline: none;
+  padding: 0;
+  max-width: 94vw;
+  max-height: 85vh;
+  overflow: auto;
+  transform: scale(0.9);
+  transition: transform 0.2s ease-in-out;
+}
+
+.photo-modal-overlay--after-open .photo-modal-content {
+  transform: scale(1);
+}
+
+.photo-modal-overlay--before-close .photo-modal-content {
+  transform: scale(0.9);
+}
+
+.photo-modal-body--open {
+  overflow: hidden;
+}
+
+// レスポンシブ対応
+@media (max-width: 768px) {
+  .photo-modal-content {
+    max-width: 98vw;
+    max-height: 98vh;
+  }
+}
+
+// ランドスケープモード対応
+@media (orientation: landscape) {
+  .photo-modal-content {
+    max-width: 90vw;
+  }
+}
