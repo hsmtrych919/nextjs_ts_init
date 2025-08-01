@@ -1,4 +1,4 @@
-// PhotoModal専用スタイル
+// PhotoModal専用スタイル（モジュール用）
 // 写真拡大表示モーダルのスタイル定義
 
 .modalContainer {
@@ -77,55 +77,6 @@
   }
 }
 
-// グローバルなモーダルスタイル（ReactModalの設定）
-:global(.photo-modal-overlay) {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out;
-}
-
-:global(.photo-modal-overlay--after-open) {
-  opacity: 1;
-}
-
-:global(.photo-modal-overlay--before-close) {
-  opacity: 0;
-}
-
-:global(.photo-modal-content) {
-  position: relative;
-  background: white;
-  border-radius: 8px;
-  outline: none;
-  padding: 0;
-  max-width: 95vw;
-  max-height: 95vh;
-  overflow: auto;
-  transform: scale(0.9);
-  transition: transform 0.2s ease-in-out;
-}
-
-:global(.photo-modal-overlay--after-open .photo-modal-content) {
-  transform: scale(1);
-}
-
-:global(.photo-modal-overlay--before-close .photo-modal-content) {
-  transform: scale(0.9);
-}
-
-:global(.photo-modal-body--open) {
-  overflow: hidden;
-}
-
 // レスポンシブ対応
 @media (max-width: 768px) {
   .modalContainer {
@@ -155,10 +106,5 @@
     p {
       font-size: 13px;
     }
-  }
-
-  :global(.photo-modal-content) {
-    max-width: 98vw;
-    max-height: 98vh;
   }
 }

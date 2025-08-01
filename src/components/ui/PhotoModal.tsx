@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactModal from 'react-modal';
-import { ImgPath } from '@/lib/utils/rewritePath';
+import getConfig from 'next/config';
 import styles from '@/styles/modules/photo-modal.module.scss';
+
+const { publicRuntimeConfig } = getConfig();
+const basePath = (publicRuntimeConfig && publicRuntimeConfig.basePath) || '';
 
 interface PhotoModalProps {
   isOpen: boolean;
@@ -31,7 +34,7 @@ interface PhotoModalProps {
  *   imageAlt="サンプル画像"
  * />
  */
-const PhotoModal = ({ isOpen, onClose, imageSrc, imageAlt }) => {
+const PhotoModal: React.FC<PhotoModalProps> = ({ isOpen, onClose, imageSrc, imageAlt }) => {
   return (
     <ReactModal
       isOpen={isOpen}
@@ -49,8 +52,8 @@ const PhotoModal = ({ isOpen, onClose, imageSrc, imageAlt }) => {
     >
       <div className={styles.modalContainer}>
         <div className={styles.imageContainer}>
-          <ImgPath
-            src={imageSrc}
+          <img
+            src={`${basePath}${imageSrc}?${Date.now()}`}
             alt={imageAlt}
             className={styles.modalImage}
           />
