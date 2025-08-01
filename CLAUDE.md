@@ -9,86 +9,88 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - セッション中に作成する中間ファイルは`.claude/tmp/`に配置してください
 - 最終的なアウトプットは好き勝手な場所に作成しないでください。まず`.claude/tmp/`に作成した後、現状のディレクトリ構成に合わせて適切なディレクトリ内に配置すること。
 
-## Development Commands
+## Essential Commands
 
-### Core Development
-- `npm run dev` - Start development server
-- `npm run build` - Development build (no prefixPath, for local testing)
-- `npm run build:deploy` - Production build with prefixPath for deployment
-- `npm run start` - Start production server
-- `npm run serve` - Serve built files from _dist directory
+### Development
+- `npm run dev` - Start development server with hot reload
+- `npm run build` - Development build (local testing, no prefixPath)
+- `npm run build:deploy` - Production build (with prefixPath for deployment)
+- `npm run serve` - Serve static files from `_dist` directory for testing builds
+- `npm run eslint` - ESLint check and fix for TypeScript files
 
-### Code Quality
-- `npm run eslint` - Run ESLint with auto-fix for .jsx files
-- TypeScript compilation is handled by Next.js build process
-
-### Asset Optimization
+### Asset Management
 - `npm run imgmin` - Optimize images using imagemin configuration
 
 ## Architecture Overview
 
-### Dual Environment Build System
-This project uses a sophisticated dual-environment build system:
-- **Development/Testing**: `npm run build` creates builds without prefixPath for local testing
-- **Production**: `npm run build:deploy` sets `REAL_DEPLOY=true` to apply prefixPath for deployment
+### Static Export Configuration
+This is a **static site generation (SSG)** project using Next.js 13.5 with **dual environment build system**:
 
-The build behavior is controlled in `next.config.js:9` where `prefixPath` is conditionally set based on `REAL_DEPLOY` environment variable.
+- **Development/Testing**: `npm run build` creates static files without prefixPath
+- **Production**: `npm run build:deploy` applies prefixPath via `REAL_DEPLOY=true` environment variable
+- **Output directory**: `_dist` (not the default `out`)
+- **URL format**: Trailing slash enabled (`trailingSlash: true`)
+
+### Key Technologies
+- **Next.js 13.5** (Pages Router, not App Router)
+- **TypeScript 5.8** with strict mode enabled
+- **SCSS** with comprehensive styling system
+- **GSAP** for animations
+- **React Modal** for modal components
 
 ### Path Management System
-All images and links use custom components from `@features/rewrite-path.tsx`:
-- `ImgPath` component: Handles image paths with basePath prefix and cache-busting
-- `LinkPath` component: Manages internal links with proper path prefixes
+Critical for static export functionality:
 
-This system allows the same codebase to work both locally and on deployment servers with different base paths.
+- All image paths use `ImgPath` component from `@lib/utils/rewritePath.tsx`
+- All internal links use `LinkPath` component for proper basePath handling
+- SCSS background images are automatically processed during build
+- TypeScript path aliases configured: `@/*`, `@/components/*`, `@/lib/*`, `@/styles/*`
 
-### Component Architecture
+### Directory Structure
 ```
-components/
-├── element/     # Reusable UI components (button, modal, toggle)
-├── layout/      # Layout components (header, footer, layout)
-└── page/        # Page-specific components
+src/
+├── components/
+│   ├── layout/ - Header, footer, main layout components
+│   └── ui/ - Reusable UI components (buttons, modals, tables, tabs, toggles)
+├── lib/
+│   ├── hooks/ - Custom React hooks (useInView, useTabSwitch, useToggleContent)
+│   └── utils/ - Utility functions (path rewriting, smooth scroll, link handling)
+└── styles/
+    ├── global/ - Foundation styles, mixins, variables
+    ├── modules/ - Component-specific SCSS modules
+    └── style.scss - Main stylesheet entry point
 ```
 
-### Features System
-The `features/` directory contains reusable functionality:
-- `modal-component.tsx` - React Modal integration
-- `smooth-scroll.tsx` - Smooth scrolling behavior
-- `toggle-content.tsx` - GSAP-powered toggle animations
-- `useInView.tsx` - IntersectionObserver hook
-- `rewrite-path.tsx` - Path management utilities
+### Important Files
+- `next.config.js` - Dual environment configuration with prefixPath logic
+- `imagemin.config.js` - Image optimization settings
+- `tsconfig.json` - TypeScript configuration with path aliases
+- `.prettierrc.js` - Code formatting rules
+- `.stylelintrc.js` - SCSS linting configuration
 
-### TypeScript Configuration
-Path aliases are configured in `tsconfig.json:17-21`:
-- `@components/*` → `components/*`
-- `@features/*` → `features/*`
-- `@styles/*` → `styles/*`
+## Development Workflow
 
-## Styling System
-- SCSS-based styling with modular architecture
-- Global styles in `styles/global/`
-- Component-specific styles use CSS modules
-- Comprehensive SCSS utility classes and mixins
+### Testing Changes
+Always test static export functionality:
+```bash
+npm run build
+npm run serve
+# Test at http://localhost:3000
+```
 
-## Key Technical Considerations
-
-### Static Export Configuration
-- Output: `'export'` for static site generation
-- Custom distDir: `'_dist'`
-- TrailingSlash: `true` for directory-based URLs
-- Custom image loader to handle static export limitations
+### Code Quality
+Run ESLint before committing:
+```bash
+npm run eslint
+```
 
 ### Browser Compatibility
-- Targets last 2 versions during development
-- Can be configured for broader support in production (see README.md:109-121)
+- Development: Last 2 versions
+- Production: Can be configured for broader support via browserslist
 
-### Development Workflow
-1. Always run `npm run build` + `npm run serve` to verify changes work in static export
-2. Use `npm run build:deploy` only for final production builds
-3. Image paths automatically include cache-busting timestamps
-4. Background images in SCSS are processed and rewritten during build
+## Important Considerations
 
-## Important Files
-- `next.config.js` - Contains environment-specific build configuration
-- `features/rewrite-path.tsx` - Critical for path management across environments
-- `pages/_app.tsx` - Handles global meta tags and basePath configuration
-- `components/layout/layout.tsx` - Main layout component with feature initialization
+- **Static Export Only**: This project generates static HTML files, not a server-side application
+- **Path Management**: Never use relative paths for images/links - always use the provided utility components
+- **Build Verification**: Always verify changes work in static export environment (`npm run build` + `npm run serve`)
+- **No Interactive Git Commands**: Commands like `git rebase -i` are not supported in this environment
