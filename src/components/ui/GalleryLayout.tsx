@@ -3,14 +3,19 @@ import styles from '@/styles/modules/gallery.module.scss';
 import gridStyles from '@/styles/modules/grid.module.scss';
 import gutterStyles from '@/styles/modules/gutter.module.scss';
 
-type TabId = 'exterior' | 'interior' | 'common';
+export type TabId = 'exterior' | 'interior' | 'common';
 
 interface GalleryLayoutProps {
   children?: React.ReactNode;
+  activeTab?: TabId;
+  onTabChange?: (tabId: TabId) => void;
 }
 
-const GalleryLayout: React.FC<GalleryLayoutProps> = ({ children }) => {
-  const [activeTab, setActiveTab] = useState<TabId>('exterior');
+const GalleryLayout: React.FC<GalleryLayoutProps> = ({ children, activeTab: propActiveTab, onTabChange }) => {
+  const [internalActiveTab, setInternalActiveTab] = useState<TabId>('exterior');
+  
+  // propsでactiveTabが渡された場合はそれを使用、そうでなければ内部状態を使用
+  const activeTab = propActiveTab !== undefined ? propActiveTab : internalActiveTab;
 
   const tabs = [
     { id: 'exterior' as TabId, label: '外観' },
@@ -19,7 +24,11 @@ const GalleryLayout: React.FC<GalleryLayoutProps> = ({ children }) => {
   ];
 
   const handleTabClick = (tabId: TabId) => {
-    setActiveTab(tabId);
+    if (onTabChange) {
+      onTabChange(tabId);
+    } else {
+      setInternalActiveTab(tabId);
+    }
   };
 
   return (
