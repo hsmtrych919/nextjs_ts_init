@@ -34,20 +34,20 @@ const GalleryPage: NextPage = () => {
     <>
       <Head>
         <title>物件写真ギャラリー</title>
-        <meta name="description" content="新築マンションの写真ギャラリー" />
+        <meta name="description" content="写真ギャラリー" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      
-      <GalleryLayout 
+
+      <GalleryLayout
         activeTab={activeTab}
         onTabChange={handleTabChange}
       >
-        <PhotoGrid 
+        <PhotoGrid
           images={currentImages}
           category={activeTab as CategoryKey}
           onPhotoClick={handlePhotoClick}
         />
-        
+
         {selectedImage && (
           <PhotoModal
             isOpen={isModalOpen}

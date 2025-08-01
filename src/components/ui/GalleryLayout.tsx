@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import styles from '@/styles/modules/gallery.module.scss';
 import gridStyles from '@/styles/modules/grid.module.scss';
 import gutterStyles from '@/styles/modules/gutter.module.scss';
+import galleryStyles from '@/styles/modules/gallery.module.scss';
 
 export type TabId = 'exterior' | 'interior' | 'common';
 
@@ -13,7 +13,7 @@ interface GalleryLayoutProps {
 
 const GalleryLayout: React.FC<GalleryLayoutProps> = ({ children, activeTab: propActiveTab, onTabChange }) => {
   const [internalActiveTab, setInternalActiveTab] = useState<TabId>('exterior');
-  
+
   // propsでactiveTabが渡された場合はそれを使用、そうでなければ内部状態を使用
   const activeTab = propActiveTab !== undefined ? propActiveTab : internalActiveTab;
 
@@ -32,19 +32,19 @@ const GalleryLayout: React.FC<GalleryLayoutProps> = ({ children, activeTab: prop
   };
 
   return (
-    <div className={styles.galleryContainer}>
+    <div className={galleryStyles.galleryContainer}>
       {/* サイトタイトル */}
-      <header className={styles.header}>
-        <h1 className={styles.title}>物件写真ギャラリー</h1>
+      <header className={galleryStyles.header}>
+        <h1 className={galleryStyles.title}>写真ギャラリー</h1>
       </header>
 
       {/* タブナビゲーション */}
-      <nav className={styles.tabNavigation}>
-        <div className={styles.tabContainer}>
+      <nav className={galleryStyles.tabNavigation}>
+        <div className={galleryStyles.tabContainer}>
           {tabs.map((tab) => (
             <button
               key={tab.id}
-              className={`${styles.tabButton} ${activeTab === tab.id ? styles.active : ''}`}
+              className={`${galleryStyles.tabButton} ${activeTab === tab.id ? galleryStyles.active : ''}`}
               onClick={() => handleTabClick(tab.id)}
               type="button"
             >
@@ -55,7 +55,7 @@ const GalleryLayout: React.FC<GalleryLayoutProps> = ({ children, activeTab: prop
       </nav>
 
       {/* コンテンツエリア */}
-      <main className={`${gridStyles['row--container']} ${gutterStyles.container}`}>
+      <main className={`${gridStyles['row--container']} ${gutterStyles.container} ${galleryStyles['grid-container']}`}>
         <div className={`${gridStyles['col--12']}`}>
           {children}
         </div>

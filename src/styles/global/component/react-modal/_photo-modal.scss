@@ -2,18 +2,18 @@
 // ReactModalのグローバルクラス用スタイル定義
 
 .photo-modal-overlay {
+  display: flex;
   position: fixed;
+  z-index: 1000;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 1000;
-  display: flex;
+  left: 0;
   align-items: center;
   justify-content: center;
-  opacity: 0;
   transition: opacity 0.2s ease-in-out;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .photo-modal-overlay--after-open {
@@ -26,15 +26,15 @@
 
 .photo-modal-content {
   position: relative;
-  background: white;
-  border-radius: 8px;
-  outline: none;
-  padding: 0;
   max-width: 94vw;
   max-height: 85vh;
+  padding: 0;
   overflow: auto;
   transform: scale(0.9);
   transition: transform 0.2s ease-in-out;
+  border-radius: 8px;
+  outline: none;
+  background: white;
 }
 
 .photo-modal-overlay--after-open .photo-modal-content {
@@ -49,13 +49,7 @@
   overflow: hidden;
 }
 
-// レスポンシブ対応
-@media (max-width: 768px) {
-  .photo-modal-content {
-    max-width: 98vw;
-    max-height: 98vh;
-  }
-}
+
 
 // ランドスケープモード対応
 @media (orientation: landscape) {
