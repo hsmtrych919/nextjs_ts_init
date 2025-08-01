@@ -3,6 +3,8 @@
  * @fileoverview ギャラリーデータの型定義と取得ユーティリティ
  */
 
+import galleryData from '@/lib/constants/gallery.json';
+
 /**
  * 画像データの型定義
  */
@@ -36,21 +38,11 @@ export interface GalleryData {
 export type CategoryKey = keyof GalleryData;
 
 /**
- * ギャラリーデータを取得する非同期関数
- * @returns {Promise<GalleryData>} ギャラリーデータ
+ * ギャラリーデータを取得する関数（静的インポート版）
+ * @returns {GalleryData} ギャラリーデータ
  */
-export const fetchGalleryData = async (): Promise<GalleryData> => {
-  try {
-    const response = await fetch('/data/gallery.json');
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const data: GalleryData = await response.json();
-    return data;
-  } catch (error) {
-    console.error('ギャラリーデータの取得に失敗しました:', error);
-    throw error;
-  }
+export const getGalleryData = (): GalleryData => {
+  return galleryData as GalleryData;
 };
 
 /**
