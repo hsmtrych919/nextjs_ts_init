@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '@/styles/modules/gallery.module.scss';
 import gridStyles from '@/styles/modules/grid.module.scss';
 import gutterStyles from '@/styles/modules/gutter.module.scss';
+
+type TabId = 'exterior' | 'interior' | 'common';
 
 interface GalleryLayoutProps {
   children?: React.ReactNode;
 }
 
 const GalleryLayout: React.FC<GalleryLayoutProps> = ({ children }) => {
+  const [activeTab, setActiveTab] = useState<TabId>('exterior');
+
   const tabs = [
-    { id: 'exterior', label: '外観' },
-    { id: 'interior', label: '居室' },
-    { id: 'common', label: '共用部' }
+    { id: 'exterior' as TabId, label: '外観' },
+    { id: 'interior' as TabId, label: '居室' },
+    { id: 'common' as TabId, label: '共用部' }
   ];
+
+  const handleTabClick = (tabId: TabId) => {
+    setActiveTab(tabId);
+  };
 
   return (
     <div className={styles.galleryContainer}>
@@ -27,7 +35,8 @@ const GalleryLayout: React.FC<GalleryLayoutProps> = ({ children }) => {
           {tabs.map((tab) => (
             <button
               key={tab.id}
-              className={`${styles.tabButton} ${tab.id === 'exterior' ? styles.active : ''}`}
+              className={`${styles.tabButton} ${activeTab === tab.id ? styles.active : ''}`}
+              onClick={() => handleTabClick(tab.id)}
               type="button"
             >
               {tab.label}

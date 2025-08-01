@@ -115,7 +115,6 @@
   cursor: pointer;
   position: relative;
   transition: all 0.2s ease;
-  border-bottom: 2px solid transparent;
   min-height: 44px; // タッチ操作最適化
   
   @media #{g.$sm} {
@@ -140,7 +139,7 @@
   &.active {
     color: g.$clr1;
     font-weight: bold;
-    border-bottom-color: g.$clr1;
+    background-color: color.scale(g.$clr1, $lightness: 95%);
   }
   
   // ホバー状態（デスクトップのみ）
