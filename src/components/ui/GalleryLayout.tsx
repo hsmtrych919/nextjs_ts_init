@@ -55,9 +55,16 @@ const GalleryLayout: React.FC<GalleryLayoutProps> = ({ children, activeTab: prop
       </nav>
 
       {/* コンテンツエリア */}
-      <main className={`${gridStyles['row--container']} ${gutterStyles.container} ${galleryStyles['grid-container']}`}>
-        <div className={`${gridStyles['col--12']}`}>
-          {children}
+      <main >
+        <div className={`${gridStyles['row--container']} ${gutterStyles.container} ${galleryStyles['grid-container']}`}>
+          <div className={`${gridStyles['col--12']}`}>
+            {/* gallery.json の各 description */}
+          </div>
+        </div>
+        <div className={`${gridStyles['row--container']} ${gutterStyles.container} ${galleryStyles['grid-container']}`}>
+          <div className={`${gridStyles['col--12']}`}>
+            {children}
+          </div>
         </div>
       </main>
     </div>

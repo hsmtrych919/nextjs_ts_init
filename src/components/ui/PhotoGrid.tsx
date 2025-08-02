@@ -31,7 +31,7 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ images, category, onPhotoClick })
               className={galleryStyles.photoGridButton}
             >
               <ImgPath
-                src={image.thumbnail.replace('/img/', '')}
+                src={image.thumbnail}
                 alt={image.alt}
                 className={galleryStyles.photoGridImage}
               />

@@ -53,7 +53,7 @@ const PhotoModal: React.FC<PhotoModalProps> = ({ isOpen, onClose, imageSrc, imag
       <div className={styles.modalContainer}>
         <div className={styles.imageContainer}>
           <img
-            src={`${basePath}${imageSrc}?${Date.now()}`}
+            src={`${basePath}/img/${imageSrc}?${Date.now()}`}
             alt={imageAlt}
             className={styles.modalImage}
           />

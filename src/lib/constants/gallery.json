@@ -4,28 +4,28 @@
     "description": "○○駅徒歩3分の好立地。南向きで日当たり良好な新築マンションです。充実した周辺環境で快適な住環境をお約束します。",
     "images": [
       {
-        "thumbnail": "/img/exterior_thumb_01.jpg",
-        "full": "/img/exterior_full_01.jpg",
+        "thumbnail": "exterior_thumb_01.jpg",
+        "full": "exterior_full_01.jpg",
         "alt": "マンション外観正面"
       },
       {
-        "thumbnail": "/img/exterior_thumb_02.jpg",
-        "full": "/img/exterior_full_02.jpg",
+        "thumbnail": "exterior_thumb_02.jpg",
+        "full": "exterior_full_02.jpg",
         "alt": "マンション外観側面"
       },
       {
-        "thumbnail": "/img/exterior_thumb_03.jpg",
-        "full": "/img/exterior_full_03.jpg",
+        "thumbnail": "exterior_thumb_03.jpg",
+        "full": "exterior_full_03.jpg",
         "alt": "エントランス外観"
       },
       {
-        "thumbnail": "/img/exterior_thumb_04.jpg",
-        "full": "/img/exterior_full_04.jpg",
+        "thumbnail": "exterior_thumb_04.jpg",
+        "full": "exterior_full_04.jpg",
         "alt": "駐車場エリア"
       },
       {
-        "thumbnail": "/img/exterior_thumb_05.jpg",
-        "full": "/img/exterior_full_05.jpg",
+        "thumbnail": "exterior_thumb_05.jpg",
+        "full": "exterior_full_05.jpg",
         "alt": "周辺環境・街並み"
       }
     ]
@@ -35,28 +35,28 @@
     "description": "広々としたリビングダイニングと使いやすい間取り設計。自然光がたっぷり入る明るい住空間です。",
     "images": [
       {
-        "thumbnail": "/img/interior_thumb_01.jpg",
-        "full": "/img/interior_full_01.jpg",
+        "thumbnail": "interior_thumb_01.jpg",
+        "full": "interior_full_01.jpg",
         "alt": "リビングダイニング全景"
       },
       {
-        "thumbnail": "/img/interior_thumb_02.jpg",
-        "full": "/img/interior_full_02.jpg",
+        "thumbnail": "interior_thumb_02.jpg",
+        "full": "interior_full_02.jpg",
         "alt": "キッチンエリア"
       },
       {
-        "thumbnail": "/img/interior_thumb_03.jpg",
-        "full": "/img/interior_full_03.jpg",
+        "thumbnail": "interior_thumb_03.jpg",
+        "full": "interior_full_03.jpg",
         "alt": "マスターベッドルーム"
       },
       {
-        "thumbnail": "/img/interior_thumb_04.jpg",
-        "full": "/img/interior_full_04.jpg",
+        "thumbnail": "interior_thumb_04.jpg",
+        "full": "interior_full_04.jpg",
         "alt": "バルコニーからの眺望"
       },
       {
-        "thumbnail": "/img/interior_thumb_05.jpg",
-        "full": "/img/interior_full_05.jpg",
+        "thumbnail": "interior_thumb_05.jpg",
+        "full": "interior_full_05.jpg",
         "alt": "洗面・バスルーム"
       }
     ]
@@ -66,28 +66,28 @@
     "description": "充実した共用施設とセキュリティ万全のエントランス。24時間管理で安心・安全な生活をサポートします。",
     "images": [
       {
-        "thumbnail": "/img/common_thumb_01.jpg",
-        "full": "/img/common_full_01.jpg",
+        "thumbnail": "common_thumb_01.jpg",
+        "full": "common_full_01.jpg",
         "alt": "エントランスロビー"
       },
       {
-        "thumbnail": "/img/common_thumb_02.jpg",
-        "full": "/img/common_full_02.jpg",
+        "thumbnail": "common_thumb_02.jpg",
+        "full": "common_full_02.jpg",
         "alt": "共用廊下"
       },
       {
-        "thumbnail": "/img/common_thumb_03.jpg",
-        "full": "/img/common_full_03.jpg",
+        "thumbnail": "common_thumb_03.jpg",
+        "full": "common_full_03.jpg",
         "alt": "メールボックスエリア"
       },
       {
-        "thumbnail": "/img/common_thumb_04.jpg",
-        "full": "/img/common_full_04.jpg",
+        "thumbnail": "common_thumb_04.jpg",
+        "full": "common_full_04.jpg",
         "alt": "エレベーターホール"
       },
       {
-        "thumbnail": "/img/common_thumb_05.jpg",
-        "full": "/img/common_full_05.jpg",
+        "thumbnail": "common_thumb_05.jpg",
+        "full": "common_full_05.jpg",
         "alt": "管理室・受付"
       }
     ]
