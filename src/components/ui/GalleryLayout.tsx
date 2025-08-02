@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import gridStyles from '@/styles/modules/grid.module.scss';
 import gutterStyles from '@/styles/modules/gutter.module.scss';
 import galleryStyles from '@/styles/modules/gallery.module.scss';
+import typeStyles from '@/styles/modules/type.module.scss';
+import { getGalleryData, getCategoryData, CategoryKey } from '@/lib/utils/galleryData';
 
 export type TabId = 'exterior' | 'interior' | 'common';
 
@@ -16,6 +18,10 @@ const GalleryLayout: React.FC<GalleryLayoutProps> = ({ children, activeTab: prop
 
   // propsでactiveTabが渡された場合はそれを使用、そうでなければ内部状態を使用
   const activeTab = propActiveTab !== undefined ? propActiveTab : internalActiveTab;
+
+  // 現在のタブのカテゴリデータを取得
+  const galleryData = getGalleryData();
+  const currentCategory = getCategoryData(galleryData, activeTab as CategoryKey);
 
   const tabs = [
     { id: 'exterior' as TabId, label: '外観' },
@@ -56,9 +62,11 @@ const GalleryLayout: React.FC<GalleryLayoutProps> = ({ children, activeTab: prop
 
       {/* コンテンツエリア */}
       <main >
-        <div className={`${gridStyles['row--container']} ${gutterStyles.container} ${galleryStyles['grid-container']}`}>
+        <div className={`${gridStyles['row--container']} ${gutterStyles.container} mt-3`}>
           <div className={`${gridStyles['col--12']}`}>
-            {/* gallery.json の各 description */}
+            <div className={galleryStyles.categoryDescription}>
+              <p className={typeStyles.text}>{currentCategory.description}</p>
+            </div>
           </div>
         </div>
         <div className={`${gridStyles['row--container']} ${gutterStyles.container} ${galleryStyles['grid-container']}`}>
