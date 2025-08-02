@@ -134,15 +134,14 @@
   }
 
 
-  // タッチデバイス向けアクティブ状態（lg未満）
-  @media (max-width: 1024px) {
+
     &:active {
       transform: scale(0.98);
     background-color:g.$clr1;
     color: #fff;
     font-weight: bold;
     }
-  }
+
 }
 
 // コンテンツエリアは既存のgridStyles['row--container']とgutterStyles.containerを使用

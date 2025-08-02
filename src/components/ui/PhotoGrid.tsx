@@ -23,7 +23,7 @@ interface PhotoGridProps {
 const PhotoGrid: React.FC<PhotoGridProps> = ({ images, category, onPhotoClick }) => {
   return (
     <>
-      <ul className={`${gridStyles.grid} ${gridStyles['grid--2']} ${galleryStyles['grid-container--list']}`} >
+      <ul className={`${gridStyles.grid} ${gridStyles['grid--2']}  ${gridStyles['grid--sm-4']} ${galleryStyles['grid-container--list']}`} >
         {images.map((image, index) => (
           <li key={`${category}-${index}`}>
             <button

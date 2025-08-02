@@ -15,18 +15,18 @@ interface PhotoModalProps {
 
 /**
  * PhotoModal: 写真拡大表示用モーダルコンポーネント
- * 
+ *
  * react-modalを使用した写真専用のモーダル表示コンポーネントです。
  * 元縦横比を維持しながら写真を拡大表示し、各種操作で閉じることができます。
- * 
+ *
  * @param isOpen モーダルの表示状態
  * @param onClose モーダルを閉じる関数
  * @param imageSrc 表示する画像のパス
  * @param imageAlt 画像のalt属性
- * 
+ *
  * @example
  * const [isModalOpen, setIsModalOpen] = useState(false);
- * 
+ *
  * <PhotoModal
  *   isOpen={isModalOpen}
  *   onClose={() => setIsModalOpen(false)}
@@ -51,17 +51,15 @@ const PhotoModal: React.FC<PhotoModalProps> = ({ isOpen, onClose, imageSrc, imag
       bodyOpenClassName="photo-modal-body--open"
     >
       <div className={styles.modalContainer}>
-        <div className={styles.imageContainer}>
           <img
             src={`${basePath}/img/${imageSrc}?${Date.now()}`}
             alt={imageAlt}
             className={styles.modalImage}
           />
-        </div>
-        
+
         <div className={styles.controls}>
-          <button 
-            onClick={onClose} 
+          <button
+            onClick={onClose}
             className={styles.closeButton}
             type="button"
             aria-label="モーダルを閉じる"
@@ -69,7 +67,7 @@ const PhotoModal: React.FC<PhotoModalProps> = ({ isOpen, onClose, imageSrc, imag
             ×
           </button>
         </div>
-        
+
       </div>
     </ReactModal>
   );

@@ -35,7 +35,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1, viewport-fit=cover"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1.25, user-scalable=yes, viewport-fit=cover"
         />
         <link rel="icon" href={`${basePath}/img/favicon.ico`} />
         <link rel="apple-touch-icon-precomposed" href={`${basePath}/img/webclip.png`} />
