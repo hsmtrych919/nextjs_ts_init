@@ -48,6 +48,29 @@ display: flex;
   }
 }
 
+// ドットインジケーター（視覚のみ、タップ不可）
+.dotIndicators {
+  display: flex;
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  gap: 7px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  transition: background-color 0.2s ease;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.dotActive {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
 .caption {
   max-width: 90vw;
   text-align: center;

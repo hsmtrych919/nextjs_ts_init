@@ -31,11 +31,9 @@
   width: 100%;
 // max-width: 94vw;
   max-height: var(--modal-height-photo);
-  padding: 0;
   overflow: auto;
   transform: scale(0.9);
   transition: transform 0.2s ease-in-out;
-  outline: none;
   background-color:rgba(0, 0, 0, 0.6);
 }
 

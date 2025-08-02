@@ -52,8 +52,9 @@ const GalleryPage: NextPage = () => {
           <PhotoModal
             isOpen={isModalOpen}
             onClose={handleCloseModal}
-            imageSrc={selectedImage.full}
-            imageAlt={selectedImage.alt}
+            images={currentImages}
+            currentIndex={selectedIndex}
+            onNavigate={(index) => setSelectedIndex(index)}
           />
         )}
       </GalleryLayout>
