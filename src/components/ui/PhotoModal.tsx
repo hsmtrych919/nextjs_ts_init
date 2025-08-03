@@ -111,18 +111,18 @@ const PhotoModal: React.FC<PhotoModalProps> = ({ isOpen, onClose, images, curren
 
         {/* ナビゲーション機能 */}
         <div className={`${gridStyles['row--container']} ${gutterStyles.container} ${styles['navigation--container']}`}>
-          <div className={gridStyles.col} >
+          <div className={styles['navigation--columns']} >
             <button className={styles['prev--button']}>
               <ChevronLeftIcon className={styles['nav--icon']} />
               前へ
             </button>
           </div>
-          <div className={gridStyles.col} >
+          <div className={styles['navigation--columns']} >
             <button className={styles['nav-close--button']}>
               閉じる
             </button>
           </div>
-          <div className={gridStyles.col} >
+          <div className={styles['navigation--columns']} >
             <button className={styles['next--button']}>
               次へ
               <ChevronRightIcon className={styles['nav--icon']} />

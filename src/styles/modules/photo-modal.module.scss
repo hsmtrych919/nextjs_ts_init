@@ -13,11 +13,11 @@ display: flex;
 .image--container {
   position: relative;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  // background-color: rgba(0, 0, 0, 0.6);
   text-align: center;
 
   @media (orientation: landscape) {
-    width: 75%;
+    width: 72%;
   }
 }
 
@@ -91,13 +91,20 @@ display: flex;
 
   @media (orientation: landscape) {
     flex-direction: column;
-    width: 25%;
+    width: 28%;
     padding-top: 0;
     padding-bottom: 0;
     gap: 20px;
   }
 }
 
+.navigation--columns {
+  flex: 1 0 0%;
+  @media (orientation: landscape) {
+    flex: 0 0 0%;
+  width: 100%;
+  }
+}
 
 %nav--button {
   display: flex;
