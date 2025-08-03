@@ -7,8 +7,9 @@ const { publicRuntimeConfig } = getConfig();
 const basePath = (publicRuntimeConfig && publicRuntimeConfig.basePath) || '';
 
 type ImgPathProps = {
-  src?: string ;
-  alt?: string ;
+  src?: string;
+  alt?: string;
+  className?: string;
 };
 
 /**
@@ -42,8 +43,8 @@ type ImgPathProps = {
  * - 画像は/publicディレクトリの/img/以下に配置
  * - キャッシュバスティングによりビルド後も画像更新が反映されます
  */
-export function ImgPath({ src= '', alt= '' }: ImgPathProps) {
-  return <img src={`${basePath}/img/${src}?${Date.now()}`} alt={alt} />;
+export function ImgPath({ src = '', alt = '', className = '' }: ImgPathProps) {
+  return <img src={`${basePath}/img/${src}?${Date.now()}`} alt={alt} className={className} />;
 }
 
 type LinkPathProps = {
