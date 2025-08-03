@@ -128,7 +128,7 @@
 
   // アクティブ状態
   &.active {
-    background-color:g.$clr1;
+    background-color:var(--clr1);
     color: #fff;
     font-weight: bold;
   }
@@ -137,7 +137,7 @@
 
     &:active {
       transform: scale(0.98);
-    background-color:g.$clr1;
+    background-color:var(--clr1);
     color: #fff;
     font-weight: bold;
     }

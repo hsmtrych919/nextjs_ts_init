@@ -112,34 +112,38 @@ const PhotoModal: React.FC<PhotoModalProps> = ({ isOpen, onClose, images, curren
         {/* ナビゲーション機能 */}
         <div className={`${gridStyles['row--container']} ${gutterStyles.container} ${styles['navigation--container']}`}>
           <div className={styles['navigation--columns']} >
-            <button className={styles['prev--button']}>
+            <button 
+              className={styles['prev--button']}
+              onClick={() => onNavigate(currentIndex - 1)}
+              disabled={currentIndex === 0}
+              type="button"
+            >
               <ChevronLeftIcon className={styles['nav--icon']} />
               前へ
             </button>
           </div>
           <div className={styles['navigation--columns']} >
-            <button className={styles['nav-close--button']}>
+            <button 
+              className={styles['nav-close--button']}
+              onClick={onClose}
+              type="button"
+            >
               閉じる
             </button>
           </div>
           <div className={styles['navigation--columns']} >
-            <button className={styles['next--button']}>
+            <button 
+              className={styles['next--button']}
+              onClick={() => onNavigate(currentIndex + 1)}
+              disabled={currentIndex === images.length - 1}
+              type="button"
+            >
               次へ
               <ChevronRightIcon className={styles['nav--icon']} />
             </button>
           </div>
         </div>
 
-        <div className={styles.controls}>
-          <button
-            onClick={onClose}
-            className={styles['close--button']}
-            type="button"
-            aria-label="モーダルを閉じる"
-          >
-            ×
-          </button>
-        </div>
 
       </div>
     </ReactModal>
