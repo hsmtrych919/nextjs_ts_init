@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactModal from 'react-modal';
 import getConfig from 'next/config';
 import styles from '@/styles/modules/photo-modal.module.scss';
+import gridStyles from '@/styles/modules/grid.module.scss';
+import gutterStyles from '@/styles/modules/gutter.module.scss';
 import { GalleryImage } from '@/lib/utils/galleryData';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 
 const { publicRuntimeConfig } = getConfig();
 const basePath = (publicRuntimeConfig && publicRuntimeConfig.basePath) || '';
@@ -50,7 +53,7 @@ const PhotoModal: React.FC<PhotoModalProps> = ({ isOpen, onClose, images, curren
 
   const onTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
-    
+
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
@@ -80,18 +83,19 @@ const PhotoModal: React.FC<PhotoModalProps> = ({ isOpen, onClose, images, curren
       className="photo-modal-content"
       bodyOpenClassName="photo-modal-body--open"
     >
-      <div 
+      <div
         className={styles.modalContainer}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
+        <div className={styles.imageContainer}>
+
           <img
             src={`${basePath}/img/${currentImage.full}?${Date.now()}`}
             alt={currentImage.alt}
             className={styles.modalImage}
-          />
-
+            />
         {/* ドットインジケーター */}
         <div className={styles.dotIndicators}>
           {images.map((_, index) => (
@@ -100,6 +104,30 @@ const PhotoModal: React.FC<PhotoModalProps> = ({ isOpen, onClose, images, curren
               className={`${styles.dot} ${index === currentIndex ? styles.dotActive : ''}`}
             />
           ))}
+        </div>
+
+            </div>
+
+
+        {/* ナビゲーション機能 */}
+        <div className={`${gridStyles['row--container']} ${gutterStyles.container} ${styles.navigationContainer}`}>
+          <div className={gridStyles.col} >
+            <button className={styles.prevButton}>
+              <ChevronLeftIcon className={styles.navIcon} />
+              前へ
+            </button>
+          </div>
+          <div className={gridStyles.col} >
+            <button className={styles.navCloseButton}>
+              閉じる
+            </button>
+          </div>
+          <div className={gridStyles.col} >
+            <button className={styles.nextButton}>
+              次へ
+              <ChevronRightIcon className={styles.navIcon} />
+            </button>
+          </div>
         </div>
 
         <div className={styles.controls}>
