@@ -38,19 +38,19 @@ const GalleryLayout: React.FC<GalleryLayoutProps> = ({ children, activeTab: prop
   };
 
   return (
-    <div className={galleryStyles.galleryContainer}>
+    <div className={galleryStyles['gallery--container']}>
       {/* サイトタイトル */}
       <header className={galleryStyles.header}>
         <h1 className={galleryStyles.title}>写真ギャラリー</h1>
       </header>
 
       {/* タブナビゲーション */}
-      <nav className={galleryStyles.tabNavigation}>
-        <div className={galleryStyles.tabContainer}>
+      <nav className={galleryStyles['tab--navigation']}>
+        <div className={galleryStyles['tab--container']}>
           {tabs.map((tab) => (
             <button
               key={tab.id}
-              className={`${galleryStyles.tabButton} ${activeTab === tab.id ? galleryStyles.active : ''}`}
+              className={`${galleryStyles['tab--button']} ${activeTab === tab.id ? galleryStyles.active : ''}`}
               onClick={() => handleTabClick(tab.id)}
               type="button"
             >
@@ -69,7 +69,7 @@ const GalleryLayout: React.FC<GalleryLayoutProps> = ({ children, activeTab: prop
             </div>
           </div>
         </div>
-        <div className={`${gridStyles['row--container']} ${gutterStyles.container} ${galleryStyles['grid-container']}`}>
+        <div className={`${gridStyles['row--container']} ${gutterStyles.container} ${galleryStyles['grid--container']}`}>
           <div className={`${gridStyles['col--12']}`}>
             {children}
           </div>

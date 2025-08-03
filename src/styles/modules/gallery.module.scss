@@ -4,7 +4,7 @@
 @use "../global/mixins" as m;
 
 // ギャラリーレイアウト基本スタイル
-.galleryContainer {
+.gallery--container {
   width: 100%;
   max-width: 100vw;
   min-height: 100vh;
@@ -54,7 +54,7 @@
 }
 
 // タブナビゲーション
-.tabNavigation {
+.tab--navigation {
   padding: 0 g.rem(16);
   border-bottom: 1px solid g.$clrg200;
   background-color: g.$body-bg;
@@ -72,7 +72,7 @@
   }
 }
 
-.tabContainer {
+.tab--container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,7 +93,7 @@
   }
 }
 
-.tabButton {
+.tab--button {
   position: relative;
   flex: 1;
   min-height: 44px; // タッチ操作最適化
@@ -147,7 +147,7 @@
 // コンテンツエリアは既存のgridStyles['row--container']とgutterStyles.containerを使用
 
 // PhotoGrid用スタイル
-.photoGridButton {
+.photo-grid--button {
   width: 100%;
   padding: 0;
   overflow: hidden;
@@ -159,21 +159,16 @@
 
 }
 
-.photoGridImage {
+.photo-grid--image {
   display: block;
   width: 100%;
   object-fit: cover;
 }
 
-.grid-container {
+.grid--container {
   padding-top: var(--gutter-row);
   &--list {
     row-gap: calc(var(--gutter) * 2);
   }
 }
 
-// カテゴリ説明文スタイル
-.categoryDescription {
-
-
-}

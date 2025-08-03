@@ -76,32 +76,32 @@ const PhotoModal: React.FC<PhotoModalProps> = ({ isOpen, onClose, images, curren
       shouldCloseOnOverlayClick={true}
       contentLabel="Photo Modal"
       overlayClassName={{
-        base: 'photo-modal-overlay',
-        afterOpen: 'photo-modal-overlay--after-open',
-        beforeClose: 'photo-modal-overlay--before-close',
+        base: 'photo-modal__overlay',
+        afterOpen: 'photo-modal__overlay--after-open',
+        beforeClose: 'photo-modal__overlay--before-close',
       }}
-      className="photo-modal-content"
-      bodyOpenClassName="photo-modal-body--open"
+      className="photo-modal__content"
+      bodyOpenClassName="photo-modal__body--open"
     >
       <div
-        className={styles.modalContainer}
+        className={styles['modal--container']}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
-        <div className={styles.imageContainer}>
+        <div className={styles['image--container']}>
 
           <img
             src={`${basePath}/img/${currentImage.full}?${Date.now()}`}
             alt={currentImage.alt}
-            className={styles.modalImage}
+            className={styles['modal--image']}
             />
         {/* ドットインジケーター */}
-        <div className={styles.dotIndicators}>
+        <div className={styles['dot--indicators']}>
           {images.map((_, index) => (
             <span
               key={index}
-              className={`${styles.dot} ${index === currentIndex ? styles.dotActive : ''}`}
+              className={`${styles.dot} ${index === currentIndex ? styles['dot--active'] : ''}`}
             />
           ))}
         </div>
@@ -110,22 +110,22 @@ const PhotoModal: React.FC<PhotoModalProps> = ({ isOpen, onClose, images, curren
 
 
         {/* ナビゲーション機能 */}
-        <div className={`${gridStyles['row--container']} ${gutterStyles.container} ${styles.navigationContainer}`}>
+        <div className={`${gridStyles['row--container']} ${gutterStyles.container} ${styles['navigation--container']}`}>
           <div className={gridStyles.col} >
-            <button className={styles.prevButton}>
-              <ChevronLeftIcon className={styles.navIcon} />
+            <button className={styles['prev--button']}>
+              <ChevronLeftIcon className={styles['nav--icon']} />
               前へ
             </button>
           </div>
           <div className={gridStyles.col} >
-            <button className={styles.navCloseButton}>
+            <button className={styles['nav-close--button']}>
               閉じる
             </button>
           </div>
           <div className={gridStyles.col} >
-            <button className={styles.nextButton}>
+            <button className={styles['next--button']}>
               次へ
-              <ChevronRightIcon className={styles.navIcon} />
+              <ChevronRightIcon className={styles['nav--icon']} />
             </button>
           </div>
         </div>
@@ -133,7 +133,7 @@ const PhotoModal: React.FC<PhotoModalProps> = ({ isOpen, onClose, images, curren
         <div className={styles.controls}>
           <button
             onClick={onClose}
-            className={styles.closeButton}
+            className={styles['close--button']}
             type="button"
             aria-label="モーダルを閉じる"
           >

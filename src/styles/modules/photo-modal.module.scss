@@ -1,7 +1,7 @@
 // PhotoModal専用スタイル（モジュール用）
 // 写真拡大表示モーダルのスタイル定義
 
-.modalContainer {
+.modal--container {
   // height: 100%;
 display: flex;
   position: relative;
@@ -10,7 +10,7 @@ display: flex;
   width: 100%;
 }
 
-.imageContainer{
+.image--container {
   position: relative;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.6);
@@ -22,7 +22,7 @@ display: flex;
 }
 
 
-.modalImage {
+.modal--image {
   width: auto;
   max-width: 100%;
   height: auto;
@@ -37,7 +37,7 @@ display: flex;
   right: 20px;
 }
 
-.closeButton {
+.close--button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,7 +60,7 @@ display: flex;
 }
 
 // ドットインジケーター（視覚のみ、タップ不可）
-.dotIndicators {
+.dot--indicators {
   display: flex;
   position: absolute;
   bottom: 15px;
@@ -78,12 +78,12 @@ display: flex;
   background-color: rgba(255, 255, 255, 0.4);
 }
 
-.dotActive {
+.dot--active {
   background-color: rgba(255, 255, 255, 0.9);
 }
 
 // ナビゲーション機能
-.navigationContainer {
+.navigation--container {
   width: 100%;
   padding-top: 16px;
   padding-bottom: 16px;
@@ -99,7 +99,7 @@ display: flex;
 }
 
 
-.navButton {
+%nav--button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -116,21 +116,21 @@ border: 1px solid var(--clrg300);
   cursor: pointer;
 }
 
-.prevButton {
-  @extend .navButton;
+.prev--button {
+  @extend %nav--button;
   gap: 8px;
 }
 
-.nextButton {
-  @extend .navButton;
+.next--button {
+  @extend %nav--button;
   gap: 8px;
 }
 
-.navCloseButton {
-  @extend .navButton;
+.nav-close--button {
+  @extend %nav--button;
 }
 
-.navIcon {
+.nav--icon {
   width: 20px;
   height: 20px;
 }
