@@ -46,6 +46,39 @@ export const getGalleryData = (): GalleryData => {
 };
 
 /**
+ * 安全なギャラリーデータ取得関数（エラーハンドリング付き）
+ * @returns {GalleryData | null} ギャラリーデータまたはnull
+ */
+export const getGalleryDataSafe = (): GalleryData | null => {
+  try {
+    const data = galleryData as unknown;
+    
+    if (!data || typeof data !== 'object') {
+      return null;
+    }
+
+    const requiredCategories: (keyof GalleryData)[] = ['exterior', 'interior', 'common'];
+    for (const category of requiredCategories) {
+      if (!(category in data)) {
+        return null;
+      }
+    }
+
+    const typedData = data as GalleryData;
+    
+    for (const categoryData of Object.values(typedData)) {
+      if (!categoryData.title || !categoryData.description || !Array.isArray(categoryData.images)) {
+        return null;
+      }
+    }
+
+    return typedData;
+  } catch (error) {
+    return null;
+  }
+};
+
+/**
  * 特定のカテゴリのデータを取得する関数
  * @param {GalleryData} data - ギャラリーデータ全体
  * @param {CategoryKey} category - カテゴリキー

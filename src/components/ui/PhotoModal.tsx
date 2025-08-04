@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import ReactModal from 'react-modal';
 import getConfig from 'next/config';
 import styles from '@/styles/modules/photo-modal.module.scss';
@@ -51,8 +51,20 @@ const PhotoModal: React.FC<PhotoModalProps> = ({ isOpen, onClose, images, curren
     setTouchEnd(e.targetTouches[0].clientX);
   };
 
-  const onTouchEnd = () => {
+  const onTouchEnd = useCallback(() => {
     if (!touchStart || !touchEnd) return;
+
+    // 基本的な検証
+    if (!images || images.length === 0 || !onNavigate) {
+      console.warn('Invalid navigation state');
+      return;
+    }
+
+    // 現在のインデックスの検証
+    if (currentIndex < 0 || currentIndex >= images.length) {
+      console.warn('Current index out of bounds:', currentIndex);
+      return;
+    }
 
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
@@ -61,12 +73,15 @@ const PhotoModal: React.FC<PhotoModalProps> = ({ isOpen, onClose, images, curren
     if (isLeftSwipe && currentIndex < images.length - 1) {
       // 左スワイプ: 次の画像
       onNavigate(currentIndex + 1);
-    }
-    if (isRightSwipe && currentIndex > 0) {
+    } else if (isRightSwipe && currentIndex > 0) {
       // 右スワイプ: 前の画像
       onNavigate(currentIndex - 1);
     }
-  };
+
+    // タッチ状態をクリア
+    setTouchStart(null);
+    setTouchEnd(null);
+  }, [touchStart, touchEnd, images, currentIndex, onNavigate, minSwipeDistance]);
 
   return (
     <ReactModal
