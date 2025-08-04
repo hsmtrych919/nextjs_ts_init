@@ -166,28 +166,26 @@
   padding-left: var(--gutter);
 }
 
+// 基本グリッドクラス（ブレークポイントなし）- 一度だけ生成
+@for $i from 1 through 12 {
+  .grid--#{$i} {
+    & > li, & > .col {
+      @extend %grid-col;
+    }
+    @include flex-grid-layout($i);
+  }
+}
+
+// ブレークポイント付きグリッドクラスのみ
 @each $breakpoint in map.keys(g.$grid-breakpoints) {
   $infix: g.breakpoint-infix-modifier($breakpoint, g.$grid-breakpoints);
-  $block-grid-max: 12;
 
-  @for $i from 1 through $block-grid-max {
-
-    .grid--#{$i} {
-
-      & > li, & > .col {
-
-        @extend %grid-col;
-      }
-    }
-  }
-
-  @include g.media-breakpoint-up($breakpoint) {
-
-    @for $i from 1 through $block-grid-max {
-
-      .grid#{$infix}-#{$i} {
-
-        @include flex-grid-layout($i);
+  @if $infix != "" {
+    @include g.media-breakpoint-up($breakpoint) {
+      @for $i from 1 through 12 {
+        .grid#{$infix}-#{$i} {
+          @include flex-grid-layout($i);
+        }
       }
     }
   }
