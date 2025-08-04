@@ -45,6 +45,7 @@ const VideoSection: React.FC<VideoSectionProps> = ({ activeTab, galleryData }) =
           <video
             ref={videoRef}
             className={galleryStyles['video--player']}
+            data-testid="video-player"
             controls
             preload="metadata"
             muted

@@ -53,5 +53,5 @@ export const getVideoConfigFromGalleryData = (galleryData: GalleryData, category
  */
 export const hasVideoInCategory = (galleryData: GalleryData, category: CategoryKey): boolean => {
   const videoConfig = getCategoryVideo(galleryData, category);
-  return videoConfig !== null;
+  return videoConfig !== null && videoConfig !== undefined;
 };

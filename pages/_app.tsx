@@ -42,18 +42,18 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <link rel="apple-touch-icon-precomposed" href={`${basePath}/img/webclip.png`} />
         <title>{customMeta.title}</title>
         <meta name="description" content={customMeta.description} />
-        {/* <meta property="og:title" content={customMeta.title} />
+        <meta property="og:title" content={customMeta.title} />
         <meta property="og:description" content={customMeta.description} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={customMeta.ogUrl} />
-        <meta property="og:image" content={`${basePath}/img/ogp-image.jpg`} />
+        <meta property="og:image" content={`${basePath}/img/ogp.jpg`} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:site_name" content={siteTitle} />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={customMeta.title} />
         <meta name="twitter:description" content={customMeta.description} />
-        <meta name="twitter:image" content={`${basePath}/img/ogp-image.jpg`} /> */}
+        <meta name="twitter:image" content={`${basePath}/img/ogp.jpg`} />
         <meta name="robots" content="noindex, nofollow" />
       </Head>
       {/* {getLayout(<Component {...pageProps} />, pageProps)} */}
