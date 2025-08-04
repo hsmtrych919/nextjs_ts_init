@@ -1,15 +1,15 @@
 import React, { useState, useCallback } from 'react';
 import ReactModal from 'react-modal';
-import getConfig from 'next/config';
+// import getConfig from 'next/config'; // LazyImgPathに移行のため不要
 import styles from '@/styles/modules/photo-modal.module.scss';
 import gridStyles from '@/styles/modules/grid.module.scss';
 import gutterStyles from '@/styles/modules/gutter.module.scss';
 import { GalleryImage } from '@/lib/utils/galleryData';
-import { getCacheParam } from '@/lib/utils/rewritePath';
+import { LazyImgPath, useImagePreloader } from '@/lib/utils/rewritePath';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 
-const { publicRuntimeConfig } = getConfig();
-const basePath = (publicRuntimeConfig && publicRuntimeConfig.basePath) || '';
+// const { publicRuntimeConfig } = getConfig(); // LazyImgPathに移行のため不要
+// const basePath = (publicRuntimeConfig && publicRuntimeConfig.basePath) || ''; // LazyImgPathに移行のため不要
 
 interface PhotoModalProps {
   isOpen: boolean;
@@ -35,6 +35,9 @@ const PhotoModal: React.FC<PhotoModalProps> = ({ isOpen, onClose, images, curren
   const currentImage = images[currentIndex];
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  // プリロード機能
+  useImagePreloader(images, currentIndex);
 
   if (!currentImage) {
     return null;
@@ -107,11 +110,12 @@ const PhotoModal: React.FC<PhotoModalProps> = ({ isOpen, onClose, images, curren
       >
         <div className={styles['image--container']}>
 
-          <img
-            src={`${basePath}/img/${currentImage.full}${getCacheParam()}`}
+          <LazyImgPath
+            src={currentImage.full}
             alt={currentImage.alt}
             className={styles['modal--image']}
-            />
+            context="modal"
+          />
         {/* ドットインジケーター */}
         <div className={styles['dot--indicators']}>
           {images.map((_, index) => (

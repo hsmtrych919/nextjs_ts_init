@@ -1,6 +1,7 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState, useEffect, useRef } from 'react';
 import getConfig from 'next/config';
 import Link from 'next/link';
+import { GalleryImage } from './galleryData';
 
 
 const { publicRuntimeConfig } = getConfig();
@@ -64,6 +65,131 @@ export function ImgPath({ src = '', alt = '', className = '' }: ImgPathProps) {
  * getCacheParam関数をエクスポート（他のコンポーネントでも使用可能）
  */
 export { getCacheParam };
+
+interface LazyImgPathProps {
+  src: string;
+  alt: string;
+  className?: string;
+  context?: 'default' | 'modal';
+  onLoad?: () => void;
+}
+
+/**
+ * LazyImgPath: 遅延読み込み対応画像コンポーネント
+ * 
+ * Intersection Observer APIを使用した遅延読み込み機能付き。
+ * contextによって最適化戦略を切り替え。
+ * 
+ * @param src 画像ファイル名（/img/以下の相対パス）
+ * @param alt 画像の代替テキスト
+ * @param className CSSクラス名
+ * @param context 'default': rootMargin有効（グリッド等用）, 'modal': rootMargin無効（モーダル用）
+ * @param onLoad 画像読み込み完了時のコールバック
+ * 
+ * @example
+ * // デフォルト使用（グリッド等）
+ * <LazyImgPath src="image.jpg" alt="画像" />
+ * 
+ * @example
+ * // モーダル用（最適化）
+ * <LazyImgPath src="image.jpg" alt="画像" context="modal" />
+ */
+export const LazyImgPath: React.FC<LazyImgPathProps> = ({ 
+  src, 
+  alt, 
+  className = '',
+  context = 'default',
+  onLoad 
+}) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    // contextに応じてObserver設定を最適化
+    const observerConfig = context === 'modal'
+      ? { threshold: 0.1 } // モーダル用：rootMargin不要
+      : { threshold: 0.1, rootMargin: '50px' }; // デフォルト：少し早めに読み込み
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      observerConfig
+    );
+
+    if (imgRef.current) {
+      observer.observe(imgRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [context]);
+
+  const handleLoad = () => {
+    setIsLoaded(true);
+    onLoad?.();
+  };
+
+  return (
+    <div ref={imgRef} className={className}>
+      {isInView && (
+        <img
+          src={`${basePath}/img/${src}${getCacheParam()}`}
+          alt={alt}
+          className={isLoaded ? 'loaded' : 'loading'}
+          onLoad={handleLoad}
+          loading="lazy"
+        />
+      )}
+      {!isLoaded && isInView && (
+        <div className="image-placeholder">読み込み中...</div>
+      )}
+    </div>
+  );
+};
+
+/**
+ * 隣接画像のプリロード機能
+ * モーダルで使用し、次/前の画像を事前読み込み
+ * 
+ * @param images 画像配列
+ * @param currentIndex 現在表示中の画像インデックス
+ * 
+ * @example
+ * // PhotoModalでの使用例
+ * const PhotoModal = ({ images, currentIndex }) => {
+ *   useImagePreloader(images, currentIndex);
+ *   // ...
+ * };
+ */
+export const useImagePreloader = (
+  images: GalleryImage[], 
+  currentIndex: number
+) => {
+  useEffect(() => {
+    // 配列の範囲チェック
+    if (!images || images.length === 0 || currentIndex < 0 || currentIndex >= images.length) {
+      return;
+    }
+
+    // 次の画像をプリロード
+    const nextIndex = currentIndex + 1;
+    if (nextIndex < images.length) {
+      const nextImage = new Image();
+      nextImage.src = `${basePath}/img/${images[nextIndex].full}${getCacheParam()}`;
+    }
+
+    // 前の画像もプリロード
+    const prevIndex = currentIndex - 1;
+    if (prevIndex >= 0) {
+      const prevImage = new Image();
+      prevImage.src = `${basePath}/img/${images[prevIndex].full}${getCacheParam()}`;
+    }
+  }, [images, currentIndex]);
+};
 
 type LinkPathProps = {
   link?: string;
