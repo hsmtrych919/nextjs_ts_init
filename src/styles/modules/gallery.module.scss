@@ -111,6 +111,7 @@
 
 // PhotoGrid用スタイル
 .photo-grid--button {
+  position: relative;
   width: 100%;
   padding: 0;
   overflow: hidden;
@@ -119,7 +120,6 @@
   border-radius: 8px;
   background: none;
   cursor: pointer;
-
 }
 
 .photo-grid--image {
@@ -133,5 +133,20 @@
   &--list {
     row-gap: calc(var(--gutter) * 2);
   }
+}
+
+.guide--overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 10px;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  font-size: 14px;
+  white-space: nowrap;
+  pointer-events: none;
+  backdrop-filter: blur(4px);
 }
 

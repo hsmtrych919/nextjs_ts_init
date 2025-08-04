@@ -8,6 +8,7 @@ interface PhotoGridProps {
   images: GalleryImage[];
   category: CategoryKey;
   onPhotoClick: (image: GalleryImage, index: number) => void;
+  hasOpenedModal: boolean;
 }
 
 /**
@@ -20,7 +21,7 @@ interface PhotoGridProps {
  * @param category - 現在のカテゴリ（デバッグ用）
  * @param onPhotoClick - 写真クリック時のコールバック関数
  */
-const PhotoGrid: React.FC<PhotoGridProps> = ({ images, category, onPhotoClick }) => {
+const PhotoGrid: React.FC<PhotoGridProps> = ({ images, category, onPhotoClick, hasOpenedModal }) => {
   return (
     <>
       <ul className={`${gridStyles.grid} ${gridStyles['grid--2']}  ${gridStyles['grid--sm-4']} ${galleryStyles['grid--container--list']}`} >
@@ -35,6 +36,11 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ images, category, onPhotoClick })
                 alt={image.alt}
                 className={galleryStyles['photo-grid--image']}
               />
+              {index === 0 && !hasOpenedModal && (
+                <span className={galleryStyles['guide--overlay']}>
+                  タップして拡大
+                </span>
+              )}
             </button>
           </li>
         ))}

@@ -12,6 +12,7 @@ const GalleryPage: NextPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
+  const [hasOpenedModal, setHasOpenedModal] = useState(false);
 
   const galleryData = getGalleryDataSafe();
   const currentImages = galleryData ? getCategoryImages(galleryData, activeTab as CategoryKey) : [];
@@ -39,6 +40,7 @@ const GalleryPage: NextPage = () => {
     setSelectedImage(image);
     setSelectedIndex(index);
     setIsModalOpen(true);
+    setHasOpenedModal(true);
   }, [currentImages.length]);
 
   const handleCloseModal = () => {
@@ -60,6 +62,7 @@ const GalleryPage: NextPage = () => {
             images={currentImages}
             category={activeTab as CategoryKey}
             onPhotoClick={handlePhotoClick}
+            hasOpenedModal={hasOpenedModal}
           />
 
           {selectedImage && (
