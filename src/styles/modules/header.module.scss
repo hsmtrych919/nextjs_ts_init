@@ -3,9 +3,43 @@
 @use "../global/global" as g;
 
 
-.outer {
-  padding: 10px 0;
-  border-bottom: 1px solid var(--clrg300);
+.header {
+  padding: g.rem(16) g.rem(16);
+  // border-bottom: 1px solid g.$clrg200;
+  background-color: g.$body-bg;
+
+  @media #{g.$sm} {
+    padding: g.rem(20) g.rem(20);
+  }
+
+  @media #{g.$md} {
+    padding: g.rem(24) g.rem(32);
+  }
+
+  @media #{g.$lg} {
+    padding: g.rem(28) g.rem(40);
+  }
+}
+
+.title {
+  margin: 0;
+  color: g.$body-color;
+  font-size: g.rem(18);
+  font-weight: bold;
+  line-height: 1.4;
+  text-align: center;
+
+  @media #{g.$sm} {
+    font-size: g.rem(20);
+  }
+
+  @media #{g.$md} {
+    font-size: g.rem(24);
+  }
+
+  @media #{g.$lg} {
+    font-size: g.rem(28);
+  }
 }
 
 .logo {

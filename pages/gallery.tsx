@@ -5,6 +5,7 @@ import GalleryLayout, { TabId } from '@/components/ui/GalleryLayout';
 import PhotoGrid from '@/components/ui/PhotoGrid';
 import PhotoModal from '@/components/ui/PhotoModal';
 import { getGalleryDataSafe, getCategoryImages, GalleryImage, CategoryKey } from '@/lib/utils/galleryData';
+import Layout from '@/components/layout/layout';
 
 const GalleryPage: NextPage = () => {
   const [activeTab, setActiveTab] = useState<TabId>('exterior');
@@ -17,13 +18,13 @@ const GalleryPage: NextPage = () => {
 
   const handleTabChange = useCallback((tabId: TabId) => {
     setActiveTab(tabId);
-    
+
     // モーダルが開いている場合は適切にクリア
     if (isModalOpen) {
       setIsModalOpen(false);
       setSelectedImage(null);
     }
-    
+
     // インデックスを安全にリセット
     setSelectedIndex(0);
   }, [isModalOpen]);
@@ -46,12 +47,7 @@ const GalleryPage: NextPage = () => {
   };
 
   return (
-    <>
-      <Head>
-        <title>物件写真ギャラリー</title>
-        <meta name="description" content="写真ギャラリー" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
+    <Layout>
 
       {!galleryData ? (
         <p>エラーが発生しました。</p>
@@ -77,8 +73,21 @@ const GalleryPage: NextPage = () => {
           )}
         </GalleryLayout>
       )}
-    </>
+    </Layout>
   );
 };
 
 export default GalleryPage;
+
+export async function getStaticProps() {
+  const pageMeta = {
+    title: '物件写真ギャラリー',
+    ogUrl: 'demo/',
+    description: '物件写真ギャラリー',
+  };
+  return {
+    props: {
+      pageMeta,
+    },
+  };
+}

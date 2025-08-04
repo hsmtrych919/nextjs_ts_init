@@ -39,10 +39,6 @@ const GalleryLayout: React.FC<GalleryLayoutProps> = ({ children, activeTab: prop
 
   return (
     <div className={galleryStyles['gallery--container']}>
-      {/* サイトタイトル */}
-      <header className={galleryStyles.header}>
-        <h1 className={galleryStyles.title}>写真ギャラリー</h1>
-      </header>
 
       {/* タブナビゲーション */}
       <nav className={galleryStyles['tab--navigation']}>
@@ -61,7 +57,7 @@ const GalleryLayout: React.FC<GalleryLayoutProps> = ({ children, activeTab: prop
       </nav>
 
       {/* コンテンツエリア */}
-      <main >
+      <article >
         <div className={`${gridStyles['row--container']} ${gutterStyles.container} mt-3`}>
           <div className={`${gridStyles['col--12']}`}>
             <div className={galleryStyles.categoryDescription}>
@@ -74,7 +70,7 @@ const GalleryLayout: React.FC<GalleryLayoutProps> = ({ children, activeTab: prop
             {children}
           </div>
         </div>
-      </main>
+      </article>
     </div>
   );
 };
