@@ -5,6 +5,7 @@ import styles from '@/styles/modules/photo-modal.module.scss';
 import gridStyles from '@/styles/modules/grid.module.scss';
 import gutterStyles from '@/styles/modules/gutter.module.scss';
 import { GalleryImage } from '@/lib/utils/galleryData';
+import { getCacheParam } from '@/lib/utils/rewritePath';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 
 const { publicRuntimeConfig } = getConfig();
@@ -107,7 +108,7 @@ const PhotoModal: React.FC<PhotoModalProps> = ({ isOpen, onClose, images, curren
         <div className={styles['image--container']}>
 
           <img
-            src={`${basePath}/img/${currentImage.full}?${Date.now()}`}
+            src={`${basePath}/img/${currentImage.full}${getCacheParam()}`}
             alt={currentImage.alt}
             className={styles['modal--image']}
             />

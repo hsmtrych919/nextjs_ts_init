@@ -6,6 +6,19 @@ import Link from 'next/link';
 const { publicRuntimeConfig } = getConfig();
 const basePath = (publicRuntimeConfig && publicRuntimeConfig.basePath) || '';
 
+/**
+ * 環境に応じたキャッシュパラメータを取得
+ * @returns キャッシュバスティング用のクエリパラメータ
+ */
+const getCacheParam = (): string => {
+  // 開発環境でのみキャッシュバスティング
+  if (process.env.NODE_ENV === 'development') {
+    return `?v=${Date.now()}`;
+  }
+  // 本番環境では静的ビルドハッシュ
+  return `?v=${process.env.NEXT_PUBLIC_BUILD_HASH || '1.0.0'}`;
+};
+
 type ImgPathProps = {
   src?: string;
   alt?: string;
@@ -19,7 +32,7 @@ type ImgPathProps = {
  * キャッシュバスティング機能付きで、デプロイ環境での画像更新問題を解決します。
  *
  * - basePath自動適用
- * - キャッシュバスティング（Date.now()）
+ * - 環境に応じたキャッシュ戦略（開発: Date.now(), 本番: ビルドハッシュ）
  * - 標準的なimg要素として動作
  *
  * @param src 画像ファイル名（/img/以下の相対パス）
@@ -44,8 +57,13 @@ type ImgPathProps = {
  * - キャッシュバスティングによりビルド後も画像更新が反映されます
  */
 export function ImgPath({ src = '', alt = '', className = '' }: ImgPathProps) {
-  return <img src={`${basePath}/img/${src}?${Date.now()}`} alt={alt} className={className} />;
+  return <img src={`${basePath}/img/${src}${getCacheParam()}`} alt={alt} className={className} />;
 }
+
+/**
+ * getCacheParam関数をエクスポート（他のコンポーネントでも使用可能）
+ */
+export { getCacheParam };
 
 type LinkPathProps = {
   link?: string;
