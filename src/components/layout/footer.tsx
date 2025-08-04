@@ -1,6 +1,7 @@
 import styles from '@/styles/modules/footer.module.scss';
 import gridStyles from '@/styles/modules/grid.module.scss';
 import gutterStyles from '@/styles/modules/gutter.module.scss';
+import { PhoneIcon } from '@heroicons/react/24/solid';
 
 
 export default function Footer() {
@@ -13,14 +14,17 @@ export default function Footer() {
         {/* ナビゲーション機能 */}
         <div className={`${gridStyles['row--container']} ${gutterStyles.container} ${styles['navigation--container']}`}>
           <div className={styles['navigation--columns']} >
-            <a href="#" className={`${styles['navigation--button']}`}>お問い合わせ<br/>フォーム へ</a>
+            <a href="https://lupinus-fukushi.co.jp/contact" className={`${styles['navigation--button']}`}>お問い合わせ<br/>フォーム へ</a>
 
           </div>
           <div className={styles['navigation--columns']} >
             <a href="#" className={`${styles['navigation--button-even']}`}>施設選択</a>
           </div>
           <div className={styles['navigation--columns']} >
-            <a href="#" className={`${styles['navigation--button']}`}>電話する</a>
+            <a href="tel:0566253025" className={`${styles['navigation--button']}`}>
+              <PhoneIcon className={styles['phone--icon']} />
+              電話する
+            </a>
           </div>
         </div>
 
