@@ -2,6 +2,7 @@ import React, { ReactNode, useState, useEffect, useRef } from 'react';
 import getConfig from 'next/config';
 import Link from 'next/link';
 import { GalleryImage } from './galleryData';
+import { getOptimizedImagePath } from './webpSupport';
 
 
 const { publicRuntimeConfig } = getConfig();
@@ -18,6 +19,16 @@ const getCacheParam = (): string => {
   }
   // 本番環境では静的ビルドハッシュ
   return `?v=${process.env.NEXT_PUBLIC_BUILD_HASH || '1.0.0'}`;
+};
+
+/**
+ * WebP最適化とキャッシュパラメータを適用した画像URLを取得
+ * @param src 画像ファイル名（/img/以下の相対パス）
+ * @returns 最適化された完全な画像URL
+ */
+const getImageSrc = (src: string): string => {
+  const optimizedPath = getOptimizedImagePath(src);
+  return `${basePath}/img/${optimizedPath}${getCacheParam()}`;
 };
 
 type ImgPathProps = {
@@ -58,7 +69,7 @@ type ImgPathProps = {
  * - キャッシュバスティングによりビルド後も画像更新が反映されます
  */
 export function ImgPath({ src = '', alt = '', className = '' }: ImgPathProps) {
-  return <img src={`${basePath}/img/${src}${getCacheParam()}`} alt={alt} className={className} />;
+  return <img src={getImageSrc(src)} alt={alt} className={className} />;
 }
 
 /**
@@ -137,7 +148,7 @@ export const LazyImgPath: React.FC<LazyImgPathProps> = ({
     <div ref={imgRef} className={className}>
       {isInView && (
         <img
-          src={`${basePath}/img/${src}${getCacheParam()}`}
+          src={getImageSrc(src)}
           alt={alt}
           className={isLoaded ? 'loaded' : 'loading'}
           onLoad={handleLoad}
@@ -175,18 +186,18 @@ export const useImagePreloader = (
       return;
     }
 
-    // 次の画像をプリロード
+    // 次の画像をプリロード（WebP最適化適用）
     const nextIndex = currentIndex + 1;
     if (nextIndex < images.length) {
       const nextImage = new Image();
-      nextImage.src = `${basePath}/img/${images[nextIndex].full}${getCacheParam()}`;
+      nextImage.src = getImageSrc(images[nextIndex].full);
     }
 
-    // 前の画像もプリロード
+    // 前の画像もプリロード（WebP最適化適用）
     const prevIndex = currentIndex - 1;
     if (prevIndex >= 0) {
       const prevImage = new Image();
-      prevImage.src = `${basePath}/img/${images[prevIndex].full}${getCacheParam()}`;
+      prevImage.src = getImageSrc(images[prevIndex].full);
     }
   }, [images, currentIndex]);
 };
