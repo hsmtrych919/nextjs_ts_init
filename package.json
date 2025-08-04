@@ -10,7 +10,10 @@
     "eslint": "npx eslint --fix \"pages/**/*.{ts,tsx}\" \"components/**/*.{ts,tsx}\" \"features/**/*.{ts,tsx}\""
   },
   "browserslist": [
-    "last 1 versions"
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
   ],
   "dependencies": {
     "@heroicons/react": "^2.0.18",

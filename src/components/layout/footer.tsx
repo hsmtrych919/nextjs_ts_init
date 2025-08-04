@@ -1,13 +1,24 @@
+import { useState } from 'react';
 import styles from '@/styles/modules/footer.module.scss';
 import gridStyles from '@/styles/modules/grid.module.scss';
 import gutterStyles from '@/styles/modules/gutter.module.scss';
 import { PhoneIcon } from '@heroicons/react/24/solid';
+import LocationSelectModal from '@/components/ui/LocationSelectModal';
 
 
 export default function Footer() {
+  const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
 
   const currentTime = new Date();
   const year = currentTime.getFullYear();
+
+  const openLocationModal = () => {
+    setIsLocationModalOpen(true);
+  };
+
+  const closeLocationModal = () => {
+    setIsLocationModalOpen(false);
+  };
 
   return (
     <>
@@ -18,7 +29,7 @@ export default function Footer() {
 
           </div>
           <div className={styles['navigation--columns']} >
-            <a href="#" className={`${styles['navigation--button-even']}`}>施設選択</a>
+            <button onClick={openLocationModal} className={`${styles['navigation--button-even']}`}>施設選択</button>
           </div>
           <div className={styles['navigation--columns']} >
             <a href="tel:0566253025" className={`${styles['navigation--button']}`}>
@@ -34,6 +45,12 @@ export default function Footer() {
         </ul> */}
         <p className={`${styles.copy} fz-14 tac` }>&copy; {year} ダミーテキストです。</p>
       </footer>
+
+      {/* 位置選択モーダル */}
+      <LocationSelectModal
+        isOpen={isLocationModalOpen}
+        onClose={closeLocationModal}
+      />
     </>
   );
 }

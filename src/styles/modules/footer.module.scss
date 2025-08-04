@@ -7,6 +7,7 @@ $fixed_height:80px;
 .outer {
   position: relative;
   width: 100%;
+  margin-top: 100px;
   margin-bottom: $fixed_height;
   padding: 40px 0;
   background-color: var(--clrg100);
