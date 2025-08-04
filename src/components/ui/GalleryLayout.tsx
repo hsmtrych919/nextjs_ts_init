@@ -4,6 +4,7 @@ import gutterStyles from '@/styles/modules/gutter.module.scss';
 import galleryStyles from '@/styles/modules/gallery.module.scss';
 import typeStyles from '@/styles/modules/type.module.scss';
 import { getGalleryData, getCategoryData, CategoryKey } from '@/lib/utils/galleryData';
+import VideoSection from '@/components/ui/VideoSection';
 
 export type TabId = 'exterior' | 'interior' | 'common';
 
@@ -58,13 +59,7 @@ const GalleryLayout: React.FC<GalleryLayoutProps> = ({ children, activeTab: prop
 
       {/* コンテンツエリア */}
       <article >
-        <div className={`${gridStyles['row--container']} ${gutterStyles.container} mt-3`}>
-          <div className={`${gridStyles['col--12']}`}>
-            <div className={galleryStyles.categoryDescription}>
-              【ここに動画ファイル配置】
-            </div>
-          </div>
-        </div>
+        <VideoSection activeTab={activeTab} galleryData={galleryData} />
         <div className={`${gridStyles['row--container']} ${gutterStyles.container} mt-3`}>
           <div className={`${gridStyles['col--12']}`}>
             <div className={galleryStyles.categoryDescription}>

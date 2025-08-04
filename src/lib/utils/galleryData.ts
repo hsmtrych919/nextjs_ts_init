@@ -15,11 +15,21 @@ export interface GalleryImage {
 }
 
 /**
+ * 動画データの型定義
+ */
+export interface GalleryVideo {
+  src: string;
+  thumbnail: string;
+  alt: string;
+}
+
+/**
  * カテゴリデータの型定義
  */
 export interface GalleryCategory {
   title: string;
   description: string;
+  video?: GalleryVideo;
   images: GalleryImage[];
 }
 
@@ -70,6 +80,11 @@ export const getGalleryDataSafe = (): GalleryData | null => {
       if (!categoryData.title || !categoryData.description || !Array.isArray(categoryData.images)) {
         return null;
       }
+      
+      // video は任意項目なので存在チェックのみ
+      if (categoryData.video && (!categoryData.video.src || !categoryData.video.thumbnail || !categoryData.video.alt)) {
+        return null;
+      }
     }
 
     return typedData;
@@ -96,6 +111,16 @@ export const getCategoryData = (data: GalleryData, category: CategoryKey): Galle
  */
 export const getCategoryImages = (data: GalleryData, category: CategoryKey): GalleryImage[] => {
   return data[category].images;
+};
+
+/**
+ * 特定のカテゴリの動画データを取得する関数
+ * @param {GalleryData} data - ギャラリーデータ全体
+ * @param {CategoryKey} category - カテゴリキー
+ * @returns {GalleryVideo | null} 動画データまたはnull
+ */
+export const getCategoryVideo = (data: GalleryData, category: CategoryKey): GalleryVideo | null => {
+  return data[category].video || null;
 };
 
 /**

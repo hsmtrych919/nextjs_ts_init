@@ -2,6 +2,11 @@
   "exterior": {
     "title": "外観",
     "description": "外観説明文。この文章はダミーテキストです。文字サイズや行間などを確認するために入れています。この文章はダミーテキストです。",
+    "video": {
+      "src": "video.mp4",
+      "thumbnail": "video-thumbnail.jpg",
+      "alt": "外観の動画"
+    },
     "images": [
       {
         "thumbnail": "exterior_thumb_01.jpg",
@@ -64,6 +69,11 @@
   "common": {
     "title": "共用部",
     "description": "共用部説明文。この文章はダミーテキストです。文字サイズや行間などを確認するために入れています。この文章はダミーテキストです。",
+    "video": {
+      "src": "video.mp4",
+      "thumbnail": "video-thumbnail.jpg",
+      "alt": "共用部の動画"
+    },
     "images": [
       {
         "thumbnail": "common_thumb_01.jpg",

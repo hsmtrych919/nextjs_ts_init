@@ -151,3 +151,15 @@
   backdrop-filter: blur(4px);
 }
 
+// 動画コンテナ
+.video--container {
+max-width: 480px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.video--player {
+  border-radius: 8px;
+  background-color: #000;
+}
+
