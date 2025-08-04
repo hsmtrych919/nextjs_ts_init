@@ -41,7 +41,7 @@ npm run build
 npm run serve
 
 - 本番用ビルド（prefixPath付き）
-npm run build:deploy"
+npm run build:deploy
 
 - 画像最適化
 npm run imgmin

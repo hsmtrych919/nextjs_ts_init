@@ -14,7 +14,7 @@ const generateBuildHash = () => {
 const buildHash = generateBuildHash();
 
 // 開発時チェック用：REAL_DEPLOY=trueの時のみ本番URL適用
-const prefixPath = (isProd && isRealDeploy) ? 'https://xxx.com' : '';
+const prefixPath = (isProd && isRealDeploy) ? 'https://lupinus-fukushi.co.jp/gallery-newopen' : '';
 
 /**
  * @type {import('next').NextConfig}
