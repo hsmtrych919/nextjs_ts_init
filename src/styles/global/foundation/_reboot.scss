@@ -305,7 +305,7 @@ a, area, button, [role="button"], input, label, select, summary, textarea {
 button, input, optgroup, select, textarea {
 
   /* 追加 Change the font styles in all browsers (opinionated).*/
-  font-family: sans-serif;
+  // font-family: sans-serif;
   font-size: 100%;
   line-height: 1.15;
 }
@@ -360,7 +360,7 @@ input[type="date"], input[type="time"], input[type="datetime-local"], input[type
   // centered within the input.
   // See https://bugs.webkit.org/show_bug.cgi?id=139848
   // and https://github.com/twbs/bootstrap/issues/11266
-  appearance: listbox;
+  appearance: auto;
 }
 
 textarea {
