@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactModal from 'react-modal';
-import styles from '@/styles/modules/location-select-modal.module.scss';
+import styles from '@/styles/modules/locationselect-modal.module.scss';
 import gridStyles from '@/styles/modules/grid.module.scss';
 import gutterStyles from '@/styles/modules/gutter.module.scss';
 
@@ -53,12 +53,12 @@ const LocationSelectModal: React.FC<LocationSelectModalProps> = ({ isOpen, onClo
       shouldCloseOnOverlayClick={true}
       contentLabel="Location Select Modal"
       overlayClassName={{
-        base: 'location-select-modal__overlay',
-        afterOpen: 'location-select-modal__overlay--after-open',
-        beforeClose: 'location-select-modal__overlay--before-close',
+        base: 'locationselect-modal__overlay',
+        afterOpen: 'locationselect-modal__overlay--after-open',
+        beforeClose: 'locationselect-modal__overlay--before-close',
       }}
-      className="location-select-modal__content"
-      bodyOpenClassName="location-select-modal__body--open"
+      className="locationselect-modal__content"
+      bodyOpenClassName="locationselect-modal__body--open"
     >
       <div className={styles['modal--container']}>
         {/* メインコンテンツ部分 */}
@@ -67,13 +67,13 @@ const LocationSelectModal: React.FC<LocationSelectModalProps> = ({ isOpen, onClo
             href="#"
             className={`${styles['location--button']} ignore`}
           >
-            施設A
+            住宅型有料老人ホーム<br className='hide-sm-up'/> Lupinus 刈谷西
           </a>
           <a
             href="#"
             className={`${styles['location--button']} ignore`}
           >
-            施設B
+            デイサービスセンター<br className='hide-sm-up'/> るぴなす 虹
           </a>
         </div>
 

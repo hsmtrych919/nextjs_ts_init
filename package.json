@@ -9,12 +9,19 @@
     "imgmin": "node imagemin.config.js",
     "eslint": "npx eslint --fix \"pages/**/*.{ts,tsx}\" \"components/**/*.{ts,tsx}\" \"features/**/*.{ts,tsx}\""
   },
-  "browserslist": [
+  "browserslist": {
+    "development": [
     "> 1%",
     "last 2 versions",
     "not dead",
     "not ie 11"
-  ],
+    ],
+    "production": [
+      "> 2% in JP",
+      "ios >= 15",
+      "not dead"
+    ]
+  },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "gsap": "^3.13.0",

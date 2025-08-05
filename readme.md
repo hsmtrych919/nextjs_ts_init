@@ -38,25 +38,4 @@ background-image: url(../../../public/img/bgi_cloth01.png);
 * 利用していないクラスの場合はビルド時エラーとなるので注意
 
 
-## es5 トランスパイル
-念のため"browserslist"に "supports es5"
-
-## prefix ブラウザリスト
-*制作時*
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead",
-    "not ie 11"
-  ],
-
-*本番用*
-  "browserslist": [
-    "supports es5",
-    "> 2% in JP",
-    "ios >= 15",
-    "not dead"
-  ],
-
-
 
