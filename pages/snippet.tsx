@@ -1,20 +1,49 @@
+import React, { useState } from 'react';
 import Layout from '@/components/layout/layout';
-import SimpleModalDemo from '@/components/ui/modalDemo';
-import SimpleToggleDemo from '@/components/ui/toggleDemo';
-import SimpleTabDemo from '@/components/ui/tabDemo';
-import SimpleTableDemo from '@/components/ui/tableDemo';
-import { ButtonType01, ButtonType02 } from '@/components/ui/buttonDemo';
-import GridDemo from '@/components/ui/gridDemo';
+import SimpleModalDemo from '@/components/ui/ModalDemo';
+import SimpleToggleDemo from '@/components/ui/ToggleDemo';
+import SimpleTabDemo from '@/components/ui/TabDemo';
+import SimpleTableDemo from '@/components/ui/TableDemo';
+import { ButtonType01, ButtonType02 } from '@/components/ui/ButtonDemo';
+import GridDemo from '@/components/ui/GridDemo';
+import VideoPlayer from '@/components/ui/VideoPlayer';
+import GridPhoto from '@/components/ui/GridPhoto';
+import ModalPhoto from '@/components/ui/ModalPhoto';
 import { useInView } from '@/lib/hooks/useInView';
 import gridStyles from '@/styles/modules/grid.module.scss';
 import gutterStyles from '@/styles/modules/gutter.module.scss';
 import { ImgPath } from '@/lib/utils/rewritePath';
+import { PhotoImage, demoImages } from '@/lib/constants/photoModal';
 
 // ファイル下に meta情報用の getStaticProps記載
 
 export default function PageDemo() {
+  // フォトモーダルの状態管理
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [hasOpenedModal, setHasOpenedModal] = useState(false);
+
   // useInViewを実行（`.inview__fadein`クラスを持つ要素を監視）
   useInView();
+
+  // フォトグリッドクリック時の処理
+  const handlePhotoClick = (_: PhotoImage, index: number) => {
+    setCurrentImageIndex(index);
+    setIsModalOpen(true);
+    setHasOpenedModal(true);
+  };
+
+  // モーダルを閉じる処理
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  // モーダル内ナビゲーション
+  const handleNavigate = (index: number) => {
+    if (index >= 0 && index < demoImages.length) {
+      setCurrentImageIndex(index);
+    }
+  };
 
   return (
     <Layout>
@@ -31,7 +60,7 @@ export default function PageDemo() {
       <section style={{ marginBottom: '2rem' }}>
         <h3>img&video</h3>
         <div className={`${gridStyles['row--container']} ${gutterStyles.container}`}>
-  <div className={gridStyles['col--12']} >
+  <div className={`gridStyles['col--12']  ${gridStyles['col--md-10']}`}>
         <ul className={`${gridStyles.grid} ${gridStyles['grid--2']} ${gridStyles['grid--md-4']}`} style={{ rowGap: 'var(--gutter)' }}>
           <li >
               <ImgPath
@@ -55,21 +84,12 @@ export default function PageDemo() {
         </div>
         </div>
     <div className={`${gridStyles['row--container']} ${gutterStyles.container} mt-3`}>
-      <div className={`${gridStyles['col--12']}`}>
-        <div className={`embed-responsive embed-responsive-16by9}`}>
-          <video
-            data-testid="video-player"
-            controls
-            preload="metadata"
-            muted
-            playsInline
-            poster={'video-thumbnail.png'}
-            src={'video.mp4'}
-            onError={(e) => console.error('Video error:', e)}
-          >
-            <p>お使いのブラウザは動画の再生に対応していません。</p>
-          </video>
-        </div>
+      <div className={`${gridStyles['col--12']} ${gridStyles['col--md-10']}`}>
+        <VideoPlayer
+          videoSrc="video.mp4"
+          posterSrc="video-thumbnail.png"
+          aspectRatio="16by9"
+        />
       </div>
     </div>
       </section>
@@ -88,6 +108,27 @@ export default function PageDemo() {
         <section style={{ marginBottom: '40px' }}>
           <h2>モーダルデモ</h2>
           <SimpleModalDemo />
+
+        {/* モーダルデモ: ギャラリー */}
+        <div className={`${gridStyles['row--container']} ${gutterStyles.container} mt-3`}>
+          <div className={`${gridStyles['col--12']} ${gridStyles['col--md-10']}`}>
+            <GridPhoto
+              images={demoImages}
+              onPhotoClick={handlePhotoClick}
+              hasOpenedModal={hasOpenedModal}
+            />
+          </div>
+        </div>
+
+        {/* フォトモーダル */}
+        <ModalPhoto
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          images={demoImages}
+          currentIndex={currentImageIndex}
+          onNavigate={handleNavigate}
+        />
+
         </section>
 
         {/* トグルデモ */}

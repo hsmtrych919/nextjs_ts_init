@@ -177,6 +177,46 @@ export const LazyImgPath: React.FC<LazyImgPathProps> = ({
 };
 
 
+/**
+ * 隣接画像のプリロード機能
+ * モーダルで使用し、次/前の画像を事前読み込み
+ *
+ * @param images 画像配列（fullプロパティを持つオブジェクトの配列）
+ * @param currentIndex 現在表示中の画像インデックス
+ *
+ * @example
+ * // PhotoModalでの使用例
+ * const PhotoModal = ({ images, currentIndex }) => {
+ *   useImagePreloader(images, currentIndex);
+ *   // ...
+ * };
+ */
+export const useImagePreloader = (
+  images: { full: string }[],
+  currentIndex: number
+) => {
+  useEffect(() => {
+    // 配列の範囲チェック
+    if (!images || images.length === 0 || currentIndex < 0 || currentIndex >= images.length) {
+      return;
+    }
+
+    // 次の画像をプリロード（WebP最適化適用）
+    const nextIndex = currentIndex + 1;
+    if (nextIndex < images.length) {
+      const nextImage = new Image();
+      nextImage.src = getImageSrc(images[nextIndex].full);
+    }
+
+    // 前の画像もプリロード（WebP最適化適用）
+    const prevIndex = currentIndex - 1;
+    if (prevIndex >= 0) {
+      const prevImage = new Image();
+      prevImage.src = getImageSrc(images[prevIndex].full);
+    }
+  }, [images, currentIndex]);
+};
+
 type LinkPathProps = {
   link?: string;
   as?: string;
