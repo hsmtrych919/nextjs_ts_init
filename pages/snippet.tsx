@@ -8,6 +8,7 @@ import GridDemo from '@/components/ui/gridDemo';
 import { useInView } from '@/lib/hooks/useInView';
 import gridStyles from '@/styles/modules/grid.module.scss';
 import gutterStyles from '@/styles/modules/gutter.module.scss';
+import { ImgPath } from '@/lib/utils/rewritePath';
 
 // ファイル下に meta情報用の getStaticProps記載
 
@@ -25,6 +26,53 @@ export default function PageDemo() {
           <p>_grid.scss のグローバルクラスを使用したレイアウトシステムのデモ</p>
           <GridDemo />
         </section>
+
+        {/* img&video */}
+      <section style={{ marginBottom: '2rem' }}>
+        <h3>img&video</h3>
+        <div className={`${gridStyles['row--container']} ${gutterStyles.container}`}>
+  <div className={gridStyles['col--12']} >
+        <ul className={`${gridStyles.grid} ${gridStyles['grid--2']} ${gridStyles['grid--md-4']}`} style={{ rowGap: 'var(--gutter)' }}>
+          <li >
+              <ImgPath
+                src={'placeholder-thumbnail-square.png'}
+                alt={"Placeholder Image"}
+              />
+          </li>
+          <li >
+            <ImgPath
+              src={'placeholder-thumbnail-square.png'}
+              alt={"Placeholder Image"}
+            />
+          </li>
+          <li >
+            <ImgPath
+              src={'placeholder-thumbnail-square.png'}
+              alt={"Placeholder Image"}
+            />
+          </li>
+        </ul>
+        </div>
+        </div>
+    <div className={`${gridStyles['row--container']} ${gutterStyles.container} mt-3`}>
+      <div className={`${gridStyles['col--12']}`}>
+        <div className={`embed-responsive embed-responsive-16by9}`}>
+          <video
+            data-testid="video-player"
+            controls
+            preload="metadata"
+            muted
+            playsInline
+            poster={'video-thumbnail.png'}
+            src={'video.mp4'}
+            onError={(e) => console.error('Video error:', e)}
+          >
+            <p>お使いのブラウザは動画の再生に対応していません。</p>
+          </video>
+        </div>
+      </div>
+    </div>
+      </section>
 
         {/* ボタンデモ */}
         <section style={{ marginBottom: '40px' }}>

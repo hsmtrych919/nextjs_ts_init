@@ -1,10 +1,34 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState, useEffect, useRef } from 'react';
 import getConfig from 'next/config';
 import Link from 'next/link';
+import { getOptimizedImagePath } from './webpSupport';
 
 
 const { publicRuntimeConfig } = getConfig();
 const basePath = (publicRuntimeConfig && publicRuntimeConfig.basePath) || '';
+
+/**
+ * 環境に応じたキャッシュパラメータを取得
+ * @returns キャッシュバスティング用のクエリパラメータ
+ */
+const getCacheParam = (): string => {
+  // 開発環境でのみキャッシュバスティング
+  if (process.env.NODE_ENV === 'development') {
+    return `?v=${Date.now()}`;
+  }
+  // 本番環境では静的ビルドハッシュ
+  return `?v=${process.env.NEXT_PUBLIC_BUILD_HASH || '1.0.0'}`;
+};
+
+/**
+ * WebP最適化とキャッシュパラメータを適用した画像URLを取得
+ * @param src 画像ファイル名（/img/以下の相対パス）
+ * @returns 最適化された完全な画像URL
+ */
+const getImageSrc = (src: string): string => {
+  const optimizedPath = getOptimizedImagePath(src);
+  return `${basePath}/img/${optimizedPath}${getCacheParam()}`;
+};
 
 type ImgPathProps = {
   src?: string;
@@ -19,7 +43,7 @@ type ImgPathProps = {
  * キャッシュバスティング機能付きで、デプロイ環境での画像更新問題を解決します。
  *
  * - basePath自動適用
- * - キャッシュバスティング（Date.now()）
+ * - 環境に応じたキャッシュ戦略（開発: Date.now(), 本番: ビルドハッシュ）
  * - 標準的なimg要素として動作
  *
  * @param src 画像ファイル名（/img/以下の相対パス）
@@ -44,8 +68,114 @@ type ImgPathProps = {
  * - キャッシュバスティングによりビルド後も画像更新が反映されます
  */
 export function ImgPath({ src = '', alt = '', className = '' }: ImgPathProps) {
-  return <img src={`${basePath}/img/${src}?${Date.now()}`} alt={alt} className={className} />;
+  const [optimizedSrc, setOptimizedSrc] = useState(src);
+
+  useEffect(() => {
+    // クライアントサイドでWebP判定を再実行
+    const optimized = getOptimizedImagePath(src);
+    setOptimizedSrc(optimized);
+  }, [src]);
+
+  return <img src={getImageSrc(optimizedSrc)} alt={alt} className={className} />;
 }
+
+/**
+ * getCacheParam関数をエクスポート（他のコンポーネントでも使用可能）
+ */
+export { getCacheParam };
+
+interface LazyImgPathProps {
+  src: string;
+  alt: string;
+  className?: string;
+  context?: 'default' | 'modal';
+  onLoad?: () => void;
+}
+
+/**
+ * LazyImgPath: 遅延読み込み対応画像コンポーネント
+ *
+ * Intersection Observer APIを使用した遅延読み込み機能付き。
+ * contextによって最適化戦略を切り替え。
+ *
+ * @param src 画像ファイル名（/img/以下の相対パス）
+ * @param alt 画像の代替テキスト
+ * @param className CSSクラス名
+ * @param context 'default': rootMargin有効（グリッド等用）, 'modal': rootMargin無効（モーダル用）
+ * @param onLoad 画像読み込み完了時のコールバック
+ *
+ * @example
+ * // デフォルト使用（グリッド等）
+ * <LazyImgPath src="image.jpg" alt="画像" />
+ *
+ * @example
+ * // モーダル用（最適化）
+ * <LazyImgPath src="image.jpg" alt="画像" context="modal" />
+ */
+export const LazyImgPath: React.FC<LazyImgPathProps> = ({
+  src,
+  alt,
+  className = '',
+  context = 'default',
+  onLoad
+}) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const [optimizedSrc, setOptimizedSrc] = useState(src);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    // クライアントサイドでWebP判定を実行
+    const optimized = getOptimizedImagePath(src);
+    setOptimizedSrc(optimized);
+  }, [src]);
+
+  useEffect(() => {
+    // contextに応じてObserver設定を最適化
+    const observerConfig = context === 'modal'
+      ? { threshold: 0.1 } // モーダル用：rootMargin不要
+      : { threshold: 0.1, rootMargin: '50px' }; // デフォルト：少し早めに読み込み
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      observerConfig
+    );
+
+    if (imgRef.current) {
+      observer.observe(imgRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [context]);
+
+  const handleLoad = () => {
+    setIsLoaded(true);
+    onLoad?.();
+  };
+
+  return (
+    <div ref={imgRef} className={className}>
+      {isInView && (
+        <img
+          src={getImageSrc(optimizedSrc)}
+          alt={alt}
+          className={isLoaded ? 'loaded' : 'loading'}
+          onLoad={handleLoad}
+          loading="lazy"
+        />
+      )}
+      {!isLoaded && isInView && (
+        <div className="image-placeholder">読み込み中...</div>
+      )}
+    </div>
+  );
+};
+
 
 type LinkPathProps = {
   link?: string;
