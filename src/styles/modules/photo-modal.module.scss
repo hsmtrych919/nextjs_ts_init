@@ -1,4 +1,6 @@
 @charset "utf-8";
+@use "../global/global" as g;
+
 // PhotoModal専用スタイル（モジュール用）
 // 写真拡大表示モーダルのスタイル定義
 
@@ -27,8 +29,11 @@ display: flex;
   width: auto;
   max-width: 100%;
   height: auto;
-  max-height: var(--modal-height-photo);
+  max-height: calc(var(--modal-height-photo) - 80px); // .navigation--container 分マイナス
   object-fit: contain;
+  @media #{g.$maxLg} and (orientation: landscape) {
+    max-height: var(--modal-height-photo);
+  }
 }
 
 

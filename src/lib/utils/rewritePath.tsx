@@ -69,7 +69,15 @@ type ImgPathProps = {
  * - キャッシュバスティングによりビルド後も画像更新が反映されます
  */
 export function ImgPath({ src = '', alt = '', className = '' }: ImgPathProps) {
-  return <img src={getImageSrc(src)} alt={alt} className={className} />;
+  const [optimizedSrc, setOptimizedSrc] = useState(src);
+
+  useEffect(() => {
+    // クライアントサイドでWebP判定を再実行
+    const optimized = getOptimizedImagePath(src);
+    setOptimizedSrc(optimized);
+  }, [src]);
+
+  return <img src={getImageSrc(optimizedSrc)} alt={alt} className={className} />;
 }
 
 /**
@@ -87,34 +95,41 @@ interface LazyImgPathProps {
 
 /**
  * LazyImgPath: 遅延読み込み対応画像コンポーネント
- * 
+ *
  * Intersection Observer APIを使用した遅延読み込み機能付き。
  * contextによって最適化戦略を切り替え。
- * 
+ *
  * @param src 画像ファイル名（/img/以下の相対パス）
  * @param alt 画像の代替テキスト
  * @param className CSSクラス名
  * @param context 'default': rootMargin有効（グリッド等用）, 'modal': rootMargin無効（モーダル用）
  * @param onLoad 画像読み込み完了時のコールバック
- * 
+ *
  * @example
  * // デフォルト使用（グリッド等）
  * <LazyImgPath src="image.jpg" alt="画像" />
- * 
+ *
  * @example
  * // モーダル用（最適化）
  * <LazyImgPath src="image.jpg" alt="画像" context="modal" />
  */
-export const LazyImgPath: React.FC<LazyImgPathProps> = ({ 
-  src, 
-  alt, 
+export const LazyImgPath: React.FC<LazyImgPathProps> = ({
+  src,
+  alt,
   className = '',
   context = 'default',
-  onLoad 
+  onLoad
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
+  const [optimizedSrc, setOptimizedSrc] = useState(src);
   const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    // クライアントサイドでWebP判定を実行
+    const optimized = getOptimizedImagePath(src);
+    setOptimizedSrc(optimized);
+  }, [src]);
 
   useEffect(() => {
     // contextに応じてObserver設定を最適化
@@ -145,12 +160,12 @@ export const LazyImgPath: React.FC<LazyImgPathProps> = ({
   };
 
   return (
-    <div ref={imgRef} className={className}>
+    <div ref={imgRef}>
       {isInView && (
         <img
-          src={getImageSrc(src)}
+          src={getImageSrc(optimizedSrc)}
           alt={alt}
-          className={isLoaded ? 'loaded' : 'loading'}
+          className={`${className} ${isLoaded ? 'loaded' : 'loading'}`}
           onLoad={handleLoad}
           loading="lazy"
         />
@@ -165,10 +180,10 @@ export const LazyImgPath: React.FC<LazyImgPathProps> = ({
 /**
  * 隣接画像のプリロード機能
  * モーダルで使用し、次/前の画像を事前読み込み
- * 
+ *
  * @param images 画像配列
  * @param currentIndex 現在表示中の画像インデックス
- * 
+ *
  * @example
  * // PhotoModalでの使用例
  * const PhotoModal = ({ images, currentIndex }) => {
@@ -177,7 +192,7 @@ export const LazyImgPath: React.FC<LazyImgPathProps> = ({
  * };
  */
 export const useImagePreloader = (
-  images: GalleryImage[], 
+  images: GalleryImage[],
   currentIndex: number
 ) => {
   useEffect(() => {
