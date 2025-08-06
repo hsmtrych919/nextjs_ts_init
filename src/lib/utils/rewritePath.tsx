@@ -159,12 +159,12 @@ export const LazyImgPath: React.FC<LazyImgPathProps> = ({
   };
 
   return (
-    <div ref={imgRef} className={className}>
+    <div ref={imgRef}>
       {isInView && (
         <img
           src={getImageSrc(optimizedSrc)}
           alt={alt}
-          className={isLoaded ? 'loaded' : 'loading'}
+          className={`${className} ${isLoaded ? 'loaded' : 'loading'}`}
           onLoad={handleLoad}
           loading="lazy"
         />

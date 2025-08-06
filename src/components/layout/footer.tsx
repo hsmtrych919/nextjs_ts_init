@@ -25,16 +25,16 @@ export default function Footer() {
         {/* ナビゲーション機能 */}
         <div className={`${gridStyles['row--container']} ${gutterStyles.container} ${styles['navigation--container']}`}>
           <div className={styles['navigation--columns']} >
-            <a href="#" className={`${styles['navigation--button']}`}>お問い合わせ<br/>フォーム へ</a>
+            <a href="#" className={`${styles['navigation--button']}`}>ボタン<br/>テキスト</a>
 
           </div>
           <div className={styles['navigation--columns']} >
-            <button onClick={openLocationModal} className={`${styles['navigation--button-even']}`}>施設選択</button>
+            <button onClick={openLocationModal} className={`${styles['navigation--button-even']}`}>モーダル</button>
           </div>
           <div className={styles['navigation--columns']} >
             <a href="#" className={`${styles['navigation--button']}`}>
               <PhoneIcon className={styles['phone--icon']} />
-              電話する
+              テキスト
             </a>
           </div>
         </div>

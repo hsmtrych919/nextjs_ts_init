@@ -27,7 +27,7 @@ export const demoImages: PhotoImage[] = [
   },
   {
     thumbnail: 'placeholder-thumbnail-square.png',
-    full: 'placeholder-landscape.png',
+    full: 'placeholder-portrait.png',
     alt: 'デモ画像 2'
   },
   {

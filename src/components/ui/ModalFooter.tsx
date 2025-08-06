@@ -67,13 +67,13 @@ const ModalFooter: React.FC<ModalFooterProps> = ({ isOpen, onClose }) => {
             href="#"
             className={`${styles['location--button']} ignore`}
           >
-            住宅型有料老人ホーム<br className='hide-sm-up'/> Lupinus 刈谷西
+            ダミーテキスト
           </a>
           <a
             href="#"
             className={`${styles['location--button']} ignore`}
           >
-            デイサービスセンター<br className='hide-sm-up'/> るぴなす 虹
+            ダミーテキスト
           </a>
         </div>
 

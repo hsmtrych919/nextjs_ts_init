@@ -1,10 +1,12 @@
 @charset "utf-8";
+@use "../global/global" as g;
+
 // PhotoModal専用スタイル（モジュール用）
 // 写真拡大表示モーダルのスタイル定義
 
 .modal--container {
   // height: 100%;
-display: flex;
+  display: flex;
   position: relative;
   flex-wrap: wrap;
   justify-content: center;
@@ -17,7 +19,7 @@ display: flex;
   // background-color: rgba(0, 0, 0, 0.6);
   text-align: center;
 
-  @media (orientation: landscape) {
+  @media #{g.$maxLg} and (orientation: landscape) {
     width: 72%;
   }
 }
@@ -62,7 +64,7 @@ display: flex;
   padding-bottom: 16px;
   gap: 10px;
 
-  @media (orientation: landscape) {
+  @media #{g.$maxLg} and (orientation: landscape) {
     flex-direction: column;
     width: 28%;
     padding-top: 0;
@@ -73,9 +75,9 @@ display: flex;
 
 .navigation--columns {
   flex: 1 0 0%;
-  @media (orientation: landscape) {
+  @media #{g.$maxLg} and (orientation: landscape) {
     flex: 0 0 0%;
-  width: 100%;
+    width: 100%;
   }
 }
 

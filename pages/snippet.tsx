@@ -60,8 +60,8 @@ export default function PageDemo() {
       <section style={{ marginBottom: '2rem' }}>
         <h3>img&video</h3>
         <div className={`${gridStyles['row--container']} ${gutterStyles.container}`}>
-  <div className={`gridStyles['col--12']  ${gridStyles['col--md-10']}`}>
-        <ul className={`${gridStyles.grid} ${gridStyles['grid--2']} ${gridStyles['grid--md-4']}`} style={{ rowGap: 'var(--gutter)' }}>
+  <div className={`${gridStyles['col--12']}  ${gridStyles['col--md-10']}`}>
+        <ul className={`${gridStyles.grid} ${gridStyles['grid--2']} ${gridStyles['grid--md-4']}`} style={{ rowGap: 'calc(var(--gutter) * 2)' }}>
           <li >
               <ImgPath
                 src={'placeholder-thumbnail-square.png'}
