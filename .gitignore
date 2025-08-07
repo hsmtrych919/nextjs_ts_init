@@ -5,3 +5,6 @@ tsconfig.tsbuildinfo
 _dist/
 _dist
 .next/
+.serena/*
+!.serena/project.yml
+draft.jsx

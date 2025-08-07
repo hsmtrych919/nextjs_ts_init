@@ -6,7 +6,7 @@ interface ToggleProps {
 }
 
 /**
- * SimpleToggleDemo: 折りたたみ表示機能付きデモコンポーネント
+ * ToggleDemo: 折りたたみ表示機能付きデモコンポーネント
  *
  * 「続きを読む/閉じる」ボタンでコンテンツの表示・非表示を切り替えるトグル機能のデモです。
  * GSAPアニメーションによる滑らかな高さ変更アニメーションが特徴です。
@@ -19,23 +19,23 @@ interface ToggleProps {
  *
  * @example
  * // 基本的な使用例（デフォルトコンテンツ）
- * <SimpleToggleDemo />
+ * <ToggleDemo />
  *
  * @example
  * // カスタムコンテンツを指定
- * <SimpleToggleDemo>
+ * <ToggleDemo>
  *   <section>
  *     <h3>カスタムタイトル</h3>
  *     <p>カスタムコンテンツです。長いテキストでも適切に折りたたまれます。画像付きのコンテンツも問題なく動作します。</p>
  *   </section>
- * </SimpleToggleDemo>
+ * </ToggleDemo>
  *
  * @remarks
  * - useToggleContentフックが必要です
  * - GSAPライブラリが必要です
  * - CSSクラス「c-toggle__wrap」「c-toggle__title」「c-toggle__content」を使用
  */
-export default function SimpleToggleDemo({ children }: ToggleProps) {
+export default function ToggleDemo({ children }: ToggleProps) {
   useToggleContent('.c-toggle__wrap', '.c-toggle__title', '.c-toggle__content');
 
   return (

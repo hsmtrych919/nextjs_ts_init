@@ -1,10 +1,10 @@
 import Layout from '@/components/layout/layout';
-import SimpleModalDemo from '@/components/ui/modalDemo';
-import SimpleToggleDemo from '@/components/ui/toggleDemo';
-import SimpleTabDemo from '@/components/ui/tabDemo';
-import SimpleTableDemo from '@/components/ui/tableDemo';
-import { ButtonType01, ButtonType02 } from '@/components/ui/buttonDemo';
-import GridDemo from '@/components/ui/gridDemo';
+import ModalDemo from '@/components/ui/ModalDemo';
+import ToggleDemo from '@/components/ui/ToggleDemo';
+import TabDemo from '@/components/ui/TabDemo';
+import TableDemo from '@/components/ui/TableDemo';
+import { ButtonType01, ButtonType02 } from '@/components/ui/ButtonDemo';
+import GridDemo from '@/components/ui/GridDemo';
 import { useInView } from '@/lib/hooks/useInView';
 import gridStyles from '@/styles/modules/grid.module.scss';
 import gutterStyles from '@/styles/modules/gutter.module.scss';
@@ -39,19 +39,19 @@ export default function PageDemo() {
         {/* モーダルデモ */}
         <section style={{ marginBottom: '40px' }}>
           <h2>モーダルデモ</h2>
-          <SimpleModalDemo />
+          <ModalDemo />
         </section>
 
         {/* トグルデモ */}
         <section style={{ marginBottom: '40px' }}>
           <h2>トグルデモ</h2>
-          <SimpleToggleDemo />
+          <ToggleDemo />
         </section>
 
         {/* タブデモ */}
         <section style={{ marginBottom: '40px' }}>
           <h2>タブデモ</h2>
-          <SimpleTabDemo />
+          <TabDemo />
         </section>
 
         {/* テーブルデモ */}
@@ -61,7 +61,7 @@ export default function PageDemo() {
 
           <h2>テーブルデモ</h2>
           <p>横スクロール対応テーブル（scroll-hint + シャドウ機能付き）</p>
-          <SimpleTableDemo />
+          <TableDemo />
           </div>
           </div>
         </section>

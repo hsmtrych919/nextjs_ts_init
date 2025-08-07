@@ -2,7 +2,7 @@ import React from 'react';
 import { useTableScroll } from '@/lib/hooks/useTableScroll';
 
 /**
- * SimpleTableDemo: スクロール対応テーブルデモコンポーネント
+ * TableDemo: スクロール対応テーブルデモコンポーネント
  *
  * 横スクロール可能なテーブルコンポーネントです。
  * はみ出し部分の視覚的ヒントとスクロール位置に応じたシャドウ表示機能を提供します。
@@ -14,14 +14,14 @@ import { useTableScroll } from '@/lib/hooks/useTableScroll';
  *
  * @example
  * // 基本的な使用例
- * <SimpleTableDemo />
+ * <TableDemo />
  *
  * @remarks
  * - useTableScrollフックが必要です
  * - ScrollHintライブラリが必要です
  * - CSSクラス「c-table__responsive--outer」「c-table__responsive」「c-table-spec」を使用
  */
-export default function SimpleTableDemo() {
+export default function TableDemo() {
   useTableScroll('.c-table__responsive');
 
   return (

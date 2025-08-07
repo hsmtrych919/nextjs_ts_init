@@ -3,7 +3,7 @@ import { useTabSwitch } from '@/lib/hooks/useTabSwitch';
 import typeStyles from '@/styles/modules/type.module.scss';
 
 /**
- * SimpleTabDemo: タブ切り替え機能付きデモコンポーネント
+ * TabDemo: タブ切り替え機能付きデモコンポーネント
  *
  * 複数のコンテンツをタブ形式で切り替え表示するコンポーネントです。
  * 既存のSCSSクラス（.c-tab__*）とuseTabSwitchカスタムフックを組み合わせて実装されています。
@@ -15,13 +15,13 @@ import typeStyles from '@/styles/modules/type.module.scss';
  *
  * @example
  * // 基本的な使用例
- * <SimpleTabDemo />
+ * <TabDemo />
  *
  * @remarks
  * - useTabSwitchフックが必要です
  * - CSSクラス「c-tab__outer」「c-tab__list」「c-tab__list--item」「c-tab__content」「c-tab__item」「js-active」を使用
  */
-export default function SimpleTabDemo() {
+export default function TabDemo() {
   const {
     handleTabClick,
     getTabItemClassName,
