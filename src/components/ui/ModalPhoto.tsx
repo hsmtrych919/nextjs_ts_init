@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import ReactModal from 'react-modal';
-import styles from '@/styles/modules/photo-modal.module.scss';
+import styles from '@/styles/modules/modal-photo.module.scss';
 import gridStyles from '@/styles/modules/grid.module.scss';
 import gutterStyles from '@/styles/modules/gutter.module.scss';
 import { PhotoImage } from '@/lib/constants/photoModal';
@@ -94,12 +94,12 @@ const ModalPhoto: React.FC<ModalPhotoProps> = ({ isOpen, onClose, images, curren
       shouldCloseOnOverlayClick={true}
       contentLabel="Photo Modal"
       overlayClassName={{
-        base: 'photo-modal__overlay',
-        afterOpen: 'photo-modal__overlay--after-open',
-        beforeClose: 'photo-modal__overlay--before-close',
+        base: 'modal-photo__overlay',
+        afterOpen: 'modal-photo__overlay--after-open',
+        beforeClose: 'modal-photo__overlay--before-close',
       }}
-      className="photo-modal__content"
-      bodyOpenClassName="photo-modal__body--open"
+      className="modal-photo__content"
+      bodyOpenClassName="modal-photo__body--open"
     >
       <div
         className={styles['modal--container']}

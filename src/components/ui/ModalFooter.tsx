@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactModal from 'react-modal';
-import styles from '@/styles/modules/footer-modal.module.scss';
+import styles from '@/styles/modules/modal-footer.module.scss';
 import gridStyles from '@/styles/modules/grid.module.scss';
 import gutterStyles from '@/styles/modules/gutter.module.scss';
 
@@ -40,8 +40,8 @@ interface ModalFooterProps {
  *
  * @remarks
  * - react-modalライブラリが必要です
- * - footer-modal.module.scssスタイルを使用
- * - グローバルクラス footer-modal__overlay を使用
+ * - modal-footer.module.scssスタイルを使用
+ * - グローバルクラス modal-footer__overlay を使用
  * - PhotoModalのナビゲーション構造を参考
  */
 const ModalFooter: React.FC<ModalFooterProps> = ({ isOpen, onClose }) => {
@@ -53,12 +53,12 @@ const ModalFooter: React.FC<ModalFooterProps> = ({ isOpen, onClose }) => {
       shouldCloseOnOverlayClick={true}
       contentLabel="Footer Modal"
       overlayClassName={{
-        base: 'footer-modal__overlay',
-        afterOpen: 'footer-modal__overlay--after-open',
-        beforeClose: 'footer-modal__overlay--before-close',
+        base: 'modal-footer__overlay',
+        afterOpen: 'modal-footer__overlay--after-open',
+        beforeClose: 'modal-footer__overlay--before-close',
       }}
-      className="footer-modal__content"
-      bodyOpenClassName="footer-modal__body--open"
+      className="modal-footer__content"
+      bodyOpenClassName="modal-footer__body--open"
     >
       <div className={styles['modal--container']}>
         {/* メインコンテンツ部分 */}
