@@ -7,3 +7,4 @@ _dist
 .next/
 .serena/*
 !.serena/project.yml
+draft.jsx
