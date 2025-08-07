@@ -1,8 +1,8 @@
 @charset "utf-8";
-// LocationSelectModal グローバルスタイル
+// ModalLocationSelect グローバルスタイル
 // ReactModalのグローバルクラス用スタイル定義
 
-.locationselect-modal__overlay {
+.modal-locationselect__overlay {
   display: flex;
   position: fixed;
   z-index: 1000;
@@ -19,15 +19,15 @@
   backdrop-filter: blur(4px);
 }
 
-.locationselect-modal__overlay--after-open {
+.modal-locationselect__overlay--after-open {
   opacity: 1;
 }
 
-.locationselect-modal__overlay--before-close {
+.modal-locationselect__overlay--before-close {
   opacity: 0;
 }
 
-.locationselect-modal__content {
+.modal-locationselect__content {
   position: relative;
   width: 100%;
   max-width: 540px;
@@ -41,14 +41,14 @@
   background-color: #fff;
 }
 
-.locationselect-modal__overlay--after-open .locationselect-modal__content {
+.modal-locationselect__overlay--after-open .modal-locationselect__content {
   transform: translateY(0);
 }
 
-.locationselect-modal__overlay--before-close .locationselect-modal__content {
+.modal-locationselect__overlay--before-close .modal-locationselect__content {
   transform: translateY(20px);
 }
 
-.locationselect-modal__body--open {
+.modal-locationselect__body--open {
   overflow: hidden;
 }

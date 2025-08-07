@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '../../setup/test-utils';
-import PhotoGrid from '@/components/ui/PhotoGrid';
+import GridPhoto from '@/components/ui/GridPhoto';
 import { mockGalleryData } from '../../setup/mocks/galleryData.mock';
 
 // rewritePath.tsxのモック
@@ -10,7 +10,7 @@ jest.mock('@/lib/utils/rewritePath', () => ({
   ),
 }));
 
-describe('PhotoGrid', () => {
+describe('GridPhoto', () => {
   const mockOnPhotoClick = jest.fn();
   const defaultProps = {
     images: mockGalleryData.exterior.images,
@@ -25,7 +25,7 @@ describe('PhotoGrid', () => {
 
   describe('基本的な表示', () => {
     it('画像一覧が正しく表示される', () => {
-      render(<PhotoGrid {...defaultProps} />);
+      render(<GridPhoto {...defaultProps} />);
 
       const images = screen.getAllByRole('img');
       expect(images).toHaveLength(defaultProps.images.length);
@@ -37,7 +37,7 @@ describe('PhotoGrid', () => {
     });
 
     it('各画像がボタン内に配置されている', () => {
-      render(<PhotoGrid {...defaultProps} />);
+      render(<GridPhoto {...defaultProps} />);
 
       const buttons = screen.getAllByRole('button');
       expect(buttons).toHaveLength(defaultProps.images.length);
@@ -49,7 +49,7 @@ describe('PhotoGrid', () => {
     });
 
     it('グリッドクラスが正しく適用される', () => {
-      const { container } = render(<PhotoGrid {...defaultProps} />);
+      const { container } = render(<GridPhoto {...defaultProps} />);
 
       const gridContainer = container.querySelector('ul');
       expect(gridContainer).toHaveClass('grid');
@@ -61,19 +61,19 @@ describe('PhotoGrid', () => {
 
   describe('「タップして拡大」案内表示', () => {
     it('1枚目の画像に案内が表示される（hasOpenedModal: false）', () => {
-      render(<PhotoGrid {...defaultProps} hasOpenedModal={false} />);
+      render(<GridPhoto {...defaultProps} hasOpenedModal={false} />);
 
       expect(screen.getByText('タップして拡大')).toBeInTheDocument();
     });
 
     it('モーダル起動後は案内が表示されない（hasOpenedModal: true）', () => {
-      render(<PhotoGrid {...defaultProps} hasOpenedModal={true} />);
+      render(<GridPhoto {...defaultProps} hasOpenedModal={true} />);
 
       expect(screen.queryByText('タップして拡大')).not.toBeInTheDocument();
     });
 
     it('2枚目以降の画像には案内が表示されない', () => {
-      render(<PhotoGrid {...defaultProps} hasOpenedModal={false} />);
+      render(<GridPhoto {...defaultProps} hasOpenedModal={false} />);
 
       const buttons = screen.getAllByRole('button');
       const firstButton = buttons[0];
@@ -87,7 +87,7 @@ describe('PhotoGrid', () => {
     });
 
     it('案内のスタイルクラスが正しく適用される', () => {
-      render(<PhotoGrid {...defaultProps} hasOpenedModal={false} />);
+      render(<GridPhoto {...defaultProps} hasOpenedModal={false} />);
 
       const guideElement = screen.getByText('タップして拡大');
       expect(guideElement).toHaveClass('guide--overlay');
@@ -96,7 +96,7 @@ describe('PhotoGrid', () => {
 
   describe('画像クリック処理', () => {
     it('画像クリック時にonPhotoClickが呼ばれる', () => {
-      render(<PhotoGrid {...defaultProps} />);
+      render(<GridPhoto {...defaultProps} />);
 
       const firstButton = screen.getAllByRole('button')[0];
       fireEvent.click(firstButton);
@@ -109,7 +109,7 @@ describe('PhotoGrid', () => {
     });
 
     it('複数の画像でそれぞれ正しい引数でコールバックが呼ばれる', () => {
-      render(<PhotoGrid {...defaultProps} />);
+      render(<GridPhoto {...defaultProps} />);
 
       const buttons = screen.getAllByRole('button');
       
@@ -129,7 +129,7 @@ describe('PhotoGrid', () => {
     });
 
     it('案内表示中もクリックが正常に動作する', () => {
-      render(<PhotoGrid {...defaultProps} hasOpenedModal={false} />);
+      render(<GridPhoto {...defaultProps} hasOpenedModal={false} />);
 
       const firstButton = screen.getAllByRole('button')[0];
       fireEvent.click(firstButton);
@@ -141,7 +141,7 @@ describe('PhotoGrid', () => {
   describe('異なるカテゴリでの表示', () => {
     it('居室カテゴリでも案内が1枚目に表示される', () => {
       render(
-        <PhotoGrid 
+        <GridPhoto 
           images={mockGalleryData.interior.images}
           category="interior"
           onPhotoClick={mockOnPhotoClick}
@@ -154,7 +154,7 @@ describe('PhotoGrid', () => {
 
     it('共用部カテゴリでも案内が1枚目に表示される', () => {
       render(
-        <PhotoGrid 
+        <GridPhoto 
           images={mockGalleryData.common.images}
           category="common"
           onPhotoClick={mockOnPhotoClick}
@@ -170,7 +170,7 @@ describe('PhotoGrid', () => {
     it('画像配列が空の場合でもエラーが発生しない', () => {
       expect(() => {
         render(
-          <PhotoGrid 
+          <GridPhoto 
             images={[]}
             category="exterior"
             onPhotoClick={mockOnPhotoClick}
@@ -186,7 +186,7 @@ describe('PhotoGrid', () => {
       const singleImage = [mockGalleryData.exterior.images[0]];
       
       render(
-        <PhotoGrid 
+        <GridPhoto 
           images={singleImage}
           category="exterior"
           onPhotoClick={mockOnPhotoClick}
@@ -201,7 +201,7 @@ describe('PhotoGrid', () => {
 
   describe('アクセシビリティ', () => {
     it('すべての画像に適切なalt属性が設定されている', () => {
-      render(<PhotoGrid {...defaultProps} />);
+      render(<GridPhoto {...defaultProps} />);
 
       defaultProps.images.forEach((image) => {
         expect(screen.getByAltText(image.alt)).toBeInTheDocument();
@@ -209,7 +209,7 @@ describe('PhotoGrid', () => {
     });
 
     it('ボタンにキーボードでアクセス可能', () => {
-      render(<PhotoGrid {...defaultProps} />);
+      render(<GridPhoto {...defaultProps} />);
 
       const firstButton = screen.getAllByRole('button')[0];
       firstButton.focus();

@@ -4,7 +4,7 @@ import galleryStyles from '@/styles/modules/gallery.module.scss';
 import { ImgPath } from '@/lib/utils/rewritePath';
 import { GalleryImage, CategoryKey } from '@/lib/utils/galleryData';
 
-interface PhotoGridProps {
+interface GridPhotoProps {
   images: GalleryImage[];
   category: CategoryKey;
   onPhotoClick: (image: GalleryImage, index: number) => void;
@@ -12,7 +12,7 @@ interface PhotoGridProps {
 }
 
 /**
- * PhotoGrid: 写真グリッド表示コンポーネント
+ * GridPhoto: 写真グリッド表示コンポーネント
  *
  * gridDemo.tsxのgrid--2パターンを活用した2列グリッドレイアウトで
  * ギャラリー写真のサムネイルを表示します。
@@ -21,7 +21,7 @@ interface PhotoGridProps {
  * @param category - 現在のカテゴリ（デバッグ用）
  * @param onPhotoClick - 写真クリック時のコールバック関数
  */
-const PhotoGrid: React.FC<PhotoGridProps> = ({ images, category, onPhotoClick, hasOpenedModal }) => {
+const GridPhoto: React.FC<GridPhotoProps> = ({ images, category, onPhotoClick, hasOpenedModal }) => {
   return (
     <>
       <ul className={`${gridStyles.grid} ${gridStyles['grid--2']}  ${gridStyles['grid--sm-4']} ${galleryStyles['grid--container--list']}`} >
@@ -49,4 +49,4 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ images, category, onPhotoClick, h
   );
 };
 
-export default PhotoGrid;
+export default GridPhoto;

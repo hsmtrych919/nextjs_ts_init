@@ -1,9 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import GalleryLayout, { TabId } from '@/components/ui/GalleryLayout';
-import PhotoGrid from '@/components/ui/PhotoGrid';
-import PhotoModal from '@/components/ui/PhotoModal';
+import LayoutGallery, { TabId } from '@/components/ui/LayoutGallery';
+import GridPhoto from '@/components/ui/GridPhoto';
+import ModalPhoto from '@/components/ui/ModalPhoto';
 import { getGalleryDataSafe, getCategoryImages, GalleryImage, CategoryKey } from '@/lib/utils/galleryData';
 import Layout from '@/components/layout/layout';
 
@@ -54,11 +54,11 @@ const GalleryPage: NextPage = () => {
       {!galleryData ? (
         <p>エラーが発生しました。</p>
       ) : (
-        <GalleryLayout
+        <LayoutGallery
           activeTab={activeTab}
           onTabChange={handleTabChange}
         >
-          <PhotoGrid
+          <GridPhoto
             images={currentImages}
             category={activeTab as CategoryKey}
             onPhotoClick={handlePhotoClick}
@@ -66,7 +66,7 @@ const GalleryPage: NextPage = () => {
           />
 
           {selectedImage && (
-            <PhotoModal
+            <ModalPhoto
               isOpen={isModalOpen}
               onClose={handleCloseModal}
               images={currentImages}
@@ -74,7 +74,7 @@ const GalleryPage: NextPage = () => {
               onNavigate={(index) => setSelectedIndex(index)}
             />
           )}
-        </GalleryLayout>
+        </LayoutGallery>
       )}
     </Layout>
   );

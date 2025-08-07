@@ -2,7 +2,7 @@
 // PhotoModal グローバルスタイル
 // ReactModalのグローバルクラス用スタイル定義
 
-.photo-modal__overlay {
+.modal-photo__overlay {
   display: flex;
   position: fixed;
   z-index: 1000;
@@ -20,15 +20,15 @@
   backdrop-filter: blur(4px);
 }
 
-.photo-modal__overlay--after-open {
+.modal-photo__overlay--after-open {
   opacity: 1;
 }
 
-.photo-modal__overlay--before-close {
+.modal-photo__overlay--before-close {
   opacity: 0;
 }
 
-.photo-modal__content {
+.modal-photo__content {
   position: relative;
   width: 100%;
 // max-width: 94vw;
@@ -39,15 +39,15 @@
   // background-color:rgba(0, 0, 0, 0.6);
 }
 
-.photo-modal__overlay--after-open .photo-modal__content {
+.modal-photo__overlay--after-open .modal-photo__content {
   transform: scale(1);
 }
 
-.photo-modal__overlay--before-close .photo-modal__content {
+.modal-photo__overlay--before-close .modal-photo__content {
   transform: scale(0.9);
 }
 
-.photo-modal__body--open {
+.modal-photo__body--open {
   overflow: hidden;
 }
 

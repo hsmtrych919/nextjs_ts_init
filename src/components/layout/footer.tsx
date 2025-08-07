@@ -3,7 +3,7 @@ import styles from '@/styles/modules/footer.module.scss';
 import gridStyles from '@/styles/modules/grid.module.scss';
 import gutterStyles from '@/styles/modules/gutter.module.scss';
 import { PhoneIcon } from '@heroicons/react/24/solid';
-import LocationSelectModal from '@/components/ui/LocationSelectModal';
+import ModalLocationSelect from '@/components/ui/ModalLocationSelect';
 
 
 export default function Footer() {
@@ -47,7 +47,7 @@ export default function Footer() {
       </footer>
 
       {/* 位置選択モーダル */}
-      <LocationSelectModal
+      <ModalLocationSelect
         isOpen={isLocationModalOpen}
         onClose={closeLocationModal}
       />

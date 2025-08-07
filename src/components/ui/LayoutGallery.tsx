@@ -14,7 +14,7 @@ interface GalleryLayoutProps {
   onTabChange?: (tabId: TabId) => void;
 }
 
-const GalleryLayout: React.FC<GalleryLayoutProps> = ({ children, activeTab: propActiveTab, onTabChange }) => {
+const LayoutGallery: React.FC<GalleryLayoutProps> = ({ children, activeTab: propActiveTab, onTabChange }) => {
   const [internalActiveTab, setInternalActiveTab] = useState<TabId>('exterior');
 
   // propsでactiveTabが渡された場合はそれを使用、そうでなければ内部状態を使用
@@ -77,4 +77,4 @@ const GalleryLayout: React.FC<GalleryLayoutProps> = ({ children, activeTab: prop
   );
 };
 
-export default GalleryLayout;
+export default LayoutGallery;

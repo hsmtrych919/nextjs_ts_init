@@ -79,3 +79,5 @@ include_patterns:
   - "src/**/*"
   - "pages/**/*"
   - "docs/**/*.md"
+# max_file_size_kb: 75
+scan_depth: 8

@@ -26,8 +26,8 @@
 
 //プラグイン優先
 @use "component/react-modal/react-modal";
-@use "component/react-modal/photo-modal";
-@use "component/react-modal/locationselect-modal";
+@use "component/react-modal/modal-photo";
+@use "component/react-modal/modal-locationselect";
 // @use "component/swiper/swiper-bundle";
 @use "component/_tab";
 @use "component/_table";

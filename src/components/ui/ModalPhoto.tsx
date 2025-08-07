@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import ReactModal from 'react-modal';
 // import getConfig from 'next/config'; // LazyImgPathに移行のため不要
-import styles from '@/styles/modules/photo-modal.module.scss';
+import styles from '@/styles/modules/modal-photo.module.scss';
 import gridStyles from '@/styles/modules/grid.module.scss';
 import gutterStyles from '@/styles/modules/gutter.module.scss';
 import { GalleryImage } from '@/lib/utils/galleryData';
@@ -11,7 +11,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 // const { publicRuntimeConfig } = getConfig(); // LazyImgPathに移行のため不要
 // const basePath = (publicRuntimeConfig && publicRuntimeConfig.basePath) || ''; // LazyImgPathに移行のため不要
 
-interface PhotoModalProps {
+interface ModalPhotoProps {
   isOpen: boolean;
   onClose: () => void;
   images: GalleryImage[];
@@ -20,7 +20,7 @@ interface PhotoModalProps {
 }
 
 /**
- * PhotoModal: 写真拡大表示用モーダルコンポーネント
+ * ModalPhoto: 写真拡大表示用モーダルコンポーネント
  *
  * react-modalを使用した写真専用のモーダル表示コンポーネントです。
  * スワイプナビゲーションとドットインジケーターを備えたスマートフォン特化の設計です。
@@ -31,7 +31,7 @@ interface PhotoModalProps {
  * @param currentIndex 現在表示中の画像インデックス
  * @param onNavigate 画像切り替えコールバック関数
  */
-const PhotoModal: React.FC<PhotoModalProps> = ({ isOpen, onClose, images, currentIndex, onNavigate }) => {
+const ModalPhoto: React.FC<ModalPhotoProps> = ({ isOpen, onClose, images, currentIndex, onNavigate }) => {
   const currentImage = images[currentIndex];
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -95,12 +95,12 @@ const PhotoModal: React.FC<PhotoModalProps> = ({ isOpen, onClose, images, curren
       shouldCloseOnOverlayClick={true}
       contentLabel="Photo Modal"
       overlayClassName={{
-        base: 'photo-modal__overlay',
-        afterOpen: 'photo-modal__overlay--after-open',
-        beforeClose: 'photo-modal__overlay--before-close',
+        base: 'modal-photo__overlay',
+        afterOpen: 'modal-photo__overlay--after-open',
+        beforeClose: 'modal-photo__overlay--before-close',
       }}
-      className="photo-modal__content"
-      bodyOpenClassName="photo-modal__body--open"
+      className="modal-photo__content"
+      bodyOpenClassName="modal-photo__body--open"
     >
       <div
         className={styles['modal--container']}
@@ -170,4 +170,4 @@ const PhotoModal: React.FC<PhotoModalProps> = ({ isOpen, onClose, images, curren
   );
 };
 
-export default PhotoModal;
+export default ModalPhoto;

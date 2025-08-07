@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactModal from 'react-modal';
-import styles from '@/styles/modules/locationselect-modal.module.scss';
+import styles from '@/styles/modules/modal-locationselect.module.scss';
 import gridStyles from '@/styles/modules/grid.module.scss';
 import gutterStyles from '@/styles/modules/gutter.module.scss';
 
-interface LocationSelectModalProps {
+interface ModalLocationSelectProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
 /**
- * LocationSelectModal: 位置選択用モーダルコンポーネント
+ * ModalLocationSelect: 位置選択用モーダルコンポーネント
  *
  * react-modalを使用した位置選択専用のモーダル表示コンポーネントです。
  * 2つの選択肢を上下に配置し、スマートフォン表示に最適化された設計です。
@@ -25,7 +25,7 @@ interface LocationSelectModalProps {
  * @example
  * // 基本的な使用例
  * const [isOpen, setIsOpen] = useState(false);
- * <LocationSelectModal
+ * <ModalLocationSelect
  *   isOpen={isOpen}
  *   onClose={() => setIsOpen(false)}
  * />
@@ -33,7 +33,7 @@ interface LocationSelectModalProps {
  * @example
  * // フッターボタンと組み合わせた使用
  * <button onClick={() => setIsOpen(true)}>施設選択</button>
- * <LocationSelectModal
+ * <ModalLocationSelect
  *   isOpen={isModalOpen}
  *   onClose={closeModal}
  * />
@@ -44,7 +44,7 @@ interface LocationSelectModalProps {
  * - グローバルクラス location-select-modal__overlay を使用
  * - PhotoModalのナビゲーション構造を参考
  */
-const LocationSelectModal: React.FC<LocationSelectModalProps> = ({ isOpen, onClose }) => {
+const ModalLocationSelect: React.FC<ModalLocationSelectProps> = ({ isOpen, onClose }) => {
   return (
     <ReactModal
       isOpen={isOpen}
@@ -53,12 +53,12 @@ const LocationSelectModal: React.FC<LocationSelectModalProps> = ({ isOpen, onClo
       shouldCloseOnOverlayClick={true}
       contentLabel="Location Select Modal"
       overlayClassName={{
-        base: 'locationselect-modal__overlay',
-        afterOpen: 'locationselect-modal__overlay--after-open',
-        beforeClose: 'locationselect-modal__overlay--before-close',
+        base: 'modal-locationselect__overlay',
+        afterOpen: 'modal-locationselect__overlay--after-open',
+        beforeClose: 'modal-locationselect__overlay--before-close',
       }}
-      className="locationselect-modal__content"
-      bodyOpenClassName="locationselect-modal__body--open"
+      className="modal-locationselect__content"
+      bodyOpenClassName="modal-locationselect__body--open"
     >
       <div className={styles['modal--container']}>
         {/* メインコンテンツ部分 */}
@@ -94,4 +94,4 @@ const LocationSelectModal: React.FC<LocationSelectModalProps> = ({ isOpen, onClo
   );
 };
 
-export default LocationSelectModal;
+export default ModalLocationSelect;
