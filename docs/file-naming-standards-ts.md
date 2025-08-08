@@ -9,6 +9,55 @@
 3. 新たなディレクトリは作成しません。既存のディレクトリ構造に適合するように命名します。
 4. 例外の許容: ui/modal/component.tsx のように、既存のディレクトリ構成や分類の都合上、本規則に当てはめることが難しいファイルは例外として扱います。ただし、例外の許可および作成は人間が手動で行い、AIによる自動生成は行いません。これにより、意図しない無秩序な命名の乱立を防ぎます。
 
+## JSX構造のベストプラクティス
+
+### React Fragment の積極的活用
+コンポーネント作成時に複数の要素を返す場合は、意味的に不要なラッパー要素を避けて不必要な `<div>` タグ等によるラップを避け、React Fragment（`<>...</>`）を活用します。
+
+#### 基本ルール
+- **Single Parent Rule**: Reactコンポーネントのreturnは単一の親要素で囲む必要がある
+- **Fragment優先**: 意味のないラップが必要な場合は `<>...</>` を使用
+- **セマンティック重視**: 構造的に意味がある場合のみ `<div>`, `<section>` 等を使用
+- **イベント処理**：クリックイベントのバブリング制御が必要
+- **レイアウト目的**：Flexbox/Grid の直接子要素として配置が必要
+- **CSS設計上必要**：.c-tab__outer など既存CSS設計に必要なクラス
+
+#### 使用例
+// ✅ 推奨: Fragment使用
+return (
+  <>
+    <h1>タイトル</h1>
+    <p>説明文</p>
+    <button>アクション</button>
+  </>
+);
+
+// ✅ 推奨: セマンティックな意味がある場合
+return (
+  <div className="container">
+    <h1>タイトル</h1>
+    <p>説明文</p>
+    <button>アクション</button>
+  </div>
+);
+
+// ❌ 非推奨: 不必要なdivラップ
+return (
+  <div>
+    <h1>タイトル</h1>
+    <p>説明文</p>
+    <button>アクション</button>
+  </div>
+);
+
+#### Fragment使用のメリット
+- CSSレイアウトの保護: FlexboxやGridの構造を破綻させない
+- DOM構造の最適化: 無駄なネストによるパフォーマンス劣化を防止
+- アクセシビリティの向上: スクリーンリーダーの読み上げ精度向上
+- CSSセレクタの簡素化: 予期しない親要素によるスタイリング困難を回避
+
+
+
 
 ## 関数・変数命名規則
 
@@ -122,6 +171,32 @@ TypeScriptファイルの拡張子は、JSX（HTML要素）の有無によって
 * 命名規則: [動詞で始まる機能名].ts(x) または [機能の役割].ts(x)
 * 例: smoothScroll.ts, rewritePath.tsx, formatDate.ts
 * 背景: ユーティリティの命名に厳密なルールはありませんが、ファイル名自体がその役割を明確に説明することがコミュニティ全体の慣習です。JSXを含む場合は拡張子を .tsx とします。
+
+
+### JSONデータファイル (lib/constants/)
+
+プロジェクト全体で使用する静的データは、`src/lib/constants/` ディレクトリに配置します。
+
+#### 基本方針
+* **配置場所**: `src/lib/constants/` ディレクトリ内に作成
+* **命名規則**: kebab-case（例: `gallery.json`, `api-endpoints.json`, `menu-items.json`）
+* **用途**: アプリケーション設定、マスターデータ、UIに表示する固定コンテンツなど
+
+#### 命名例
+* **UI表示データ**: `gallery.json`, `navigation-menu.json`, `footer-links.json`
+* **設定データ**: `api-endpoints.json`, `theme-colors.json`, `validation-rules.json`
+* **マスターデータ**: `prefecture-list.json`, `category-options.json`
+
+#### 技術的背景
+* TypeScriptでの型安全なインポートが可能
+* `public/` ディレクトリと異なり、ビルド時に最適化される
+* テスト時のモックが容易
+* バージョン管理の対象として適切
+
+#### 使用例
+```typescript
+import galleryData from '@/lib/constants/gallery.json';
+```
 
 
 

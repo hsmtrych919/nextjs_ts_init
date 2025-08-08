@@ -28,6 +28,27 @@
 //   padding-bottom: 8rem;
 // }
 
+@each $breakpoint in map.keys(g.$grid-breakpoints) {
+  @include g.media-breakpoint-up($breakpoint) {
+    $infix: g.breakpoint-infix($breakpoint, g.$grid-breakpoints);
+    @each $name, $value in g.$space_values {
+      .pt-#{$name}#{$infix} {
+        padding-top: g.rem($value);
+      }
+    }
+  }
+}
+@each $breakpoint in map.keys(g.$grid-breakpoints) {
+  @include g.media-breakpoint-up($breakpoint) {
+    $infix: g.breakpoint-infix($breakpoint, g.$grid-breakpoints);
+    @each $name, $value in g.$space_values {
+      .pb-#{$name}#{$infix} {
+        padding-bottom: g.rem($value);
+      }
+    }
+  }
+}
+
 // @for $value from 2 through 20 {
 // .pt__#{$value} {
 //   padding-top: calc(var(--space) * ($value - 1));
