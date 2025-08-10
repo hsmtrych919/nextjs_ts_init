@@ -1,4 +1,6 @@
 # SCSS ファイル命名規則ガイド（file-naming-standards-scss.md）
+<!-- ENFORCE:NO_NEW_DIRS -->
+<!-- 本ドキュメントは AI/自動生成ツールに対して拘束力を持つ運用ポリシーを含みます -->
 
 このドキュメントは、本プロジェクトにおける SCSS ファイルの命名規則とクラス命名規則を定めたものです。
 
@@ -227,7 +229,7 @@ breakpoint-infix($bp)           // -sm（一般用）
 // grid.module.scss内での使用例
 @each $breakpoint in map.keys($breakpoints) {
   $infix: g.breakpoint-infix-modifier($breakpoint, $breakpoints);
-  
+
   @if $infix != "" {
     .col#{$infix}-#{$i} {    // .col--sm-6 のような出力
       // スタイル定義
