@@ -992,6 +992,5 @@ g.$xxl  // "(min-width: 1366px)"
 
 ---
 
-**最終更新**: 2025-07-31
-**基準ドキュメント**: 02_plan-make-guide-accurate.md
+**最終更新**: 2025-08-14
 **対象環境**: Next.js 13.5, TypeScript, SCSS
