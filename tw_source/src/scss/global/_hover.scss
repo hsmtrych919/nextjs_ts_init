@@ -1,0 +1,18 @@
+$enable-hover-media-query:  false !default;
+
+@mixin hover {
+  // TODO: re-enable along with mq4-hover-shim
+  @if $enable-hover-media-query {
+    @media (hover: hover) {
+      &:hover { @content }
+    }
+  }
+  @else {
+    @media(hover: hover) and (pointer: fine) {
+      &:focus, &:hover {
+        @content;
+      }
+    }
+  }
+}
+
