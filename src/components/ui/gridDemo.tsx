@@ -3,15 +3,15 @@ import React from 'react';
 /**
  * GridDemo: グリッドシステムデモコンポーネント
  *
- * CSS Modulesに移行されたグリッドクラスを使用したレスポンシブレイアウトシステムのデモです。
+ * Tailwind CSS ユーティリティクラスを使用したレスポンシブレイアウトシステムのデモです。
  * フレーミング・余白・コンテンツの3層構造によるクリーンなレイアウト設計を実演します。
  *
  * ## 基本構造パターン
  *
  * ### パターン1: 標準カラムレイアウト
  * ```jsx
- * <div className={`${gridStyles['row--container']} ${gutterStyles.container}`}>
- *   <div className={`${gridStyles['col--12']} ${gridStyles['col--lg-8']}`}>
+ * <div className="container-width mx-auto flex flex-wrap px-gutter-row xl:px-0">
+ *   <div className="w-full lg:w-8/12">
  *     <div style={{...}}>コンテンツ</div>  // 3層目: コンテンツ
  *   </div>                                 // 2層目: カラム幅定義
  * </div>                                   // 1層目: コンテナ・余白
@@ -19,7 +19,7 @@ import React from 'react';
  *
  * ### パターン2: ブロックグリッドレイアウト
  * ```jsx
- * <ul className={`${gridStyles['grid']} ${gridStyles['grid--2']} ${gridStyles['grid--md-4']}`}>
+ * <ul className="grid grid-cols-2 md:grid-cols-4 gap-x-grid-gutter">
  *   <li>
  *     <div style={{...}}>コンテンツ</div>  // 3層目: コンテンツ
  *   </li>                                // 2層目: グリッドアイテム
@@ -27,8 +27,8 @@ import React from 'react';
  * ```
  *
  * ## 設計思想
- * - **1層目**: フレーミング（.row--container, .grid）と余白システム（.container, .small--left等）
- * - **2層目**: カラム幅定義（.col--*, .col--*-*）またはグリッドアイテム（li, .col）
+ * - **1層目**: フレーミング（container-width, grid）と余白システム（px-gutter-row等）
+ * - **2層目**: カラム幅定義（w-{n}/12, md:w-{n}/12）またはグリッドアイテム（li, grow basis-0）
  * - **3層目**: 実際のコンテンツ（背景色、パディング、テキストなど）
  *
  * ## 重要なポイント
@@ -38,35 +38,34 @@ import React from 'react';
  * - レスポンシブ対応は2層目のクラスで制御
  *
  * ## 主要クラス
- * - `.row--container`: レスポンシブコンテナ
- * - `.col--{n}`: nカラム幅指定
- * - `.col--{breakpoint}-{n}`: ブレークポイント別幅指定
- * - `.grid .grid--{n}`: nカラムのブロックグリッド
- * - `.container`: 基本行レイアウト、`.small--left`等: 余白制御クラス
+ * - `container-width mx-auto flex flex-wrap px-gutter-row xl:px-0`: レスポンシブコンテナ
+ * - `w-{n}/12`, `md:w-{n}/12`: ブレークポイント別幅指定
+ * - `grid grid-cols-*`, `md:grid-cols-*`: ブロックグリッド
+ * - `px-gutter-row`, `sm:pl-gutter-2`, `md:pl-gutter-3`: ガター（余白制御）
  *
  * @example
  * // 基本的な2カラムレイアウト
- * <div className="row--container container">
- *   <div className="col--12 col--lg-8">
+ * <div className="container-width mx-auto flex flex-wrap px-gutter-row xl:px-0">
+ *   <div className="w-full lg:w-8/12">
  *     <article>メインコンテンツ</article>
  *   </div>
- *   <div className="col--12 col--lg-4">
+ *   <div className="w-full lg:w-4/12">
  *     <aside>サイドバー</aside>
  *   </div>
  * </div>
  *
  * @example
  * // カードグリッドレイアウト
- * <ul className="grid grid--1 grid--sm-2 grid--lg-3">
+ * <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-grid-gutter">
  *   <li><div className="card">カード1</div></li>
  *   <li><div className="card">カード2</div></li>
  *   <li><div className="card">カード3</div></li>
  * </ul>
  *
  * @remarks
- * - CSS変数（--gutter, --gutter-row）による余白制御
+ * - CSS変数（--gutter, --gutter-row）+ Tailwind ユーティリティベースの余白制御
  * - モバイルファースト設計
- * - フレックスボックスベースの実装
+ * - CSS Grid + Flexbox ハイブリッドの実装
  */
 const GridDemo: React.FC = () => {
   return (
@@ -78,7 +77,7 @@ const GridDemo: React.FC = () => {
         <h3>Container System</h3>
         <div className="container-width mx-auto flex flex-wrap px-gutter-row xl:px-0" >
           <div className="w-full" style={{ background: '#ddd', padding: '0.5rem' }}>
-            .row--container - レスポンシブコンテナ（CSS Modules版）
+            container-width - レスポンシブコンテナ（Tailwind版）
           </div>
         </div>
       </section>
@@ -90,21 +89,21 @@ const GridDemo: React.FC = () => {
         <div className="container-width mx-auto flex flex-wrap px-gutter-row xl:px-0">
           <div className="w-full sm:w-6/12 lg:w-4/12" >
             <div style={{ background: '#ffe6f3', padding: '0.5rem' }}>
-              .col--12 .col--sm-6 .col--lg-4（CSS Modules版）
+              w-full sm:w-6/12 lg:w-4/12（Tailwind版）
               <br />
               <small>Mobile: 12/12, Tablet: 6/12, Desktop: 4/12</small>
             </div>
           </div>
           <div className="w-full sm:w-6/12 lg:w-4/12" >
             <div style={{ background: '#f3e6ff', padding: '0.5rem' }}>
-              .col--12 .col--sm-6 .col--lg-4（CSS Modules版）
+              w-full sm:w-6/12 lg:w-4/12（Tailwind版）
               <br />
               <small>Mobile: 12/12, Tablet: 6/12, Desktop: 4/12</small>
             </div>
           </div>
           <div className="w-full lg:w-4/12" >
             <div style={{ background: '#e6f3ff', padding: '0.5rem' }}>
-              .col--12 .col--sm-12 .col--lg-4（CSS Modules版）
+              w-full lg:w-4/12（Tailwind版）
               <br />
               <small>Mobile: 12/12, Tablet: 12/12, Desktop: 4/12</small>
             </div>
@@ -118,13 +117,13 @@ const GridDemo: React.FC = () => {
         <div className="container-width mx-auto flex flex-wrap px-gutter-row xl:px-0">
           <div className="w-full lg:w-8/12 md:pr-gutter-3" >
             <div style={{ background: '#e8f5e8', height: '100%' }}>
-              <h4>Main Content Area（CSS Modules版）</h4>
+              <h4>Main Content Area（Tailwind版）</h4>
               <p>メインコンテンツエリア。デスクトップでは8/12の幅、モバイルでは全幅で表示されます。</p>
             </div>
           </div>
           <div className="w-full lg:w-4/12" >
             <div style={{ background: '#e3f2fd' }}>
-              <h4>Sidebar（CSS Modules版）</h4>
+              <h4>Sidebar（Tailwind版）</h4>
               <p>サイドバーエリア。デスクトップでは4/12の幅、モバイルでは全幅で表示されます。</p>
             </div>
           </div>
@@ -136,13 +135,13 @@ const GridDemo: React.FC = () => {
         <h3>Auto Columns</h3>
         <div className="container-width mx-auto flex flex-wrap px-gutter-row xl:px-0">
           <div className="grow basis-0" >
-            <div style={{ background: '#ffe6e6', height: '100%' }}>.col 自動幅（CSS Modules版）</div>
+            <div style={{ background: '#ffe6e6', height: '100%' }}>grow basis-0 自動幅（Tailwind版）</div>
           </div>
           <div className="w-5/12 sm:pl-gutter-2 md:pl-gutter-3" >
             <div style={{ background: '#e6ffe6', height: '100%' }}>.col--5 Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum excepturi corporis nostrum assumenda suscipit accusamus velit cumque atque facilis nesciunt quis aspernatur, quam id quos. Eos eaque saepe dolor repellendus.</div>
           </div>
           <div className="grow basis-0" >
-            <div style={{ background: '#e6e6ff', height: '100%' }}>.col 自動幅 Lorem ipsum dolor sit amet（CSS Modules版）</div>
+            <div style={{ background: '#e6e6ff', height: '100%' }}>grow basis-0 自動幅 Lorem ipsum dolor sit amet（Tailwind版）</div>
           </div>
         </div>
       </section>
@@ -173,7 +172,7 @@ const GridDemo: React.FC = () => {
             <p style={{ background: '#e3f2fd', padding: '0.5rem' }}>Item F</p>
           </li>
         </ul>
-        <p><small>.grid--2 .grid--md-4 - Mobile: 2列, Desktop: 4列</small></p>
+        <p><small>grid-cols-2 md:grid-cols-4 - Mobile: 2列, Desktop: 4列</small></p>
         </div>
         </div>
       </section>

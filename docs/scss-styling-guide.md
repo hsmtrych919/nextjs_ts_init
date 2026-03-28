@@ -4,82 +4,101 @@
 
 ## 1. SCSS体系概要
 
-本プロジェクトは、**CSS Modules層**と**グローバル層**の2つの大きな層に分かれ、さらにグローバル層は6つの副層で構成される7層構造を採用しています。
+本プロジェクトは、**CSS Modules層**・**グローバル層**（global/ + features/ + vendor/ の3副層）・**Tailwind CSS v4 層**の構成を採用しています。Tailwind は `@tailwindcss/postcss` 経由で統合され、SCSS → PostCSS → Tailwind の処理順で適用されます。
 
 ### 1.1 全体構造
 
 ```
 src/styles/
-├── modules/          # CSS Modules層（ハッシュ化適用）
-└── global/           # グローバル層（6つの副層）
-    ├── foundation/   # Foundation層
-    ├── global/       # Global層
-    ├── mixins/       # Mixins層
-    ├── layout/       # Layout層
-    ├── component/    # Component層
-    ├── project/      # Project層
-    └── utility/      # Utility層
+├── modules/                    # CSS Modules層（ハッシュ化適用、7ファイル）
+│   ├── button.module.scss
+│   ├── type.module.scss
+│   ├── index.module.scss
+│   ├── header.module.scss
+│   ├── footer.module.scss
+│   ├── modal-photo.module.scss
+│   └── modal-footer.module.scss
+└── global/
+    ├── style.scss              # Sass エントリーポイント
+    ├── _tailwind-base-layer.scss   # @layer base（CSS 変数、Tailwind 連携）
+    ├── global/                 # 共通API
+    │   ├── _index.scss
+    │   ├── _variables.scss
+    │   ├── _breakpoints.scss
+    │   ├── _calc.scss
+    │   ├── _font.scss
+    │   ├── _hover.scss
+    │   └── _media-queries.scss
+    ├── features/               # プロジェクト固有グローバルスタイル
+    │   ├── _layout.scss        # container-width 等
+    │   ├── _tab.scss
+    │   ├── _toggle.scss
+    │   ├── _table.scss
+    │   └── _style.scss         # WP コンテンツ用
+    └── vendor/                 # サードパーティ CSS
+        ├── react-modal/
+        ├── scroll-hint/
+        └── swiper/
 ```
 
 ### 1.2 CSS Modules層（src/styles/modules）
 
-**ハッシュ化されるコンポーネント固有スタイル** - 初期状態 以下7ファイル
+**ハッシュ化されるコンポーネント固有スタイル** - 以下7ファイル
 
-- `grid.module.scss`: グリッドシステム（`col--12`, `row--container`）
 - `button.module.scss`: ボタンバリエーション（`base--thin`, `icon--arrow`）
-- `gutter.module.scss`: レイアウト調整（`container--initial`, `small--left`）
 - `type.module.scss`: タイポグラフィ（`title--xsmall`, `text--marker`）
 - `index.module.scss`: ページ用スタイル（pages/index.tsx専用）
 - `header.module.scss`: ヘッダーコンポーネント用（.outer, .logo）
 - `footer.module.scss`: フッターコンポーネント用（.outer）
+- `modal-photo.module.scss`: 写真モーダル用
+- `modal-footer.module.scss`: フッターモーダル用
 
 **特徴**: 全ファイルがBEM準拠の`element--modifier`形式（Block役割はファイル名）
 
 ### 1.3 グローバル層（src/styles/global）
 
-#### Foundation層（基盤・リセット）
-- `_destyle.css`: CSSリセット
-- `_reboot.scss`: Bootstrap風基本スタイルリセット
-- `_variables*.scss`: カラー・フォーム・基本変数定義（3ファイル）
+グローバル層は **global/**（共通API）+ **features/**（プロジェクト固有）+ **vendor/**（サードパーティ）の3副層で構成されます。
 
-#### Global層（共通定義・関数）
-- `_breakpoints.scss`: ブレークポイント定義
-- `_media-queries.scss`: メディアクエリ関数群
-- `_font.scss`: フォント設定
-- `_calc.scss`: 計算関数
-- `_unicode.scss`: 文字コード関連
+- features/ 内では `@use "../global" as g;` で共通APIを参照
+- modules/ 内では `@use "../global/global" as g;` で共通APIを参照
+
+#### global/ 層（共通API）
 - `_index.scss`: global層統合ファイル
-
-#### Mixins層（SCSS関数・ミックスイン）
+- `_variables.scss`: 基本変数定義
+- `_breakpoints.scss`: ブレークポイント定義
+- `_calc.scss`: 計算関数
+- `_font.scss`: フォント設定
 - `_hover.scss`: ホバー効果
-- `_gutter.scss`: 余白設定ミックスイン
-- `_transition.scss`: アニメーション
-- `_zindex.scss`: z-index管理
-- `_clearfix.scss`, `_dl.scss`, `_table-row.scss`: 個別機能（7ファイル計）
+- `_media-queries.scss`: メディアクエリ関数群
 
-#### Layout層（レイアウト定義）
-- `_grid-variables.scss`: グリッドシステム変数
-
-#### Component層（コンポーネント固有グローバルスタイル）
+#### features/ 層（プロジェクト固有グローバルスタイル）
 
 **以下理由によりモジュール化せずにグローバルスタイルとして維持：**
-- `react-modal`や`swiper`など外部ライブラリのクラスを上書きする
 - JavaScript連携、動的クラス操作等でハッシュ化されると.ts/.tsxの動作に影響する
+- プロジェクト全体で共通使用するスタイル
 
-- `_toggle.scss`: トグル機能（`c-toggle__wrap`系・JavaScript連携）
+- `_layout.scss`: container-width 等レイアウト定義
 - `_tab.scss`: タブ機能
+- `_toggle.scss`: トグル機能（`toggle__wrap`系・JavaScript連携）
 - `_table.scss`: テーブル機能
-- `react-modal/_react-modal.scss`: React Modal用
-- `swiper/_swiper-bundle.scss`: Swiper用（コメントアウト済み）
-
-#### Project層（プロジェクト固有）
 - `_style.scss`: プロジェクト全体スタイル・CSS変数・アニメーション定義ほか
 
-#### Utility層（汎用ユーティリティクラス）
-- `_flex.scss`: Flexboxユーティリティ（`jc-center`, `ai-center`等）
-- `_display.scss`: 表示制御ユーティリティ
-- `_margin.scss`, `_padding.scss`: 余白調整
-- `_font.scss`, `_visibility.scss`, `_responsive-embed.scss`, `_scroll-hint.scss`, `_tables.scss`（8ファイル計）
+#### vendor/ 層（サードパーティCSS）
+- `react-modal/_react-modal.scss`: React Modal用
+- `react-modal/_modal-photo.scss`: 写真モーダル用
+- `react-modal/_modal-footer.scss`: フッターモーダル用
+- `scroll-hint/_index.scss`: Scroll Hint用
+- `swiper/_swiper-bundle.scss`: Swiper用
+
+### 1.4 Tailwind CSS v4 層
+
+余白・幅・Flexbox・Grid 等の汎用スタイリングは Tailwind CSS v4 ユーティリティクラスに移行済みです。`@tailwindcss/postcss` 経由で統合されています。
+
+- **コンテナ**: `container-width mx-auto flex flex-wrap px-gutter-row xl:px-0`
+- **カラム幅**: `w-full`, `w-6/12`, `md:w-10/12` 等（Tailwind 標準幅クラス）
+- **ブロックグリッド**: `grid grid-cols-2 md:grid-cols-4 gap-x-grid-gutter`
+- **Auto columns**: `grow basis-0`
+- **ガター**: `px-gutter-row`, `sm:pl-gutter-2`, `md:pl-gutter-3` 等（tailwind.config.js extend.padding）
 
 ## 2. 優先順位とファイル選択ルール
 
@@ -87,19 +106,19 @@ src/styles/
 
 #### 優先順位1: プロジェクト層 + ページ用モジュール
 **原則として以下に新規クラスを作成**：
-- `src/styles/global/project/_style.scss`
+- `src/styles/global/features/_style.scss`
 - `src/styles/modules/`内のページ用モジュール
 - ページ用モジュールがない場合は作成を許可
 
 #### 優先順位2: コンポーネント専用モジュール作成
 **機能をコンポーネント化する旨の指示があれば**：
 - `src/styles/modules/`内にコンポーネント専用のモジュールを作成
-- **ただし例外**: クラス名のハッシュ化が.ts/.tsxの動作に影響する場合は`src/styles/global/component/`内にファイル作成してグローバルクラスとして記載
+- **ただし例外**: クラス名のハッシュ化が.ts/.tsxの動作に影響する場合は`src/styles/global/features/`内にファイル作成してグローバルクラスとして記載
 
-#### 優先順位3: ユーティリティクラスの活用
-**utility/の使用について**：
+#### 優先順位3: Tailwind ユーティリティクラスの活用
+**Tailwind ユーティリティの使用について**：
 - `.hghg {margin-top: 12px;}`のような汎用的かつ簡素で単純なクラスを作らせないため
-- 煩雑なクラスの乱立を避けるためにutility/のクラスを活用
+- 煩雑なクラスの乱立を避けるために Tailwind ユーティリティクラスを活用（余白、幅、Flexbox、Grid は Tailwind 優先）
 - 複数の要素が絡むスタイリングの場合は、基本的に優先順位1を優先させる
 
 ### 2.2 特別な考慮事項
@@ -112,9 +131,9 @@ src/styles/
 **以下の場合はハッシュ化を避けグローバルクラスを維持**：
 - クラス名のハッシュ化がJavaScript連携、動的クラス操作等で.ts/.tsxの動作に影響する場合
 
-#### utility/の位置づけ
-- **利用するだけ**: SCSSスタイリング指針として活用
-- **最小限の作成**: 人間の指示を起点とした必要時のみの作成・更新
+#### Tailwind ユーティリティの位置づけ
+- **Tailwind 標準クラス優先**: 余白・幅・Flexbox・Grid は Tailwind ユーティリティクラスを使用
+- **カスタムクラス**: tailwind.config.js で拡張されたカスタムガター（`px-gutter-row` 等）も活用
 
 ## 3. BEM記法とクラス命名規則
 
@@ -147,15 +166,15 @@ src/styles/
 // BEM記法: Block__Element--modifier形式
 
 // _toggle.scss
-.c-toggle__wrap {        // Block__Element
+.toggle__wrap {        // Block__Element
   // ラップ要素
 }
 
-.c-toggle__button {      // Block__Element
+.toggle__button {      // Block__Element
   // ボタン要素
 }
 
-.c-toggle__wrap--active { // Block__Element--Modifier
+.toggle__wrap--active { // Block__Element--Modifier
   // アクティブ状態（必要に応じて）
 }
 ```
@@ -302,7 +321,7 @@ import typeStyles from '@/styles/modules/type.module.scss';
 ### 4.2 プロジェクト共通スタイル追加例
 
 ```scss
-// src/styles/global/project/_style.scss（既存ファイルに追加）
+// src/styles/global/features/_style.scss（既存ファイルに追加）
 .inview__fadein {
   transform: translateY(30px);
   opacity: 0;
@@ -341,17 +360,17 @@ import typeStyles from '@/styles/modules/type.module.scss';
 ### 4.4 JavaScript連携コンポーネント例
 
 ```scss
-// src/styles/global/component/_carousel.scss（新規作成）
-.c-carousel__wrap {
+// src/styles/global/features/_carousel.scss（新規作成）
+.carousel__wrap {
   position: relative;
   overflow: hidden;
 }
 
-.c-carousel__slide {
+.carousel__slide {
   transition: transform 0.3s ease;
 }
 
-.c-carousel__nav {
+.carousel__nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -366,13 +385,13 @@ import typeStyles from '@/styles/modules/type.module.scss';
 }
 ```
 
-### 4.5 ユーティリティクラス活用例
+### 4.5 Tailwind ユーティリティクラス活用例
 
-```scss
-// 既存utility/クラスの活用
-<div className="jc-center ai-center">
+```tsx
+// Tailwind ユーティリ��ィクラスの活用
+<div className="justify-center items-center">
   <p className="mt-0 mb-1">
-    ユーティリティクラス使用例
+    Tailwind ユーティリティクラス使用例
   </p>
 </div>
 ```
@@ -423,8 +442,8 @@ import typeStyles from '@/styles/modules/type.module.scss';
    Yes → type.module.scss の .text クラス使用
    No ↓
 
-2. 既存ユーティリティクラスで対応可能か？
-   Yes → 既存クラス使用
+2. Tailwind ユーティリティクラスで対応可能か？
+   Yes → Tailwind クラス使用
    No ↓
 
 3. ページ固有のスタイルか？
@@ -432,12 +451,12 @@ import typeStyles from '@/styles/modules/type.module.scss';
    No ↓
 
 4. 複数ページで使用する共通スタイルか？
-   Yes → global/project/_style.scss に作成
+   Yes → global/features/_style.scss に作成
    No ↓
 
 5. 特定コンポーネント専用か？
    Yes → JavaScript連携が必要？
-         Yes → global/component/ に作成
+         Yes → global/features/ に作成
          No → modules/[component].module.scss に作成
    No ↓
 
@@ -467,13 +486,12 @@ import typeStyles from '@/styles/modules/type.module.scss';
 # 類似クラスの存在確認
 grep -r "similar-class" src/styles/
 
-# 既存ユーティリティクラス確認
-grep -r "margin\|padding\|flex" src/styles/global/utility/
+# Tailwind ユーティリティクラスの活用を検討
+# 余白・幅・Flexbox・Grid は Tailwind 標準クラスを優先
 ```
 
 ### 6.2 命名の一貫性確保
 
-- **接頭辞**: コンポーネント系は `c-`
 - **状態**: 状態クラスは `is-` または `js-`
 - **BEM記法**: `Block__Element--Modifier`の徹底
 
@@ -505,9 +523,7 @@ grep -r "margin\|padding\|flex" src/styles/global/utility/
 }
 ```
 
-**参考ファイル**:
-- `src/styles/global/foundation/_destyle.css`
-- `src/styles/global/foundation/_reboot.scss`
+**参考**: リセットCSS は Tailwind CSS v4 のベースレイヤーに統合済みです。`_tailwind-base-layer.scss` を参照。
 
 ## 7. 余白設定ガイドライン
 
@@ -620,9 +636,9 @@ grep -r "margin\|padding\|flex" src/styles/global/utility/
 - [ ] 不要なクラス作成を避けられるか？
 - [ ] 開発効率とルール遵守のバランスは適切か？
 
-#### ユーティリティクラス活用
+#### Tailwind ユーティリティクラス活用
 ```tsx
-// 既存utility/クラスとの連携
+// Tailwind ユーティリティクラスの活用
 <div className="mt-4 pb-6">  // top: margin, bottom: padding
   <h2>コンテンツタイトル</h2>
   <p className="mt-2">本文内容</p>
@@ -680,7 +696,7 @@ grep -r "margin\|padding\|flex" src/styles/global/utility/
 
 #### 定義済みブレークポイント
 ```scss
-// src/styles/global/foundation/_variables.scss で定義済み
+// tailwind.config.js の screens および global/global/_breakpoints.scss で定義済み
 $grid-breakpoints-sm: 576px
 $grid-breakpoints-md: 811px
 $grid-breakpoints-lg: 1025px
@@ -697,6 +713,8 @@ g.$lg   // "(min-width: 1025px)"
 g.$xl   // "(min-width: 1280px)"
 g.$xxl  // "(min-width: 1366px)"
 ```
+
+TSX テンプレート内では Tailwind のレスポンシブ prefix（`sm:`, `md:`, `lg:`, `xl:`, `2xl:`）も使用可能です。
 
 ### 8.3 実装パターン
 
@@ -750,10 +768,10 @@ g.$xxl  // "(min-width: 1366px)"
 }
 ```
 
-#### 既存ユーティリティクラスとの併用
+#### Tailwind レスポンシブクラスとの併用
 ```tsx
-// 既存のレスポンシブユーティリティクラス活用
-<div className="mt-2 mt-4-sm mt-6-md">
+// Tailwind レスポンシブユーティリティクラス活用
+<div className="mt-2 sm:mt-4 md:mt-6">
   <h2>レスポンシブ余白の例</h2>
 </div>
 ```
@@ -817,25 +835,28 @@ g.$xxl  // "(min-width: 1366px)"
 
 ### 9.1 基本方針
 
-本プロジェクトでは **既存のグリッドシステム** (`grid.module.scss` + `gutter.module.scss`) が定義済みです。デバイスごとのコンテナ幅とガターは既に最適化されているため、独自のコンテンツ幅指定は **原則として禁止** します。
+本プロジェクトでは **Tailwind ユーティリティ + `container-width` クラス** によるレイアウトシステムが定義済みです。デバイスごとのコンテナ幅とガターは既に最適化されているため、独自のコンテンツ幅指定は **原則として禁止** します。
 
 ### 9.2 既存システムの必須使用
 
 #### 標準的な3層構造
-`gridDemo.tsx` で定義された3層構造に必ず準拠すること：
+`GridDemo.tsx` で定義された3層構造に必ず準拠すること：
 
 ```tsx
-// ✅ 推奨：既存グリッドシステムの正しい使用
-<div className={`${gridStyles['row--container']} ${gutterStyles.container}`}>  // 1層目: コンテナ・余白
-  <div className={gridStyles['col--12']}>                                      // 2層目: カラム幅
-    <div className="content-styling">コンテンツ</div>                           // 3層目: コンテンツのみ
+// ✅ 推奨：Tailwind レイアウトシステムの正しい使用
+<div className="container-width mx-auto flex flex-wrap px-gutter-row xl:px-0">  {/* 1層目: コンテナ・余白 */}
+  <div className="w-full lg:w-8/12">                                            {/* 2層目: カラム幅 */}
+    <div className="content-styling">コンテンツ</div>                             {/* 3層目: コンテンツのみ */}
   </div>
 </div>
 ```
 
-#### 利用可能な既存クラス
-- **グリッド**: `gridStyles['row--container']`, `gridStyles['col--12']`, `gridStyles['col--lg-8']` 等
-- **ガター**: `gutterStyles.container`, `gutterStyles['small--left']`, `gutterStyles['medium--right']` 等
+#### 利用可能なクラス
+- **コンテナ**: `container-width mx-auto flex flex-wrap px-gutter-row xl:px-0`
+- **カラム幅**: `w-full`, `w-6/12`, `md:w-10/12`, `lg:w-8/12` 等（Tailwind 標準幅クラス）
+- **ブロックグリッド**: `grid grid-cols-2 md:grid-cols-4 gap-x-grid-gutter`
+- **Auto columns**: `grow basis-0`
+- **ガター**: `px-gutter-row`, `sm:pl-gutter-2`, `md:pl-gutter-3` 等
 
 ### 9.3 禁止事項
 
@@ -885,7 +906,7 @@ g.$xxl  // "(min-width: 1366px)"
 ```scss
 // ✅ 例外的に許可：3層目での特殊コンテンツ
 .special-content {
-  // 既存グリッドシステム内の3層目でのみ許可
+  // Tailwind レイアウトシステム内の3層目でのみ許可
   max-width: 600px;  // 特殊な読みやすさ要件など
   margin: 0 auto;
 }
@@ -893,9 +914,9 @@ g.$xxl  // "(min-width: 1366px)"
 
 ```tsx
 // 使用例：正しい3層構造内での例外使用
-<div className={`${gridStyles['row--container']} ${gutterStyles.container}`}>
-  <div className={gridStyles['col--12']}>
-    <div className="special-content">  // 3層目でのみ例外使用可能
+<div className="container-width mx-auto flex flex-wrap px-gutter-row xl:px-0">
+  <div className="w-full">
+    <div className="special-content">  {/* 3層目でのみ例外使用可能 */}
       特殊なレイアウト要件のコンテンツ
     </div>
   </div>
@@ -908,8 +929,8 @@ g.$xxl  // "(min-width: 1366px)"
 1. レイアウト・コンテナ・余白の実装が必要？
    Yes ↓
 
-2. 既存グリッドシステム（gridStyles + gutterStyles）で対応可能？
-   Yes → 既存システム必須使用
+2. Tailwind レイアウトシステム（container-width + 幅クラス + ガター）で対応可能？
+   Yes → Tailwind レイアウトシステム必須使用
    No ↓
 
 3. 3層目（コンテンツ層）での限定的使用？
@@ -924,21 +945,21 @@ g.$xxl  // "(min-width: 1366px)"
 
 - **レスポンシブ一貫性**: 既存システムによる統一された画面対応
 - **保守性**: 一元管理されたグリッド・ガターシステム
-- **設計統一**: gridDemo.tsx で実証済みの3層構造設計
+- **設計統一**: GridDemo.tsx で実証済みの3層構造設計
 - **パフォーマンス**: 最適化済みのブレークポイント・余白定義
 
 ## 10. display: grid; 使用に関する位置づけ
 
 ### 10.1 基本スタンス
 
-本プロジェクトは **Flexbox ベースのグリッドシステム** を採用しているため、`display: grid;` の使用は推奨しない。ただし、**効率的なスタイリングのために必要な場合は許容する**。
+本プロジェクトは **Tailwind CSS Grid ユーティリティ**（`grid grid-cols-*`）を標準として採用しており、`display: grid;` の使用は推奨される手法です。SCSS 内での直接的な `display: grid;` 記述についても、効率的なスタイリングのために使用を許容します。
 
 ### 10.2 使用許可範囲
 
 以下の **影響範囲が限られたファイル** においてのみ使用を許可：
 
 - **ページ用モジュールSCSS** (`src/styles/modules/[page].module.scss`)
-- **プロジェクト共通スタイル** (`src/styles/global/project/_style.scss`)
+- **プロジェクト共通スタイル** (`src/styles/global/features/_style.scss`)
 
 ### 10.3 使用判断基準
 
@@ -952,7 +973,7 @@ g.$xxl  // "(min-width: 1366px)"
 }
 
 // ✅ 許容：プロジェクト固有で効率的な場合
-// src/styles/global/project/_style.scss
+// src/styles/global/features/_style.scss
 .complex-layout {
   display: grid;
   grid-template-areas:
@@ -962,16 +983,16 @@ g.$xxl  // "(min-width: 1366px)"
 }
 
 // ❌ 避ける：グローバルに影響する箇所
-// src/styles/global/component/_card.scss
-.c-card {
+// src/styles/global/features/_card.scss
+.card {
   display: grid;  // 他のコンポーネントに影響する可能性
 }
 ```
 
 ### 10.4 優先順位
 
-1. **第一選択**: Flexbox + 既存グリッドシステム
-2. **第二選択**: `display: grid;`（効率性重視時のみ）
+1. **第一選択**: Tailwind ユーティリティ（`grid grid-cols-*`, `flex` 等）
+2. **第二選択**: SCSS 内での `display: grid;` 直接記述（複雑なレイアウト時）
 
 ```scss
 // 判断例：複数カラムレイアウト
@@ -992,5 +1013,5 @@ g.$xxl  // "(min-width: 1366px)"
 
 ---
 
-**最終更新**: 2025-08-14
-**対象環境**: Next.js 13.5, TypeScript, SCSS
+**最終更新**: 2026-03-28
+**対象環境**: Next.js 15, TypeScript, SCSS, Tailwind CSS v4

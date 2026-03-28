@@ -19,13 +19,13 @@
 ```
 
 #### 現状の実装例
-- `grid.module.scss` - グリッドシステム
 - `button.module.scss` - ボタンバリエーション
-- `gutter.module.scss` - レイアウト調整
 - `type.module.scss` - タイポグラフィ
 - `index.module.scss` - pages/index.tsx用スタイル
 - `header.module.scss` - ヘッダーコンポーネント用
 - `footer.module.scss` - フッターコンポーネント用
+- `modal-photo.module.scss` - 写真モーダル用
+- `modal-footer.module.scss` - フッターモーダル用
 
 #### 内部クラス命名規則
 CSS Modules環境では、ファイル名がBlock役割を担うため、内部クラスは `element--modifier` 形式を採用：
@@ -70,65 +70,54 @@ _[機能名].scss
 
 #### ディレクトリ別分類
 
-**Foundation層（基盤・リセット）**
-- `_destyle.css` - CSSリセット
-- `_reboot.scss` - Bootstrap風基本スタイルリセット
-- `_variables.scss` - 基本変数定義
-- `_variables-color.scss` - カラーパレット
-- `_variables-form.scss` - フォーム関連設定
+グローバル層は **global/**（共通API）+ **features/**（プロジェクト固有）+ **vendor/**（サードパーティ）の3副層で構成されます。余白・幅・Flexbox・Grid 等の汎用スタイリングは Tailwind CSS v4 ユーティリティクラスに移行済みです。
 
-**Global層（共通定義・関数）**
-- `_breakpoints.scss` - ブレークポイント定義
-- `_media-queries.scss` - メディアクエリ関数群
-- `_font.scss` - フォント設定
-- `_calc.scss` - 計算関数
-- `_unicode.scss` - 文字コード関連
+**global/ 層（共通API）**
 - `_index.scss` - global層統合ファイル
-
-**Mixins層（SCSS関数・ミックスイン）**
+- `_variables.scss` - 基本変数定義
+- `_breakpoints.scss` - ブレークポイント定義
+- `_calc.scss` - 計算関数
+- `_font.scss` - フォント設定
 - `_hover.scss` - ホバー効果
-- `_gutter.scss` - 余白設定ミックスイン
-- `_transition.scss` - アニメーション
-- `_zindex.scss` - z-index管理
-- `_clearfix.scss`, `_dl.scss`, `_table-row.scss` - 個別機能
+- `_media-queries.scss` - メディアクエリ関数群
 
-**Layout層（レイアウト定義）**
-- `_grid-variables.scss` - グリッドシステム変数
+**features/ 層（プロジェクト固有グローバルスタイル）**
 
-**Component層（コンポーネント固有グローバルスタイル）**
-- `_toggle.scss` - トグル機能
+以下理由によりモジュール化せずにグローバルスタイルとして維持：
+- JavaScript連携、動的クラス操作等でハッシュ化されると.ts/.tsxの動作に影響する
+- プロジェクト全体で共通使用するスタイル
+
+- `_layout.scss` - container-width 等レイアウト定義
 - `_tab.scss` - タブ機能
+- `_toggle.scss` - トグル機能
 - `_table.scss` - テーブル機能
+- `_style.scss` - プロジェクト全体スタイル・CSS変数・アニメーション定義ほか
+
+**vendor/ 層（サードパーティCSS）**
 - `react-modal/_react-modal.scss` - React Modal用
+- `react-modal/_modal-photo.scss` - 写真モーダル用
+- `react-modal/_modal-footer.scss` - フッターモーダル用
+- `scroll-hint/_index.scss` - Scroll Hint用
 - `swiper/_swiper-bundle.scss` - Swiper用
-
-**Project層（プロジェクト固有）**
-- `_style.scss` - プロジェクト全体スタイル・CSS変数・アニメーション定義
-
-**Utility層（汎用ユーティリティクラス）**
-- `_flex.scss` - Flexboxユーティリティ
-- `_display.scss` - 表示制御ユーティリティ
-- `_margin.scss`, `_padding.scss` - 余白調整
-- `_font.scss`, `_visibility.scss`, `_responsive-embed.scss`, `_scroll-hint.scss`, `_tables.scss`
 
 #### グローバルクラス命名規則
 BEM記法の完全形式 `Block__Element--Modifier` を採用：
 
 ```scss
 // _toggle.scss 内
-.c-toggle__wrap {              // Block: c-toggle + Element: wrap
+.toggle__wrap {              // Block: toggle + Element: wrap
   // スタイル定義
 }
 
-.c-toggle__title {             // Block: c-toggle + Element: title
+.toggle__title {             // Block: toggle + Element: title
   // スタイル定義
 }
 
-.c-toggle__button {            // Block: c-toggle + Element: button
+.toggle__button {            // Block: toggle + Element: button
   // スタイル定義
 }
 
-.c-toggle__wrap.js-active {    // Block: c-toggle + Element: wrap + State: js-active
+.toggle__wrap.js-active {    // Block: toggle + Element: wrap + State: js-active
   // アクティブ状態のスタイル
 }
 ```
@@ -143,36 +132,6 @@ BEM記法の完全形式 `Block__Element--Modifier` を採用：
 - 冗長性を排除した効率的な命名
 
 #### 実装例
-
-**grid.module.scss**
-```scss
-.col--12 {              // 12カラム
-  // スタイル定義
-}
-
-.col--lg-10 {           // lgブレークポイント・10カラム
-  // スタイル定義
-}
-
-.row--container {       // コンテナ付きrow
-  // スタイル定義
-}
-```
-
-**gutter.module.scss**
-```scss
-.container--initial {   // 初期コンテナ
-  // スタイル定義
-}
-
-.small--left {          // 小サイズ・左余白
-  // スタイル定義
-}
-
-.medium--left-half {    // 中サイズ・左余白半分
-  // スタイル定義
-}
-```
 
 **type.module.scss**
 ```scss
@@ -189,34 +148,17 @@ BEM記法の完全形式 `Block__Element--Modifier` を採用：
 }
 ```
 
-### 2. ユーティリティクラス命名
+### 2. ユーティリティクラス
 
-#### 命名パターン
-プロパティ名の短縮形 + ハイフン + 値の形式：
+余白・幅・Flexbox・Grid 等の汎用ユーティリティクラスは **Tailwind CSS v4 標準クラス** に移行済みです。
 
-```scss
-// _flex.scss
-.jc-center {           // justify-content: center
-  justify-content: center !important;
-}
-
-.ai-center {           // align-items: center
-  align-items: center !important;
-}
-
-.as-start {            // align-self: flex-start
-  align-self: flex-start !important;
-}
-
-// _margin.scss
-.mt-0 {                // margin-top: 0
-  margin-top: 0 !important;
-}
-
-.mx-auto {             // margin-left/right: auto
-  margin-right: auto !important;
-  margin-left: auto !important;
-}
+```tsx
+// Tailwind ユーティリティクラスの使用例
+<div className="justify-center items-center">
+  <p className="mt-0 mb-1">
+    Tailwind ユーティリティクラス使用例
+  </p>
+</div>
 ```
 
 ### 3. ブレークポイント接頭辞の使い分け
@@ -232,12 +174,12 @@ breakpoint-infix($bp)           // -sm（一般用）
 
 #### 実装例
 ```scss
-// grid.module.scss内での使用例
+// features/_toggle.scss内での使用例
 @each $breakpoint in map.keys($breakpoints) {
   $infix: g.breakpoint-infix-modifier($breakpoint, $breakpoints);
 
   @if $infix != "" {
-    .col#{$infix}-#{$i} {    // .col--sm-6 のような出力
+    .toggle#{$infix} {    // .toggle--sm のような出力
       // スタイル定義
     }
   }
@@ -253,15 +195,14 @@ breakpoint-infix($bp)           // -sm（一般用）
 
 ### 2. グローバルSCSS配置（src/styles/global/）
 
-#### component/ サブディレクトリ
+#### features/ サブディレクトリ
 以下の条件でグローバルクラスとして配置：
-- 外部ライブラリ（react-modal、swiper等）のクラス上書き
 - JavaScript連携でハッシュ化が影響する機能
 - 動的クラス操作が必要な機能
+- プロジェクト全体で共通使用するスタイル
 
-#### utility/ サブディレクトリ
-- 汎用的で単純なスタイリングクラス
-- 複数の要素が絡む場合は基本的にmodules/またはproject/_style.scssを優先
+#### vendor/ サブディレクトリ
+- 外部ライブラリ（react-modal、swiper、scroll-hint等）のクラス上書き
 
 ## 例外規定
 
@@ -303,7 +244,7 @@ JavaScriptで動的に付与される状態クラス：
   // スタイル定義
 }
 
-.c-toggle__wrap.js-active {  // 状態クラスとの組み合わせ
+.toggle__wrap.js-active {  // 状態クラスとの組み合わせ
   // スタイル定義
 }
 ```
@@ -322,13 +263,13 @@ JavaScriptで動的に付与される状態クラス：
 - JavaScript連携でハッシュ化が影響するか？
 - 複数コンポーネント間で共通利用するか？
 
-→ **Yes**: `_[機能名].scss` を適切な `src/styles/global/` サブディレクトリに作成
+→ **Yes**: `_[機能名].scss` を `src/styles/global/features/` に作成
 
 ### 3. 既存ファイル活用判断
 - 単純な汎用スタイルか？
 - プロジェクト全体に関わるスタイルか？
 
-→ **Yes**: 既存の `_style.scss` または utility/ クラスを活用
+→ **Yes**: 既存の `_style.scss` または Tailwind ユーティリティを活用
 
 ## まとめ
 
@@ -346,5 +287,5 @@ JavaScriptで動的に付与される状態クラス：
 
 ---
 
-**最終更新**: 2025-08-14
-**対象環境**: Next.js 13.5, SCSS
+**最終更新**: 2026-03-28
+**対象環境**: Next.js 15, SCSS, Tailwind CSS v4

@@ -2,12 +2,12 @@
 ssg（静的html）サイト用プリセット
 
 ## 技術構成
-- **Next.js 13.5** (App Router非使用)
+- **Next.js 15** (Pages Router)
 - **TypeScript 5.8** 各ファイルを.ts, .tsxに拡張子変更
-- **SCSS** (GSAP, React Modal対応)
+- **SCSS + Tailwind CSS v4**（`@tailwindcss/postcss` 経由）(GSAP, React Modal対応)
 - **eslint, prettier, stylelint** 設定済み
 
-## 主要機能 - 更新:2025年7月23日
+## 主要機能 - 更新:2026-03-28
 
 ### レイアウトシステム
 - `src/components/layout/layout.tsx` - メインレイアウト（機能初期化を含む）
@@ -15,17 +15,25 @@ ssg（静的html）サイト用プリセット
 - `src/components/layout/footer.tsx` - フッター（「ダミーテキストです。」を含む）
 
 ### UI要素コンポーネント
-- `src/components/ui/modal.tsx` - モーダルデモ（React Modal統合）
-- `src/components/ui/toggle.tsx` - トグルデモ（GSAP連携）
-- `src/components/ui/button.tsx` - ボタンコンポーネント
-- `src/components/ui/modal/component.tsx` - React Modalコンポーネント
+- `src/components/ui/ButtonDemo.tsx` - ボタンデモ
+- `src/components/ui/ModalDemo.tsx` - モーダルデモ（React Modal統合）
+- `src/components/ui/ModalPhoto.tsx` - 写真モーダル
+- `src/components/ui/ModalFooter.tsx` - フッターモーダル
+- `src/components/ui/GridDemo.tsx` - グリッドシステムデモ（Tailwind レイアウト）
+- `src/components/ui/GridPhoto.tsx` - 写真グリッド
+- `src/components/ui/TabDemo.tsx` - タブデモ
+- `src/components/ui/TableDemo.tsx` - テーブルデモ
+- `src/components/ui/ToggleDemo.tsx` - トグルデモ（GSAP連携）
+- `src/components/ui/VideoPlayer.tsx` - 動画プレイヤー
 
 ### 機能モジュール
-- `src/lib/hooks/toggle-content.tsx` - GSAPを使用したトグルアニメーション（カスタムフック）
-- `src/lib/hooks/useInView.tsx` - IntersectionObserver hook
-- `src/lib/utils/smooth-scroll.tsx` - スムーズスクロール機能
-- `src/lib/utils/rewrite-path.tsx` - 環境間でのパス管理ユーティリティ
-- `src/lib/utils/link_ignore.tsx` - リンク無効化機能
+- `src/lib/hooks/useToggleContent.ts` - GSAPを使用したトグルアニメーション（カスタムフック）
+- `src/lib/hooks/useInView.ts` - IntersectionObserver hook
+- `src/lib/hooks/useTabSwitch.ts` - タブ切り替えフック
+- `src/lib/hooks/useTableScroll.ts` - テーブルスクロールフック
+- `src/lib/utils/smoothScroll.ts` - スムーズスクロール機能
+- `src/lib/utils/rewritePath.tsx` - 環境間でのパス管理ユーティリティ
+- `src/lib/utils/linkIgnore.ts` - リンク無効化機能
 
 
 

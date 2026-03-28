@@ -273,8 +273,8 @@
 ```javascript
 @remarks
 - button.module.scssスタイルを使用
-- toggle.module.scssが必要
-- グローバルクラス .c-toggle__wrap を使用
+- global/features/_toggle.scssが必要
+- グローバルクラス .toggle__wrap を使用
 ```
 
 #### 他コンポーネントとの連携
@@ -339,5 +339,5 @@
 
 ---
 
-**最終更新**: 2025-07-31
+**最終更新**: 2026-03-28
 **参考実装**: useInView.ts, modalDemo.tsx, useToggleContent.ts
