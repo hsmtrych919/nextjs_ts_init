@@ -69,7 +69,7 @@ export function useInView() {
       });
     }, {
       threshold: threshold,
-      rootMargin: '10px' // 少し余裕を持たせる
+      rootMargin: '-100px' // 少し余裕を持たせる
     });
 
     // 各要素の監視を開始
