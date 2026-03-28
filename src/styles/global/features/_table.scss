@@ -32,7 +32,7 @@
   }
 }
 
-.c-table-spec {
+.table-spec {
   width: 100%;
   min-width: 720px;
   border-collapse: collapse;
@@ -40,7 +40,7 @@
   @extend %table-spec;
 }
 
-.c-table-spec--half {
+.table-spec--half {
   width: 100%;
   min-width: 450px;
   @media #{g.$md} {
@@ -51,7 +51,7 @@
   @extend %table-spec;
 }
 
-.c-table__responsive {
+.table__responsive {
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
   @media #{g.$md} {
@@ -69,7 +69,7 @@
   height: 100%;
 }
 
-.c-table__responsive--outer {
+.table__responsive--outer {
   position: relative;
   width: calc(100% + var(--gutter-row));
   &::before {

@@ -1,5 +1,0 @@
-$transition: all 0.2s ease-in-out !default;
-
-@mixin transition($transition: $transition) {
-  transition: $transition;
-}

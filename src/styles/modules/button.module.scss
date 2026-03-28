@@ -1,7 +1,5 @@
 @charset "utf-8";
-@use "sass:color";
 @use "../global/global" as g;
-@use "../global/mixins" as m;
 
 // -----------------------------------------------------------------
 // mixin (from _button.scss)
@@ -11,7 +9,7 @@
   display: block;
   position: relative;
   max-width: 100%;
-  border-radius: g.$border-radius;
+  border-radius: var(--bdrs);
   font-weight: 500;
   line-height: 1;
   cursor: pointer;
@@ -19,14 +17,14 @@
 
 @mixin button__color(
   $clr: #fff,
-  $bgc: g.$clr1,
+  $bgc: var(--clr1),
   $clr-hover: #fff,
-  $bgc-hover: color.scale(g.$clr1, $lightness: 5%)
+  $bgc-hover: #57be4c
 ) {
   background-color: $bgc;
   color: $clr;
 
-  @include m.hover {
+  @include g.hover {
     background-color: $bgc-hover;
     color: $clr-hover;
   }
@@ -38,12 +36,12 @@
 }
 
 @mixin button__color--border(
-  $clr: g.$clr1,
+  $clr: var(--clr1),
   $bgc: #fff,
-  $bdc: g.$clr1,
+  $bdc: var(--clr1),
   $clr-hover: #fff,
-  $bgc-hover: g.$clr1,
-  $bdc-hover: g.$clr1
+  $bgc-hover: var(--clr1),
+  $bdc-hover: var(--clr1)
 ) {
   border-width: 1px;
   border-style: solid;
@@ -51,7 +49,7 @@
   background-color: $bgc;
   color: $clr;
 
-  @include m.hover {
+  @include g.hover {
     border-color: $bdc-hover;
     background-color: $bgc-hover;
     color: $clr-hover;
@@ -76,14 +74,14 @@
   margin-left: auto;
   padding: 15px 0;
   transition: all .2s ease;
-  border-radius: g.$border-radius;
+  border-radius: var(--bdrs);
   background-color: var(--clrg400);
   color: #fff;
   font-size: 16px;
   font-weight: bold;
   line-height: 1.4;
   text-align: center;
-  @include m.hover {
+  @include g.hover {
     background-color: var(--clrg500);
     color: #fff;
   }
@@ -143,12 +141,12 @@
 .gradient {
   @include button__color(
     $clr: #fff,
-    $bgc: g.$clr1,
+    $bgc: var(--clr1),
     $clr-hover: #fff,
-    $bgc-hover: color.scale(g.$clr1, $lightness: 10%)
+    $bgc-hover: #60c255
   );
   background: var(--grd1);
-  @include m.hover {
+  @include g.hover {
     opacity: 0.8;
     .icon--arrow {
       transform: translate3d(g.rem(4), -50%, 0);
@@ -168,12 +166,12 @@
 .telephone {
   @include button__color(
     $clr: #fff,
-    $bgc: color.scale(g.$clr1, $lightness: -5%),
+    $bgc: #4bb140,
     $clr-hover: #fff,
-    $bgc-hover: color.scale(g.$clr1, $lightness: 0%)
+    $bgc-hover: var(--clr1)
   );
   padding-left: g.rem(48) !important;
-  @include m.hover {
+  @include g.hover {
     .icon--telephone {
       color: #fff;
     }
@@ -185,14 +183,14 @@
 
 .border--clr1 {
   @include button__color--border(
-    $clr: g.$clr1,
+    $clr: var(--clr1),
     $bgc: #fff,
-    $bdc: g.$clr1,
+    $bdc: var(--clr1),
     $clr-hover: #fff,
-    $bgc-hover: g.$clr1,
-    $bdc-hover: g.$clr1
+    $bgc-hover: var(--clr1),
+    $bdc-hover: var(--clr1)
   );
-  @include m.hover {
+  @include g.hover {
     .icon--arrow {
       transform: translate3d(g.rem(4), -50%, 0);
     }

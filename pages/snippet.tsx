@@ -10,8 +10,6 @@ import VideoPlayer from '@/components/ui/VideoPlayer';
 import GridPhoto from '@/components/ui/GridPhoto';
 import ModalPhoto from '@/components/ui/ModalPhoto';
 import { useInView } from '@/lib/hooks/useInView';
-import gridStyles from '@/styles/modules/grid.module.scss';
-import gutterStyles from '@/styles/modules/gutter.module.scss';
 import { ImgPath } from '@/lib/utils/rewritePath';
 import { PhotoImage, demoImages } from '@/lib/constants/photoModal';
 
@@ -59,9 +57,9 @@ export default function PageDemo() {
         {/* img&video */}
       <section style={{ marginBottom: '2rem' }}>
         <h3>img&video</h3>
-        <div className={`${gridStyles['row--container']} ${gutterStyles.container}`}>
-  <div className={`${gridStyles['col--12']}  ${gridStyles['col--md-10']}`}>
-        <ul className={`${gridStyles.grid} ${gridStyles['grid--2']} ${gridStyles['grid--md-4']}`} style={{ rowGap: 'calc(var(--gutter) * 2)' }}>
+        <div className="container-width mx-auto flex flex-wrap px-gutter-row xl:px-0">
+  <div className="w-full md:w-10/12">
+        <ul className="grid grid-cols-2 md:grid-cols-4 gap-grid-gutter">
           <li >
               <ImgPath
                 src={'placeholder-thumbnail-square.png'}
@@ -83,8 +81,8 @@ export default function PageDemo() {
         </ul>
         </div>
         </div>
-    <div className={`${gridStyles['row--container']} ${gutterStyles.container} mt-3`}>
-      <div className={`${gridStyles['col--12']} ${gridStyles['col--md-10']}`}>
+    <div className="container-width mx-auto flex flex-wrap px-gutter-row xl:px-0 mt-3">
+      <div className="w-full md:w-10/12">
         <VideoPlayer
           videoSrc="video.mp4"
           posterSrc="video-thumbnail.png"
@@ -110,8 +108,8 @@ export default function PageDemo() {
           <SimpleModalDemo />
 
         {/* モーダルデモ: ギャラリー */}
-        <div className={`${gridStyles['row--container']} ${gutterStyles.container} mt-3`}>
-          <div className={`${gridStyles['col--12']} ${gridStyles['col--md-10']}`}>
+        <div className="container-width mx-auto flex flex-wrap px-gutter-row xl:px-0 mt-3">
+          <div className="w-full md:w-10/12">
             <GridPhoto
               images={demoImages}
               onPhotoClick={handlePhotoClick}
@@ -145,8 +143,8 @@ export default function PageDemo() {
 
         {/* テーブルデモ */}
         <section style={{ marginBottom: '40px' }}>
-          <div className={`${gridStyles['row--container']} ${gutterStyles.container}`}>
-            <div className={`${gridStyles['col--12']} ${gridStyles['col--md-10']} ${gridStyles['col--xl-10']}`}>
+          <div className="container-width mx-auto flex flex-wrap px-gutter-row xl:px-0">
+            <div className="w-full md:w-10/12">
 
           <h2>テーブルデモ</h2>
           <p>横スクロール対応テーブル（scroll-hint + シャドウ機能付き）</p>

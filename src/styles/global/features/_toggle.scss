@@ -1,13 +1,12 @@
 @charset "utf-8";
 @use "../global" as g;
-@use "../mixins" as m;
 
 // -----------------------------------------------------------------
 // style
 // -----------------------------------------------------------------
 
 
-.c-toggle__wrap {
+.toggle__wrap {
   // --button-height: 48px;
   position: relative;
   // border: 1px solid #ddd;
@@ -27,7 +26,7 @@
   }
 }
 
-.c-toggle__title {
+.toggle__title {
   position: absolute;
   z-index: 10;
   bottom: 10px;
@@ -68,13 +67,13 @@
   // }
 }
 
-.c-toggle__content {
+.toggle__content {
   // visibility: hidden;
   // padding: 20rem;
   // opacity: 0;
 }
 
-.c-toggle__button {
+.toggle__button {
   display: block;
   position: relative;
   width: 100%;
@@ -97,17 +96,17 @@
   @media #{g.$xl} {
     font-size: 18px;
   }
-  @include m.hover {
+  @include g.hover {
     // background-color: #f0f0f0;
     color: var(--clrg600);
   }
 }
 
-.c-toggle__wrap.js-active {
-  // .c-toggle__title::before {
+.toggle__wrap.js-active {
+  // .toggle__title::before {
   //   display: none;
   // }
-  // .c-toggle__title::after {
+  // .toggle__title::after {
   //   transform: translateY(-50%) rotate(90deg);
   // }
   &::before {
@@ -116,7 +115,7 @@
   // @media #{g.$xl} {
     padding-bottom: 96px;
   // }
-  // .c-toggle__title {
+  // .toggle__title {
   //   display: none;
   //   @media #{g.$xl} {
   //     display: block;

@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import styles from '@/styles/modules/footer.module.scss';
-import gridStyles from '@/styles/modules/grid.module.scss';
-import gutterStyles from '@/styles/modules/gutter.module.scss';
 import { PhoneIcon } from '@heroicons/react/24/solid';
 import ModalFooter from '@/components/ui/ModalFooter';
 
@@ -23,7 +21,7 @@ export default function Footer() {
   return (
     <>
         {/* ナビゲーション機能 */}
-        <div className={`${gridStyles['row--container']} ${gutterStyles.container} ${styles['navigation--container']}`}>
+        <div className={`container-width mx-auto flex flex-wrap px-gutter-row xl:px-0 ${styles['navigation--container']}`}>
           <div className={styles['navigation--columns']} >
             <a href="#" className={`${styles['navigation--button']}`}>ボタン<br/>テキスト</a>
 

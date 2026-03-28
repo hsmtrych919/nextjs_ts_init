@@ -27,13 +27,7 @@ $grid-breakpoints: (
   xxl:$grid-breakpoints-xxl
 ) !default;
 
-// Grid containers
-// $container-max-widths: (
-//   sm: 540px,
-//   md: 720px,
-//   lg: 960px,
-//   xl: 1140px
-// ) !default;
+// Grid containers（module.scss が参照中。後続 Step で module.scss 廃止時に削除予定）
 $container-max-sm: 540px !default;
 $container-max-md: 960px !default;
 $container-max-lg: 1152px !default;
@@ -48,44 +42,20 @@ $container-max-widths: (
   xxl:$container-max-xxl
 ) !default;
 
-// Grid columns
+// Grid columns（module.scss が参照中）
 $grid-columns:               12 !default;
-// $grid-gutter-width-base:     30px !default;
-// $grid-gutter-widths: (
-//   xs: $grid-gutter-width-base,
-//   sm: $grid-gutter-width-base,
-//   md: $grid-gutter-width-base,
-//   lg: $grid-gutter-width-base,
-//   xl: $grid-gutter-width-base
-// ) !default;
-// $grid-gutter-widths-xs:12px !default;
-// $grid-gutter-widths-sm:16px !default;
-// $grid-gutter-widths-md:24px !default;
-// $grid-gutter-widths-lg:24px !default;
-// $grid-gutter-widths-xl:24px !default;
-// $grid-gutter-width-base: $grid-gutter-widths-md !default;
 
-// $grid-gutter-widths: (
-//   xs: $grid-gutter-widths-xs,
-//   sm: $grid-gutter-widths-sm,
-//   md: $grid-gutter-width-base,
-//   lg: $grid-gutter-width-base,
-//   xl: $grid-gutter-width-base
-// ) !default;
-
-
-// Fonts
-// $font-family-sans-serif: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
+// Fonts（module.scss が参照中）
 $font-family-sans-serif: avenir,"Noto Sans JP","游ゴシック体",yugothic,"游ゴシック Medium","Yu Gothic Medium","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ",meiryo,sans-serif;
 $font-family-serif: "Times New Roman","游明朝体",yumincho,"游明朝","Yu Mincho","ヒラギノ明朝 ProN W3","Hiragino Mincho ProN","HGS明朝E","ＭＳ Ｐ明朝","MS PMincho",serif;
 $font-family-monospace:  menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace !default;
 $font-family-base:       $font-family-sans-serif !default;
-//add
-$font-size-base: 16px !default; // Assumes the browser default, typically `16px`
+$font-size-base: 16px !default;
 $font-weight-base:  normal !default;
 $line-height-base: 1.5 !default;
 $border-radius:          6px !default;
 
+// Space values（module.scss が参照中）
 $space_values: (
   0_5: 4,
   0_75: 6,

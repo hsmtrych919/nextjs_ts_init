@@ -33,17 +33,17 @@ interface ToggleProps {
  * @remarks
  * - useToggleContentフックが必要です
  * - GSAPライブラリが必要です
- * - CSSクラス「c-toggle__wrap」「c-toggle__title」「c-toggle__content」を使用
+ * - CSSクラス「toggle__wrap」「toggle__title」「toggle__content」を使用
  */
 export default function SimpleToggleDemo({ children }: ToggleProps) {
-  useToggleContent('.c-toggle__wrap', '.c-toggle__title', '.c-toggle__content');
+  useToggleContent('.toggle__wrap', '.toggle__title', '.toggle__content');
 
   return (
-    <div className="c-toggle__wrap">
-      <div className="c-toggle__title">
-        <span className="c-toggle__button js-toggle-message">続きを読む</span>
+    <div className="toggle__wrap">
+      <div className="toggle__title">
+        <span className="toggle__button js-toggle-message">続きを読む</span>
       </div>
-      <div className="c-toggle__content">
+      <div className="toggle__content">
         {children || (
           <section>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>

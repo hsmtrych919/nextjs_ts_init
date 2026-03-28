@@ -19,20 +19,20 @@ import { useTableScroll } from '@/lib/hooks/useTableScroll';
  * @remarks
  * - useTableScrollフックが必要です
  * - ScrollHintライブラリが必要です
- * - CSSクラス「c-table__responsive--outer」「c-table__responsive」「c-table-spec」を使用
+ * - CSSクラス「table__responsive--outer」「table__responsive」「table-spec」を使用
  */
 export default function SimpleTableDemo() {
-  useTableScroll('.c-table__responsive');
+  useTableScroll('.table__responsive');
 
   return (
-    <div className="c-table__responsive--outer">
-      <div className="c-table__responsive scroll-hint">
-        <table className="c-table-spec">
+    <div className="table__responsive--outer">
+      <div className="table__responsive scroll-hint">
+        <table className="table-spec">
           <tbody>
             <tr>
-              <th colSpan={2}>機体巾<span className="c-table-spec__unit">( mm )</span></th>
-              <th colSpan={2}>機体長<span className="c-table-spec__unit">( mm )</span></th>
-              <th colSpan={2}>通過荷重<span className="c-table-spec__unit">( kg )</span></th>
+              <th colSpan={2}>機体巾<span className="table-spec__unit">( mm )</span></th>
+              <th colSpan={2}>機体長<span className="table-spec__unit">( mm )</span></th>
+              <th colSpan={2}>通過荷重<span className="table-spec__unit">( kg )</span></th>
             </tr>
             <tr>
               <td rowSpan={3} className="fw-500">Ⅰ</td>

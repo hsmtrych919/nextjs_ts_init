@@ -9,13 +9,13 @@ import { useState, useCallback } from 'react';
  * - 初期アクティブタブの設定
  * - タブクリック時の状態切り替え
  * - アクティブ状態に応じたCSSクラス名の自動生成
- * - 既存のSCSSクラス（.c-tab__*、.js-active）との連携
+ * - 既存のSCSSクラス（.tab__*、.js-active）との連携
  *
  * @param initialActiveIndex 初期アクティブタブのインデックス（デフォルト: 0）
  * @returns タブ操作用のオブジェクト
  *
  * @remarks
- * - SCSSクラス「c-tab__list--item」「c-tab__item」「js-active」を使用
+ * - SCSSクラス「tab__list--item」「tab__item」「js-active」を使用
  * - Next.js/React環境で利用してください
  * - タブコンポーネントと組み合わせて使用することを想定
  *
@@ -51,8 +51,8 @@ export const useTabSwitch = (initialActiveIndex: number = 0) => {
    */
   const getTabItemClassName = useCallback((index: number) => {
     return isActive(index)
-      ? 'c-tab__list--item js-active'
-      : 'c-tab__list--item';
+      ? 'tab__list--item js-active'
+      : 'tab__list--item';
   }, [isActive]);
 
   /**
@@ -62,8 +62,8 @@ export const useTabSwitch = (initialActiveIndex: number = 0) => {
    */
   const getContentClassName = useCallback((index: number) => {
     return isActive(index)
-      ? 'c-tab__item js-active'
-      : 'c-tab__item';
+      ? 'tab__item js-active'
+      : 'tab__item';
   }, [isActive]);
 
   return {

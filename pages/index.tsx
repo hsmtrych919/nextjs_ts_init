@@ -1,7 +1,5 @@
 import Layout from '@/components/layout/layout';
 import styles from '@/styles/modules/index.module.scss';
-import gridStyles from '@/styles/modules/grid.module.scss';
-import gutterStyles from '@/styles/modules/gutter.module.scss';
 
 // ファイル下に meta情報用の getStaticProps記載
 
@@ -11,8 +9,8 @@ export default function Home() {
       <main>
 
         <article className={`${styles.adv}`}>
-          <div className={`${gridStyles['row--container']} ${gutterStyles.container}`}>
-            <div className={`${gridStyles['col--12']} ${gridStyles['col--lg-10']} ${gridStyles['col--xl-7']}`}>
+          <div className="container-width mx-auto flex flex-wrap px-gutter-row xl:px-0">
+            <div className="w-full lg:w-10/12 xl:w-7/12">
               <p>lorem</p>
             </div>
           </div>

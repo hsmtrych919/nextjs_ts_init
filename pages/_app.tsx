@@ -1,3 +1,4 @@
+import '@/styles/tailwind-base.css';
 import '@/styles/global/style.scss';
 // import LayoutBasic from '@components/layout/basic';
 // import LayoutSecond from '@components/Layout-second';

@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 import styles from '@/styles/modules/modal-footer.module.scss';
-import gridStyles from '@/styles/modules/grid.module.scss';
-import gutterStyles from '@/styles/modules/gutter.module.scss';
 
 interface ModalFooterProps {
   isOpen: boolean;
@@ -62,7 +60,7 @@ const ModalFooter: React.FC<ModalFooterProps> = ({ isOpen, onClose }) => {
     >
       <div className={styles['modal--container']}>
         {/* メインコンテンツ部分 */}
-        <div className={`${gridStyles['row--container']}  ${gutterStyles.container} ${styles['content--container']}`}>
+        <div className={`container-width mx-auto flex flex-wrap px-gutter-row xl:px-0 ${styles['content--container']}`}>
           <a
             href="#"
             className={`${styles['location--button']} ignore`}
@@ -78,7 +76,7 @@ const ModalFooter: React.FC<ModalFooterProps> = ({ isOpen, onClose }) => {
         </div>
 
         {/* ナビゲーション部分（PhotoModalのナビゲーション構造を参考） */}
-        <div className={`${gridStyles['row--container']} ${gutterStyles.container} ${styles['navigation--container']}`}>
+        <div className={`container-width mx-auto flex flex-wrap px-gutter-row xl:px-0 ${styles['navigation--container']}`}>
           <div className={styles['navigation--columns']}>
             <button
               className={styles['nav-close--button']}

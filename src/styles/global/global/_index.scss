@@ -2,13 +2,14 @@
 
 // @use "../global" as g; で利用
 
-// foundation
-@forward "../foundation/variables";
-@forward "../foundation/variables-color";
+@forward "_variables";
+@forward "_variables-color";
 
-// mixin
-@forward "breakpoints";
-@forward "calc";
-@forward "font";
-@forward "media-queries";
-@forward "unicode";
+// mixin / function
+@forward "_breakpoints";
+@forward "_calc";
+@forward "_font";
+@forward "_hover";
+
+// Media Queries
+@forward "_media-queries";

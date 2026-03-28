@@ -1,8 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import ReactModal from 'react-modal';
 import styles from '@/styles/modules/modal-photo.module.scss';
-import gridStyles from '@/styles/modules/grid.module.scss';
-import gutterStyles from '@/styles/modules/gutter.module.scss';
 import { PhotoImage } from '@/lib/constants/photoModal';
 import { LazyImgPath, useImagePreloader } from '@/lib/utils/rewritePath';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
@@ -129,7 +127,7 @@ const ModalPhoto: React.FC<ModalPhotoProps> = ({ isOpen, onClose, images, curren
 
 
         {/* ナビゲーション機能 */}
-        <div className={`${gridStyles['row--container']} ${gutterStyles.container} ${styles['navigation--container']}`}>
+        <div className={`container-width mx-auto flex flex-wrap px-gutter-row xl:px-0 ${styles['navigation--container']}`}>
           <div className={styles['navigation--columns']} >
             <button
               className={styles['prev--button']}

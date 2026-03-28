@@ -1,7 +1,5 @@
 @charset "utf-8";
-@use "sass:color";
 @use "../global/global" as g;
-@use "../global/mixins" as m;
 
 // -----------------------------------------------------------------
 // mixin
@@ -144,66 +142,136 @@
 //
 
 .title__rhombus {
-  display: inline-block;
-  position: relative;
-  padding: 0 g.rem(36);
-  font-size: g.rem(22);
-  font-weight: 400;
-  letter-spacing: 2em;
-  @media #{g.$sm} {
-    font-size: g.rem(23);
-  }
+  padding: g.rem(25) g.rem(15);
+  background-color: #fafafa;
+  text-align: center;
 
   @media #{g.$md} {
-    padding: 0 g.rem(46);
-    font-size: g.rem(25);
-    letter-spacing: 4em;
+    padding: g.rem(30) 0;
   }
 
-  @media #{g.$lg} {
-    font-size: g.rem(28);
-  }
-
-  @media #{g.$xl} {
-    font-size: g.rem(29);
-  }
-
-  &::before, &::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    width: g.rem(22);
-    height: 100%;
-    transform: translate3d(0, g.rem(-1), 0);
-    // background-image: url(../../../public/img/h1-rhombus.svg); // deleted file
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100%;
+  &--inner {
+    display: inline-block;
+    position: relative;
+    padding: 0 g.rem(36);
+    font-size: g.rem(22);
+    font-weight: 400;
+    letter-spacing: 2em;
+    @media #{g.$sm} {
+      font-size: g.rem(23);
+    }
 
     @media #{g.$md} {
-      width: g.rem(30);
+      padding: 0 g.rem(46);
+      font-size: g.rem(25);
+      letter-spacing: 4em;
     }
-  }
 
-  &::before {
-    left: 0;
-  }
+    @media #{g.$lg} {
+      font-size: g.rem(28);
+    }
 
-  &::after {
-    right: 0;
+    @media #{g.$xl} {
+      font-size: g.rem(29);
+    }
+
+    &::before, &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      width: g.rem(22);
+      height: 100%;
+      transform: translate3d(0, g.rem(-1), 0);
+      // background-image: url(../../../public/img/h1-rhombus.svg); // deleted file
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100%;
+
+      @media #{g.$md} {
+        width: g.rem(30);
+      }
+    }
+
+    &::before {
+      left: 0;
+    }
+
+    &::after {
+      right: 0;
+    }
   }
 }
 
 
 .title__horizontal {
-  display: inline-block;
-  padding: 0 g.rem(16);
-  background-color: #fff;
-  color: var(--clrg700);
+  position: relative;
+  z-index: 1;
+  text-align: center;
 
-  &--yellow-bg {
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: g.rem(3);
+    transform: translate3d(0, -50%, 0);
+    background-image: var(--grd1);
+  }
+
+  &--inner {
+    display: inline-block;
+    padding: 0 g.rem(16);
+    background-color: #fff;
+    color: var(--clrg700);
+  }
+
+  &--inner-bgc-y {
     background-color: #fff6ea;
+  }
+}
+
+.title__underbar {
+  position: relative;
+  z-index: 1;
+  padding-bottom: g.rem(16);
+  text-align: center;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: g.rem(100);
+    height: g.rem(3);
+    transform: translate3d(-50%, 0, 0);
+    background-color: var(--clr3);
+  }
+}
+
+.title__bg-grd {
+  color: #fff;
+  font-size: g.rem(22);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 600;
+
+  @media #{g.$lg} {
+    font-size: g.rem(28);
+  }
+}
+
+.title__bg-grd--wrap {
+  padding: g.rem(32) var(--gutter-row);
+  background-image: var(--grd1);
+  line-height: 1.2;
+  @media #{g.$sm} {
+    text-align: center;
+  }
+  @media #{g.$md} {
+    padding: g.rem(48) 0;
   }
 }
 

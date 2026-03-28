@@ -1,0 +1,120 @@
+@charset "utf-8";
+@use "../global" as g;
+
+@layer components {
+  // -----------------------------------------------------------------
+  // mixin | extend
+  // -----------------------------------------------------------------
+
+
+  // -----------------------------------------------------------------
+  // style
+  // -----------------------------------------------------------------
+
+  // フェードインの変数
+  $fadein-duration: 0.4s;
+  $fadein-offset: 30px;
+
+  // フェードインの基本スタイル
+  .inview__fadein {
+    transform: translateY($fadein-offset);
+    backface-visibility: hidden; // GPUアクセラレーション有効化
+    transition: opacity $fadein-duration ease-out, transform $fadein-duration ease-out;
+    opacity: 0;
+    will-change: opacity, transform;
+
+    // @media (prefers-reduced-motion: reduce) {
+    //   transform: none;
+    //   transition: none;
+    // }
+  }
+
+  // 表示状態
+  .is-inview {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+
+  // swiper
+
+  // .swiper-main {
+  //   &__wrap {
+  //     position: relative;
+  //     padding: 0 var(--gutter-row) 32rem;
+  //     overflow: hidden;
+  //     @media #{g.$sm} {
+  //       padding: 0 0 32rem;
+  //     }
+  //     @media #{g.$md} {
+  //       padding: 0;
+  //     }
+  //   }
+  //   &__container {
+  //     overflow: visible;
+  //     @media #{g.$sm} {
+  //       overflow: hidden;
+  //     }
+  //   }
+  //   &__list{
+
+  //   }
+  //   &__list--item {
+  //     display: block;
+  //     img {
+  //       width: 100%;
+  //     }
+  //   }
+  //   &__prev {
+  //     left: -8px;
+  //     @media #{g.$sm} {
+  //       left: 24px;
+  //     }
+  //     @media #{g.$xl} {
+  //       left: 44px;
+  //     }
+  //   }
+  //   &__next {
+  //     right: -8px;
+  //     @media #{g.$sm} {
+  //       right: 24px;
+  //     }
+  //     @media #{g.$xl} {
+  //       right: 44px;
+  //     }
+  //   }
+  //   &__pagination {
+  //     bottom: 0 !important;
+  //     @media #{g.$md} {
+  //       display: none;
+  //     }
+  //   }
+  //   // thumbnail
+  //   &__thumbnail--wrap {
+  //     display: none;
+  //     @media #{g.$md} {
+  //       display: flex;
+  //     }
+  //   }
+  //   &__thumbnail {
+  //   }
+  //   &__thumbnail--list {
+  //     @media #{g.$md} {
+  //       height: auto;
+  //       margin-top: 24rem;
+  //       li {
+  //         background-color: g.$clr3;
+  //         cursor: pointer;
+  //         img {
+  //           transition: all .2s ease-in-out;
+  //         }
+  //         @include g.hover {
+  //           img {
+  //             opacity: 0.85;
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+} // @layer components

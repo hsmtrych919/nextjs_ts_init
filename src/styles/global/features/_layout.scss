@@ -1,0 +1,195 @@
+@charset "utf-8";
+@use "../global" as g;
+
+// -----------------------------------------------------------------
+// style
+// -----------------------------------------------------------------
+
+
+@layer components {
+  //
+  // container-width（横幅制御）
+  // 出典: _variables.scss L37-41 ($container-max-*)
+  // Tailwind v4 の built-in container は screens 値をそのまま max-width に
+  // 使うため、breakpoint と異なる max-width（例: 811px→960px）を設定できない。
+  // container-width は Tailwind が生成するクラスパターンに存在せず競合なし。
+  //
+
+  .container-width {
+    margin-inline: auto;
+    width: 100%;
+    @media #{g.$sm} {
+      max-width: 540px;
+    }
+    @media #{g.$md} {
+      max-width: 960px;
+    }
+    @media #{g.$lg} {
+      max-width: 1152px;
+    }
+    @media #{g.$xl} {
+      max-width: 1200px;
+    }
+    @media #{g.$xxl} {
+      max-width: 1260px;
+    }
+  }
+
+
+  //
+  // container-py
+  //
+
+  .container-py {
+    padding-top: g.rem(32);
+    padding-bottom: g.rem(32);
+
+    @media #{g.$sm} {
+      padding-top: g.rem(44);
+      padding-bottom: g.rem(44);
+    }
+
+  }
+
+
+  .main {
+    position: relative;
+    padding-top: var(--header-height);
+  }
+
+
+  .blog__main {
+
+    @media #{g.$md} {
+      padding-right: g.rem(56);
+    }
+  }
+
+  .blog__sidebar {
+    margin-top: g.rem(56);
+
+    @media #{g.$md} {
+      margin-top: 0;
+    }
+  }
+
+
+  //
+  // split
+  //
+
+  .split__outer {
+    width: 100%;
+    padding: 0 g.rem(20);
+
+    @media #{g.$sm} {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0;
+    }
+
+    &--reverse {
+
+      @extend .split__outer;
+      flex-direction: row-reverse;
+    }
+  }
+
+  %split__thumbnail {
+    width: 100%;
+
+    @media #{g.$sm} {
+      width: 45%;
+    }
+
+    @media #{g.$md} {
+      width: 50%;
+    }
+  }
+
+  .split__thumbnail {
+
+    &--left {
+
+      @extend %split__thumbnail;
+
+      @media #{g.$sm} {
+        // padding-right: calc(var(--unit) * 2);
+        padding-right: calc(var(--gutter) * 2);
+      }
+
+      @media #{g.$md} {
+        padding-right: calc(var(--gutter) * 3);
+      }
+    }
+
+    &--right {
+
+      @extend %split__thumbnail;
+
+      @media #{g.$sm} {
+        // padding-left: calc(var(--unit) * 2);
+        padding-left: calc(var(--gutter) * 2);
+      }
+
+      @media #{g.$md} {
+        padding-left: calc(var(--gutter) * 3);
+      }
+    }
+  }
+
+  %split__content {
+    width: 100%;
+
+    @media #{g.$sm} {
+      width: 55%;
+    }
+
+    @media #{g.$md} {
+      width: 50%;
+      max-width: 496px;
+    }
+
+    @media #{g.$lg} {
+      max-width: 500px;
+    }
+  }
+
+  .split__content {
+
+    &--left {
+
+      @extend %split__content;
+
+      @media #{g.$sm} {
+        padding-left: var(--gutter-row);
+      }
+
+      @media #{g.$lg} {
+        padding-left: 0;
+      }
+    }
+
+    &--right {
+
+      @extend %split__content;
+
+      @media #{g.$sm} {
+        padding-right: var(--gutter-row);
+      }
+
+      @media #{g.$lg} {
+        padding-right: 0;
+      }
+    }
+  }
+
+
+  .split__content--mt {
+    margin-top: g.rem(24);
+    @media #{g.$sm} {
+      margin-top: 0;
+    }
+  }
+} // @layer components
+
