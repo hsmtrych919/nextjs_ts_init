@@ -7,7 +7,7 @@ import ScrollHint from 'scroll-hint';
  * table要素がはみ出る場合、両端のシャドウ＋ヒントでスクロールできることを示唆するフックです。
  * 元のJavaScript関数をReact対応にしたものです。
  *
- * @param tableOuterSelector テーブル外側コンテナ要素のセレクタ（例: '.c-table__responsive'）
+ * @param tableOuterSelector テーブル外側コンテナ要素のセレクタ（例: '.table__responsive'）
  *
  * @remarks
  * - ScrollHintライブラリが必要です
@@ -16,7 +16,7 @@ import ScrollHint from 'scroll-hint';
  * @example
  * ```tsx
  * function MyComponent() {
- *   useTableScroll('.c-table__responsive');
+ *   useTableScroll('.table__responsive');
  *   return <div>...</div>;
  * }
  * ```

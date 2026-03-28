@@ -75,12 +75,12 @@
   &::before {
     @extend %table__shadow;
     left: 0;
-    box-shadow: inset 12px 0 12px -12px rgba(g.$black, 0.8);
+    box-shadow: inset 12px 0 12px -12px rgba(#222, 0.8);
   }
   &::after {
     @extend %table__shadow;
     right: 0;
-    box-shadow: inset -12px 0 12px -12px rgba(g.$black, 0.8);
+    box-shadow: inset -12px 0 12px -12px rgba(#222, 0.8);
   }
   &.js-shadow__before {
     &::before {
